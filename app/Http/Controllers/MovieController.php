@@ -26,7 +26,7 @@ class MovieController extends Controller
      */
     public function create()
     {
-        $list_movie = Movie::all();
+        $list_movie = Movie::with('category','genre','country')->get();
         $list_category = Category::pluck('title', 'id');
         $list_genre = Genre::pluck('title', 'id');
         $list_country = Country::pluck('title', 'id');
@@ -86,7 +86,12 @@ class MovieController extends Controller
      */
     public function edit($id)
     {
-        //
+        $movies = Movie::find($id);
+        $list_movie = Movie::with('category','genre','country')->get();
+        $list_category = Category::pluck('title', 'id');
+        $list_genre = Genre::pluck('title', 'id');
+        $list_country = Country::pluck('title', 'id');
+        return view('admin.movie.form', compact('list_category','list_genre','list_country','movies','list_movie'));
     }
 
     /**
@@ -98,7 +103,32 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $movie = Movie::find($id);
+        $movie->title = $data['title'];
+        $movie->slug = $data['slug'];
+        $movie->description = $data['description'];
+        $movie->status = $data['status'];
+        $movie->category_id = $data['category_id'];
+        $movie->genre_id = $data['genre_id'];
+        $movie->country_id = $data['country_id'];
+
+        // Xử lý file hình ảnh
+        $get_img = $request->file('image');
+        $path = '../public/uploads/movie/';
+        if($get_img) {
+            if(!empty($movie->image)) {
+                unlink('../public/uploads/movie/'.$movie->image);
+            }
+            $get_name_img = $get_img->getClientOriginalName(); // Lấy ra tên ảnh
+            $name_img = current(explode('.', $get_name_img)); // Lấy tên trước phần mở rộng
+            $new_img = $name_img.rand(0,99999).'.'.$get_img->getClientOriginalExtension();
+            $get_img->move($path,$new_img);
+            $movie->image = $new_img;
+        }
+        $movie->save();
+        return redirect()->back();
     }
 
     /**
@@ -109,6 +139,11 @@ class MovieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $movie = Movie::find($id);
+        if($movie) {
+            unlink('../public/uploads/movie/'.$movie->image);
+            $movie->delete();
+            return redirect()->back();
+        }
     }
 }
