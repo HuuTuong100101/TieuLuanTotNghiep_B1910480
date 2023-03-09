@@ -54,9 +54,9 @@
                     <th scope="col">Manage</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody class="order_position">
                     @foreach ($list as $index => $category)
-                        <tr>
+                        <tr id="{{$category->id}}">
                         <th scope="row">{{$index}}</th>
                         <td>{{$category->title}}</td>
                         <td>{{$category->slug}}</td>
@@ -76,7 +76,7 @@
                         </td>
                     @endforeach
                 </tbody>
-              </table>
+            </table>
         </div>
     </div>
 </div>

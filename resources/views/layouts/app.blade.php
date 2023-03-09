@@ -15,7 +15,8 @@
 
     <!-- Styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
 </head>
 <body>
     <div id="app">
@@ -85,9 +86,12 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="//cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
- 
+        $(document).ready( function () {
+            $('#MovieTable').DataTable();
+        } );
         function ChangeToSlug()
             {
                 var slug;
@@ -118,7 +122,31 @@
                     //In slug ra textbox có id “slug”
                 document.getElementById('slug').value = slug;
             }
-    
+        </script>
+        <script type="text/javascript">
+            $('.order_position').sortable({
+                placeholder: 'ui-state-highlight',
+                update : function(event, ui) {
+                    var arr_id = [];
+                    $('.order_position tr').each(function() {
+                        arr_id.push($(this).attr('id'));
+                    })
+                    alert(arr_id)
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url: "{{route('resorting')}}",
+                        method: "POST",
+                        data: {
+                            arr_id: arr_id
+                        },
+                        success: function(data) {
+                            alert('Sắp xếp thành công');
+                        }
+                    })
+                },
+            })
         </script>
 </body>
 </html>

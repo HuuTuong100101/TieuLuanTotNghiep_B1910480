@@ -12,10 +12,12 @@ use App\Models\Movie;
 class IndexController extends Controller
 {
     public function home() {
+        $hot_movies = Movie::all()->where('hot', 1);
         $categories = Category::all()->where('status',1);
         $countries = Country::all()->where('status',1);
         $genres = Genre::all()->where('status',1);
-        return view('pages.home', compact('categories', 'countries', 'genres'));
+        $movies_categories = Category::with('movie')->orderBy('id', 'DESC')->where('status', '1')->get();
+        return view('pages.home', compact('categories', 'countries', 'genres', 'movies_categories', 'hot_movies'));
     }
     public function movie() {
         return view('pages.movie');

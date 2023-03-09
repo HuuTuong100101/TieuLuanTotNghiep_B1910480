@@ -43,6 +43,10 @@
                                 {!! Form::select('country_id', $list_country, isset($movies) ? $movies->country_id : '1', ['class'=>'form-select']) !!}
                             </div>
                             <div class="form-group">
+                                {!! Form::label('Phim Hot', 'Phim Hot', ['class'=>'mt-3']) !!}
+                                {!! Form::select('phim_hot', ['1'=>'hot', '0'=>'không hot'], isset($movies) ? $movies->hot : '1', ['class'=>'form-select']) !!}
+                            </div>
+                            <div class="form-group">
                                 {!! Form::label('genre', 'Genre', ['class'=>'mt-3']) !!}
                                 {!! Form::select('genre_id', $list_genre, isset($movies) ? $movies->genre_id : '1', ['class'=>'form-select']) !!}
                             </div>
@@ -61,49 +65,6 @@
                         {!! Form::close() !!}
                 </div>
             </div>
-
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Index</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Slug</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Genre</th>
-                    <th scope="col">Country</th>
-                    <th scope="col">Active/Inactive</th>
-                    <th scope="col">Manage</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    @foreach ($list_movie as $index => $movie)
-                        <tr>
-                        <th scope="row">{{$index}}</th>
-                        <td>{{$movie->title}}</td>
-                        <td><img width="70% " src="{{asset('uploads/movie/'.$movie->image)}}" alt="#"></td>
-                        <td>{{$movie->description}}</td>
-                        <td>{{$movie->slug}}</td>
-                        <td>{{$movie->category->title}}</td>
-                        <td>{{$movie->genre->title}}</td>
-                        <td>{{$movie->country->title}}</td>
-                        <td>
-                            @if ($movie->status)
-                                hiển thị
-                            @else
-                                ẩn
-                            @endif
-                        </td>
-                        <td>
-                            {!! Form::open(['method'=>'DELETE', 'route'=>['movie.destroy', $movie->id], 'onsubmit' => 'return confirm("Bạn có muốn xóa không ?")']) !!}
-                                {!! Form::submit('Xóa', ['class'=>'btn btn-danger']) !!}
-                            {!! Form::close() !!}
-                            <a href="{{route('movie.edit', $movie->id)}}" class="btn btn-warning">Sửa</a>
-                        </td>
-                    @endforeach
-                </tbody>
-              </table>
         </div>
     </div>
 </div>

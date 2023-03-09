@@ -16,7 +16,11 @@ class MovieController extends Controller
      */
     public function index()
     {
-        //
+        $list_movie = Movie::with('category','genre','country')->get();
+        $list_category = Category::pluck('title', 'id');
+        $list_genre = Genre::pluck('title', 'id');
+        $list_country = Country::pluck('title', 'id');
+        return view('admin.movie.index', compact('list_movie', 'list_category', 'list_genre', 'list_country'));
     }
 
     /**
@@ -26,11 +30,7 @@ class MovieController extends Controller
      */
     public function create()
     {
-        $list_movie = Movie::with('category','genre','country')->get();
-        $list_category = Category::pluck('title', 'id');
-        $list_genre = Genre::pluck('title', 'id');
-        $list_country = Country::pluck('title', 'id');
-        return view('admin.movie.form', compact('list_movie', 'list_category', 'list_genre', 'list_country'));
+        return view('admin.movie.form');
     }
 
     /**
@@ -51,6 +51,7 @@ class MovieController extends Controller
         $movie->category_id = $data['category_id'];
         $movie->genre_id = $data['genre_id'];
         $movie->country_id = $data['country_id'];
+        $movie->hot = $data['phim_hot'];
 
         // Xử lý file hình ảnh
         $get_img = $request->file('image');
@@ -75,7 +76,7 @@ class MovieController extends Controller
      */
     public function show($id)
     {
-        //
+        //    
     }
 
     /**
@@ -113,6 +114,7 @@ class MovieController extends Controller
         $movie->category_id = $data['category_id'];
         $movie->genre_id = $data['genre_id'];
         $movie->country_id = $data['country_id'];
+        $movie->hot = $data['phim_hot'];
 
         // Xử lý file hình ảnh
         $get_img = $request->file('image');
