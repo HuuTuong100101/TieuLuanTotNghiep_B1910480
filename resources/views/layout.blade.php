@@ -154,65 +154,65 @@
       <style>#overlay_mb{position:fixed;display:none;width:100%;height:100%;top:0;left:0;right:0;bottom:0;background-color:rgba(0, 0, 0, 0.7);z-index:99999;cursor:pointer}#overlay_mb .overlay_mb_content{position:relative;height:100%}.overlay_mb_block{display:inline-block;position:relative}#overlay_mb .overlay_mb_content .overlay_mb_wrapper{width:600px;height:auto;position:relative;left:50%;top:50%;transform:translate(-50%, -50%);text-align:center}#overlay_mb .overlay_mb_content .cls_ov{color:#fff;text-align:center;cursor:pointer;position:absolute;top:5px;right:5px;z-index:999999;font-size:14px;padding:4px 10px;border:1px solid #aeaeae;background-color:rgba(0, 0, 0, 0.7)}#overlay_mb img{position:relative;z-index:999}@media only screen and (max-width: 768px){#overlay_mb .overlay_mb_content .overlay_mb_wrapper{width:400px;top:3%;transform:translate(-50%, 3%)}}@media only screen and (max-width: 400px){#overlay_mb .overlay_mb_content .overlay_mb_wrapper{width:310px;top:3%;transform:translate(-50%, 3%)}}</style>
       <style>
          #overlay_pc {
-         position: fixed;
-         display: none;
-         width: 100%;
-         height: 100%;
-         top: 0;
-         left: 0;
-         right: 0;
-         bottom: 0;
-         background-color: rgba(0, 0, 0, 0.7);
-         z-index: 99999;
-         cursor: pointer;
+            position: fixed;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 99999;
+            cursor: pointer;
          }
          #overlay_pc .overlay_pc_content {
-         position: relative;
-         height: 100%;
+            position: relative;
+            height: 100%;
          }
          .overlay_pc_block {
-         display: inline-block;
-         position: relative;
+            display: inline-block;
+            position: relative;
          }
          #overlay_pc .overlay_pc_content .overlay_pc_wrapper {
-         width: 600px;
-         height: auto;
-         position: relative;
-         left: 50%;
-         top: 50%;
-         transform: translate(-50%, -50%);
-         text-align: center;
+            width: 600px;
+            height: auto;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
          }
          #overlay_pc .overlay_pc_content .cls_ov {
-         color: #fff;
-         text-align: center;
-         cursor: pointer;
-         position: absolute;
-         top: 5px;
-         right: 5px;
-         z-index: 999999;
-         font-size: 14px;
-         padding: 4px 10px;
-         border: 1px solid #aeaeae;
-         background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            z-index: 999999;
+            font-size: 14px;
+            padding: 4px 10px;
+            border: 1px solid #aeaeae;
+            background-color: rgba(0, 0, 0, 0.7);
          }
          #overlay_pc img {
-         position: relative;
-         z-index: 999;
+            position: relative;
+            z-index: 999;
          }
          @media only screen and (max-width: 768px) {
-         #overlay_pc .overlay_pc_content .overlay_pc_wrapper {
-         width: 400px;
-         top: 3%;
-         transform: translate(-50%, 3%);
-         }
+            #overlay_pc .overlay_pc_content .overlay_pc_wrapper {
+               width: 400px;
+               top: 3%;
+               transform: translate(-50%, 3%);
+            }
          }
          @media only screen and (max-width: 400px) {
-         #overlay_pc .overlay_pc_content .overlay_pc_wrapper {
-         width: 310px;
-         top: 3%;
-         transform: translate(-50%, 3%);
-         }
+            #overlay_pc .overlay_pc_content .overlay_pc_wrapper {
+               width: 310px;
+               top: 3%;
+               transform: translate(-50%, 3%);
+            }
          }
       </style>
       <style>
@@ -224,9 +224,25 @@
          #hide_float_right a { background: #01AEF0; padding: 5px 5px 1px 5px; color: #FFF;float: left;}
       </style>
       <script>
-         $(document).ready(function($) {				
-         var owl = $('#phim_hot');
-         owl.owlCarousel({loop: true,margin: 4,autoplay: true,autoplayTimeout: 4000,autoplayHoverPause: true,nav: true,navText: ['<i class="hl-down-open rotate-left"></i>', '<i class="hl-down-open rotate-right"></i>'],responsiveClass: true,responsive: {0: {items:2},480: {items:3}, 600: {items:4},1000: {items: 5}}})});
+         $(document).ready(function($) {
+            var owl = $('#phim_hot');
+            owl.owlCarousel({
+               loop: true,
+               margin: 4,
+               autoplay: true,
+               autoplayTimeout: 4000,
+               autoplayHoverPause: true,
+               nav: true,
+               navText: ['<i class="hl-down-open rotate-left"></i>', '<i class="hl-down-open rotate-right"></i>'],
+               responsiveClass: true,
+               responsive: {
+                  0: {items:2},
+                  480: {items:3}, 
+                  600: {items:4},
+                  1000: {items: 5}
+               }
+            })
+         });
       </script>
    </body>
 </html>

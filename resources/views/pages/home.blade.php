@@ -14,14 +14,13 @@
             @foreach ($hot_movies as $hot_movie)
                 <article class="thumb grid-item post-38498">
                 <div class="halim-item">
-                    <a class="halim-thumb" href="chitiet.php" title="{{$hot_movie->title}}">
+                    <a class="halim-thumb" href="{{route('movie', $hot_movie->slug)}}" title="{{$hot_movie->title}}">
                         <figure><img class="lazy img-responsive" src="{{asset('../uploads/movie/'.$hot_movie->image)}}" alt="{{$hot_movie->title}}" title="{{$hot_movie->title}}"></figure>
                         <span class="status">HD</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
                         <div class="icon_overlay"></div>
                         <div class="halim-post-title-box">
                         <div class="halim-post-title ">
                             <p class="entry-title">{{$hot_movie->title}}</p>
-                            <p class="original_title">Monkey King: The One And Only</p>
                         </div>
                         </div>
                     </a>
@@ -42,14 +41,13 @@
                     @foreach ($category_home->movie->take(12) as $key => $movie)
                         <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-37606">
                             <div class="halim-item">
-                                <a class="halim-thumb" href="{{route('movie')}}" title="{{$movie->title}}">
+                                <a class="halim-thumb" href="{{route('movie', $movie->slug)}}" title="{{$movie->title}}">
                                     <figure><img class="lazy img-responsive" src="{{asset('../uploads/movie/'.$movie->image)}}" alt="{{$movie->title}}" title="{{$movie->title}}"></figure>
                                     <span class="status">HD</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Engsub</span> 
                                     <div class="icon_overlay"></div>
                                     <div class="halim-post-title-box">
                                         <div class="halim-post-title ">
                                         <p class="entry-title">{{$movie->title}}</p>
-                                        <p class="original_title">Black Widow</p>
                                         </div>
                                     </div>
                                 </a>

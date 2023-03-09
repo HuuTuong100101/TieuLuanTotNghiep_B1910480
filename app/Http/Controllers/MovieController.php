@@ -30,7 +30,10 @@ class MovieController extends Controller
      */
     public function create()
     {
-        return view('admin.movie.form');
+        $list_category = Category::pluck('title', 'id');
+        $list_genre = Genre::pluck('title', 'id');
+        $list_country = Country::pluck('title', 'id');
+        return view('admin.movie.form', compact('list_category','list_genre','list_country'));
     }
 
     /**
