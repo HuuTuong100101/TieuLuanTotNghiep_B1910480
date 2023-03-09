@@ -8,7 +8,6 @@ use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Espisode;
 use App\Models\Movie;
-use DB;
 
 class IndexController extends Controller
 {

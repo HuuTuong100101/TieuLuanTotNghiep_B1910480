@@ -91,6 +91,9 @@
     <script type="text/javascript">
         $(document).ready( function () {
             $('#MovieTable').DataTable();
+            $('#CategoryTable').DataTable();
+            $('#CountryTable').DataTable();
+            $('#GenreTable').DataTable();
         } );
         function ChangeToSlug()
             {
@@ -122,31 +125,6 @@
                     //In slug ra textbox có id “slug”
                 document.getElementById('slug').value = slug;
             }
-        </script>
-        <script type="text/javascript">
-            $('.order_position').sortable({
-                placeholder: 'ui-state-highlight',
-                update : function(event, ui) {
-                    var arr_id = [];
-                    $('.order_position tr').each(function() {
-                        arr_id.push($(this).attr('id'));
-                    })
-                    alert(arr_id)
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        url: "{{route('resorting')}}",
-                        method: "POST",
-                        data: {
-                            arr_id: arr_id
-                        },
-                        success: function(data) {
-                            alert('Sắp xếp thành công');
-                        }
-                    })
-                },
-            })
         </script>
 </body>
 </html>

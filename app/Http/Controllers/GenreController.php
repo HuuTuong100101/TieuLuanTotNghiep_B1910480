@@ -14,7 +14,8 @@ class GenreController extends Controller
      */
     public function index()
     {
-        //
+        $list = Genre::all();
+        return view('admin.genre.index', compact('list'));
     }
 
     /**
@@ -24,8 +25,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        $list = Genre::all();
-        return view('admin.genre.form', compact('list'));
+        return view('admin.genre.form');
     }
 
     /**

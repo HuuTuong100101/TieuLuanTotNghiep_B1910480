@@ -7,13 +7,13 @@
         <a class="navbar-brand" href="{{route('home')}}">Dashboard</a>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="{{route('category.create')}}">Danh mục phim</a>
+            <a class="nav-link" href="{{route('category.index')}}">Danh mục phim</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('genre.create')}}">Thể loại</a>
+            <a class="nav-link" href="{{route('genre.index')}}">Thể loại</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('country.create')}}">Quốc gia</a>
+            <a class="nav-link" href="{{route('country.index')}}">Quốc gia</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('movie.index')}}">Phim</a>

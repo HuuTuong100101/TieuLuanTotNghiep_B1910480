@@ -6,6 +6,7 @@
 
     // Admin controller
     use App\Http\Controllers\CategoryController;
+    use App\Http\Controllers\Auth\LoginController;
     use App\Http\Controllers\GenreController;
     use App\Http\Controllers\MovieController;
     use App\Http\Controllers\EspisodeController;
@@ -31,13 +32,11 @@
     Route::get('/espisode', [IndexController::class, 'espisode'])->name('espisode');
 
     Auth::routes();
-
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     // Route admin
+    Route::get('logout', [LoginController::class, 'logout'])->name('logout');
     Route::resource('category', CategoryController::class);
-    Route::post('resorting', [CategoryController::class, 'resorting'])->name('resorting');
-
     Route::resource('movie', MovieController::class);
     Route::resource('genre', GenreController::class);
     Route::resource('country', CountryController::class);

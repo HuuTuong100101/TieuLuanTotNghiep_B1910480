@@ -14,7 +14,8 @@ class CountryController extends Controller
      */
     public function index()
     {
-        //
+        $list = Country::all();
+        return view('admin.country.index', compact('list'));
     }
 
     /**
@@ -24,8 +25,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        $list = Country::all();
-        return view('admin.country.form', compact('list'));
+        return view('admin.country.form');
     }
 
     /**

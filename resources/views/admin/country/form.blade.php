@@ -42,41 +42,6 @@
                         {!! Form::close() !!}
                 </div>
             </div>
-
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Thứ tự</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Slug</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Trạng thái</th>
-                    <th scope="col">Manage</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    @foreach ($list as $index => $country)
-                        <tr>
-                        <th scope="row">{{$index}}</th>
-                        <td>{{$country->title}}</td>
-                        <td>{{$country->slug}}</td>
-                        <td>{{$country->description}}</td>
-                        <td>
-                            @if ($country->status)
-                                hiển thị
-                            @else
-                                ẩn
-                            @endif
-                        </td>
-                        <td>
-                            {!! Form::open(['method'=>'DELETE', 'route'=>['country.destroy', $country->id], 'onsubmit' => 'return confirm("Bạn có muốn xóa không ?")']) !!}
-                                {!! Form::submit('Xóa', ['class'=>'btn btn-danger']) !!}
-                            {!! Form::close() !!}
-                            <a href="{{route('country.edit', $country->id)}}" class="btn btn-warning">Sửa</a>
-                        </td>
-                    @endforeach
-                </tbody>
-              </table>
         </div>
     </div>
 </div>
