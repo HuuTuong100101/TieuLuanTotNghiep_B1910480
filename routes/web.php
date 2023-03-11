@@ -41,5 +41,4 @@
     Route::resource('genre', GenreController::class);
     Route::resource('country', CountryController::class);
     Route::resource('espisode', EspisodeController::class);
-
 ?>

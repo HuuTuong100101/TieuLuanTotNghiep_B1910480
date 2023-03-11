@@ -16,7 +16,25 @@
                 <div class="halim-item">
                     <a class="halim-thumb" href="{{route('movie', $hot_movie->slug)}}" title="{{$hot_movie->title}}">
                         <figure><img class="lazy img-responsive" src="{{asset('../uploads/movie/'.$hot_movie->image)}}" alt="{{$hot_movie->title}}" title="{{$hot_movie->title}}"></figure>
-                        <span class="status">HD</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
+                        <span class="status">
+                            @if($hot_movie->quality == 1)
+                                HD
+                            @elseif ($hot_movie->quality == 2)
+                                Full HD
+                            @else
+                                SD
+                            @endif
+                        </span>
+                        <span class="episode">
+                            <i class="fa fa-play" aria-hidden="true"></i>
+                            @if($hot_movie->subtitles == 1)
+                                Vietsub
+                            @elseif($hot_movie->subtitles == 2)
+                                Engsub
+                            @else
+                                Lồng tiếng
+                            @endif
+                        </span> 
                         <div class="icon_overlay"></div>
                         <div class="halim-post-title-box">
                         <div class="halim-post-title ">
@@ -43,7 +61,25 @@
                             <div class="halim-item">
                                 <a class="halim-thumb" href="{{route('movie', $movie->slug)}}" title="{{$movie->title}}">
                                     <figure><img class="lazy img-responsive" src="{{asset('../uploads/movie/'.$movie->image)}}" alt="{{$movie->title}}" title="{{$movie->title}}"></figure>
-                                    <span class="status">HD</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Engsub</span> 
+                                    <span class="status">
+                                        @if($movie->quality == 1)
+                                            HD
+                                        @elseif ($movie->quality == 2)
+                                            Full HD
+                                        @else
+                                            SD
+                                        @endif
+                                    </span>
+                                    <span class="episode">
+                                        <i class="fa fa-play" aria-hidden="true"></i>
+                                        @if($movie->subtitles == 1)
+                                            Vietsub
+                                        @elseif($movie->subtitles == 2)
+                                            Engsub
+                                        @else
+                                            Lồng tiếng
+                                        @endif
+                                    </span> 
                                     <div class="icon_overlay"></div>
                                     <div class="halim-post-title-box">
                                         <div class="halim-post-title ">

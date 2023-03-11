@@ -5,20 +5,18 @@
     <a href="{{route('movie.create')}}" class="btn btn-success mt-3 mb-3">Thêm Phim</a>
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <table class="table" id="MovieTable">
+            <table class="table align-middle" id="MovieTable">
                 <thead>
                 <tr>
-                    <th scope="col">Index</th>
+                    <th scope="col">#</th>
                     <th scope="col">Title</th>
                     <th scope="col">Image</th>
-                    <th scope="col">Description</th>
                     <th scope="col">Slug</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Genre</th>
-                    <th scope="col">Country</th>
                     <th scope="col">Hot</th>
+                    <th scope="col">DateCreated</th>
+                    <th scope="col">DateUpdated</th>
                     <th scope="col">Active/Inactive</th>
-                    <th scope="col">Manage</th>
+                    <th scope="col">Detail</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,12 +24,8 @@
                         <tr>
                         <th scope="row">{{$index}}</th>
                         <td>{{$movie->title}}</td>
-                        <td><img width="70% " src="{{asset('uploads/movie/'.$movie->image)}}" alt="#"></td>
-                        <td>{{$movie->description}}</td>
+                        <td><img width="20%" src="{{asset('uploads/movie/'.$movie->image)}}" alt="#"></td>
                         <td>{{$movie->slug}}</td>
-                        <td>{{$movie->category->title}}</td>
-                        <td>{{$movie->genre->title}}</td>
-                        <td>{{$movie->country->title}}</td>
                         <td>
                             @if ($movie->hot)
                                 hot
@@ -39,6 +33,8 @@
                                 không hot
                             @endif
                         </td>
+                        <td>{{$movie->datecreated}}</td>
+                        <td>{{$movie->dateupdated}}</td>
                         <td>
                             @if ($movie->status)
                                 hiển thị
@@ -47,10 +43,7 @@
                             @endif
                         </td>
                         <td>
-                            {!! Form::open(['method'=>'DELETE', 'route'=>['movie.destroy', $movie->id], 'onsubmit' => 'return confirm("Bạn có muốn xóa không ?")']) !!}
-                                {!! Form::submit('Xóa', ['class'=>'btn btn-danger']) !!}
-                            {!! Form::close() !!}
-                            <a href="{{route('movie.edit', $movie->id)}}" class="btn btn-warning">Sửa</a>
+                            <a href="{{route('movie.show', $movie->id)}}" class="btn btn-outline-info">Detail</a>
                         </td>
                     @endforeach
                 </tbody>

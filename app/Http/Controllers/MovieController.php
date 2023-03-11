@@ -7,6 +7,7 @@ use App\Models\Movie;
 use App\Models\Category;
 use App\Models\Genre;
 use App\Models\Country;
+use Carbon\Carbon; // xử lý ngày
 class MovieController extends Controller
 {
     /**
@@ -50,11 +51,15 @@ class MovieController extends Controller
         $movie->title = $data['title'];
         $movie->slug = $data['slug'];
         $movie->description = $data['description'];
+        $movie->quality = $data['quality'];
+        $movie->subtitles = $data['subtitles'];
         $movie->status = $data['status'];
         $movie->category_id = $data['category_id'];
         $movie->genre_id = $data['genre_id'];
         $movie->country_id = $data['country_id'];
         $movie->hot = $data['phim_hot'];
+        $movie->datecreated = Carbon::now('Asia/Ho_Chi_Minh');
+        $movie->dateupdated = Carbon::now('Asia/Ho_Chi_Minh');
 
         // Xử lý file hình ảnh
         $get_img = $request->file('image');
@@ -79,7 +84,8 @@ class MovieController extends Controller
      */
     public function show($id)
     {
-        //    
+        $movie = Movie::with('category','genre','country')->find($id);
+        return view('admin.movie.detail', compact('movie'));
     }
 
     /**
@@ -113,11 +119,14 @@ class MovieController extends Controller
         $movie->title = $data['title'];
         $movie->slug = $data['slug'];
         $movie->description = $data['description'];
+        $movie->quality = $data['quality'];
+        $movie->subtitles = $data['subtitles'];
         $movie->status = $data['status'];
         $movie->category_id = $data['category_id'];
         $movie->genre_id = $data['genre_id'];
         $movie->country_id = $data['country_id'];
         $movie->hot = $data['phim_hot'];
+        $movie->dateupdated = Carbon::now('Asia/Ho_Chi_Minh');
 
         // Xử lý file hình ảnh
         $get_img = $request->file('image');

@@ -12,7 +12,7 @@ use App\Models\Movie;
 class IndexController extends Controller
 {
     public function home() {
-        $hot_movies = Movie::all()->where('hot', 1);
+        $hot_movies = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->get();
         $categories = Category::all()->where('status',1);
         $countries = Country::all()->where('status',1);
         $genres = Genre::all()->where('status',1);
@@ -34,7 +34,7 @@ class IndexController extends Controller
         $genres = Genre::all()->where('status',1);
         // Lấy ra tên danh mục theo slug để hiển thị tên danh mục
         $category_slug = Category::where('slug',$slug)->first();
-        $category_movies = Movie::where('category_id', $category_slug->id)->paginate(40);
+        $category_movies = Movie::orderBy('dateupdated','DESC')->where('category_id', $category_slug->id)->paginate(40);
         return view('pages.category', compact('categories', 'countries', 'genres', 'category_slug', 'category_movies'));
     }
 
@@ -44,7 +44,7 @@ class IndexController extends Controller
         $genres = Genre::all()->where('status',1);
         // Lấy ra tên quốc gia theo slug để hiển thị tên quốc gia
         $country_slug = Country::where('slug',$slug)->first();
-        $country_movies = Movie::where('country_id', $country_slug->id)->paginate(40);
+        $country_movies = Movie::orderBy('dateupdated','DESC')->where('country_id', $country_slug->id)->paginate(40);
         return view('pages.country', compact('categories', 'countries', 'genres', 'country_slug', 'country_movies'));
     }
     public function genre($slug) {
@@ -53,7 +53,7 @@ class IndexController extends Controller
         $genres = Genre::all()->where('status',1);
         // Lấy ra tên thể loại theo slug để hiển thị tên thể loại
         $genre_slug = Genre::where('slug',$slug)->first();
-        $genre_movies = Movie::where('genre_id', $genre_slug->id)->paginate(40);
+        $genre_movies = Movie::orderBy('dateupdated','DESC')->where('genre_id', $genre_slug->id)->paginate(40);
         return view('pages.genre', compact('categories', 'countries', 'genres', 'genre_slug', 'genre_movies'));
     }
     public function watch() {

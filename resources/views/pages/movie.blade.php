@@ -39,11 +39,31 @@
                    <div class="film-poster col-md-9">
                       <h1 class="movie-title title-1" style="display:block;line-height:35px;margin-bottom: -14px;color: #ffed4d;text-transform: uppercase;font-size: 18px;">{{$movie->title}}</h1>
                       <ul class="list-info-group">
-                         <li class="list-info-group-item"><span>Trạng Thái</span> : <span class="quality">HD</span><span class="episode">Vietsub</span></li>
-                         <li class="list-info-group-item"><span>Thời lượng</span> : 133 Phút</li>
-                         <li class="list-info-group-item"><span>Danh mục phim</span> : <a href="{{route('category',$movie->category->slug)}}" rel="category tag">{{$movie->category->title}}</a></li>
-                         <li class="list-info-group-item"><span>Thể loại</span> : <a href="{{route('genre',$movie->genre->slug)}}" rel="genre tag">{{$movie->genre->title}}</a></li>
-                         <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{route('country',$movie->country->slug)}}" rel="country tag">Mỹ</a></li>
+                        <li class="list-info-group-item">
+                           <span>Trạng Thái</span> : 
+                           <span class="quality">
+                              @if($movie->quality == 1)
+                                 HD
+                              @elseif ($movie->quality == 2)
+                                 Full HD
+                              @else
+                                 SD
+                              @endif
+                           </span>
+                           <span class="episode">
+                              @if($movie->subtitles == 1)
+                                 Vietsub
+                              @elseif($movie->subtitles == 2)
+                                 Engsub
+                              @else
+                                 Lồng tiếng
+                              @endif
+                           </span>
+                        </li>
+                        <li class="list-info-group-item"><span>Thời lượng</span> : 133 Phút</li>
+                        <li class="list-info-group-item"><span>Danh mục phim</span> : <a href="{{route('category',$movie->category->slug)}}" rel="category tag">{{$movie->category->title}}</a></li>
+                        <li class="list-info-group-item"><span>Thể loại</span> : <a href="{{route('genre',$movie->genre->slug)}}" rel="genre tag">{{$movie->genre->title}}</a></li>
+                        <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{route('country',$movie->country->slug)}}" rel="country tag">Mỹ</a></li>
                       </ul>
                       <div class="movie-trailer hidden"></div>
                    </div>
@@ -74,8 +94,26 @@
                   <article class="thumb grid-item post-38498">
                      <div class="halim-item">
                         <a class="halim-thumb" href="{{route('movie', $movie->slug)}}" title="{{$movie->title}}">
-                           <figure><img class="lazy img-responsive" src="{{asset('./uploads/movie/'.$movie->image)}}" alt="{{$movie->title}}" title="Đ{{$movie->title}}"></figure>
-                           <span class="status">HD</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
+                           <figure><img class="lazy img-responsive" src="{{asset('./uploads/movie/'.$movie->image)}}" alt="{{$movie->title}}" title="{{$movie->title}}"></figure>
+                           <span class="status">
+                              @if($movie->quality == 1)
+                                 HD
+                              @elseif ($movie->quality == 2)
+                                 Full HD
+                              @else
+                                 SD
+                              @endif
+                           </span>
+                           <span class="episode">
+                              <i class="fa fa-play" aria-hidden="true"></i>
+                              @if($movie->subtitles == 1)
+                                    Vietsub
+                              @elseif($movie->subtitles == 2)
+                                    Engsub
+                              @else
+                                    Lồng tiếng
+                              @endif
+                           </span> 
                            <div class="icon_overlay"></div>
                            <div class="halim-post-title-box">
                               <div class="halim-post-title ">

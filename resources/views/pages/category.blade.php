@@ -24,7 +24,25 @@
                   <div class="halim-item">
                      <a class="halim-thumb" href="{{route('movie', $category_movie->slug)}}" title="{{$category_movie->title}}">
                         <figure><img class="lazy img-responsive" src="{{asset('./uploads/movie/'.$category_movie->image)}}" alt="{{$category_movie->title}}" title="{{$category_movie->title}}"></figure>
-                        <span class="status">5/5</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
+                        <span class="status">
+                           @if($category_movie->quality == 1)
+                              HD
+                           @elseif ($category_movie->quality == 2)
+                              Full HD
+                           @else
+                              SD
+                           @endif
+                        </span>
+                        <span class="episode">
+                           <i class="fa fa-play" aria-hidden="true"></i>
+                           @if($category_movie->subtitles == 1)
+                              Vietsub
+                           @elseif($category_movie->subtitles == 2)
+                              Engsub
+                           @else
+                              Lồng tiếng
+                           @endif
+                        </span> 
                         <div class="icon_overlay"></div>
                         <div class="halim-post-title-box">
                            <div class="halim-post-title ">

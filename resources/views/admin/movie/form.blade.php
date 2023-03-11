@@ -35,6 +35,14 @@
                                 {!! Form::select('status', ['1'=>'hiển thị', '0'=>'ẩn'], isset($movies) ? $movies->status : '1', ['class'=>'form-select']) !!}
                             </div>
                             <div class="form-group">
+                                {!! Form::label('quality', 'Quality', ['class'=>'mt-3']) !!}
+                                {!! Form::select('quality', ['1'=>'HD', '0'=>'SD', '2'=>'Full HD'], isset($movies) ? $movies->quality : '1', ['class'=>'form-select']) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('subtitles', 'Subtitles', ['class'=>'mt-3']) !!}
+                                {!! Form::select('subtitles', ['1'=>'Vietsub', '0'=>'Lồng tiếng', '2'=>'Endsub'], isset($movies) ? $movies->subtitles : '1', ['class'=>'form-select']) !!}
+                            </div>
+                            <div class="form-group">
                                 {!! Form::label('category', 'Category', ['class'=>'mt-3']) !!}
                                 {!! Form::select('category_id', $list_category, isset($movies) ? $movies->category_id : '1', ['class'=>'form-select']) !!}
                             </div>
