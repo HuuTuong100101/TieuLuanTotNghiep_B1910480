@@ -31,6 +31,14 @@
                                 {!! Form::textarea('description', isset($movies) ? $movies->description : '', ['style'=>'resize:none','class'=>'form-control', 'placeholder'=>'Nhập dữ liệu']) !!}
                             </div>
                             <div class="form-group">
+                                {!! Form::label('tags', 'Tags phim', ['class'=>'mt-3']) !!}
+                                {!! Form::textarea('tags', isset($movies) ? $movies->tags : '', ['style'=>'resize:none','class'=>'form-control', 'placeholder'=>'Nhập dữ liệu']) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('lenght', 'Lenght (Phút)', ['class'=>'mt-3']) !!}
+                                {!! Form::text('lenght', isset($movies) ? $movies->lenght : '', ['class'=>'form-control', 'placeholder'=>'Nhập dữ liệu (.../Phút)']) !!}
+                            </div>
+                            <div class="form-group">
                                 {!! Form::label('status', 'Status', ['class'=>'mt-3']) !!}
                                 {!! Form::select('status', ['1'=>'hiển thị', '0'=>'ẩn'], isset($movies) ? $movies->status : '1', ['class'=>'form-select']) !!}
                             </div>

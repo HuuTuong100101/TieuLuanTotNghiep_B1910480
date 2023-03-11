@@ -60,11 +60,11 @@
                               @endif
                            </span>
                         </li>
-                        <li class="list-info-group-item"><span>Thời lượng</span> : 133 Phút</li>
+                        <li class="list-info-group-item"><span>Thời lượng</span> : {{$movie->lenght}}</li>
                         <li class="list-info-group-item"><span>Danh mục phim</span> : <a href="{{route('category',$movie->category->slug)}}" rel="category tag">{{$movie->category->title}}</a></li>
                         <li class="list-info-group-item"><span>Thể loại</span> : <a href="{{route('genre',$movie->genre->slug)}}" rel="genre tag">{{$movie->genre->title}}</a></li>
-                        <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{route('country',$movie->country->slug)}}" rel="country tag">Mỹ</a></li>
-                      </ul>
+                        <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{route('country',$movie->country->slug)}}" rel="country tag">{{$movie->country->title}}</a></li>
+                     </ul>
                       <div class="movie-trailer hidden"></div>
                    </div>
                 </div>
@@ -82,6 +82,28 @@
                    </article>
                 </div>
              </div>
+             <div class="section-bar clearfix">
+               <h2 class="section-title"><span style="color:#ffed4d">Tags phim</span></h2>
+            </div>
+            <div class="entry-content htmlwrap clearfix">
+               <div class="video-item halim-entry-box">
+                  <article id="post-38424" class="item-content">
+                     @if($movie->tags)
+                        @php
+                           $tags = [];
+                           $tags = explode(',', $movie->tags)
+                        @endphp
+                        @foreach ($tags as $key => $tag)
+                           <button type="button" class="btn btn-primary btn-sm">
+                              <a href="{{route('tag', $tag)}}">{{$tag}}</a>
+                           </button>
+                        @endforeach
+                     @else
+                        Không có tags phim nào
+                     @endif
+                  </article>
+               </div>
+            </div>
           </div>
        </section>
        <section class="related-movies">

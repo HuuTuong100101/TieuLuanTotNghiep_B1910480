@@ -30,6 +30,7 @@
     Route::get('/xem-phim', [IndexController::class, 'watch'])->name('watch');
     Route::get('/phim/{slug}', [IndexController::class, 'movie'])->name('movie');
     Route::get('/espisode', [IndexController::class, 'espisode'])->name('espisode');
+    Route::get('/tag/{tag}', [IndexController::class, 'tags_phim'])->name('tag');
 
     Auth::routes();
     Route::get('/home', [HomeController::class, 'index'])->name('home');

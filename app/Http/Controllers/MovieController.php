@@ -51,6 +51,8 @@ class MovieController extends Controller
         $movie->title = $data['title'];
         $movie->slug = $data['slug'];
         $movie->description = $data['description'];
+        $movie->tags = $data['tags'];
+        $movie->lenght = $data['lenght'];
         $movie->quality = $data['quality'];
         $movie->subtitles = $data['subtitles'];
         $movie->status = $data['status'];
@@ -73,7 +75,7 @@ class MovieController extends Controller
             echo $new_img;
         }
         $movie->save();
-        return redirect()->back();
+        return redirect(route('movie.index'));
     }
 
     /**
@@ -119,6 +121,8 @@ class MovieController extends Controller
         $movie->title = $data['title'];
         $movie->slug = $data['slug'];
         $movie->description = $data['description'];
+        $movie->tags = $data['tags'];
+        $movie->lenght = $data['lenght'];
         $movie->quality = $data['quality'];
         $movie->subtitles = $data['subtitles'];
         $movie->status = $data['status'];
@@ -157,7 +161,7 @@ class MovieController extends Controller
         if($movie) {
             unlink('../public/uploads/movie/'.$movie->image);
             $movie->delete();
-            return redirect()->back();
+            return redirect(route('movie.index'));
         }
     }
 }

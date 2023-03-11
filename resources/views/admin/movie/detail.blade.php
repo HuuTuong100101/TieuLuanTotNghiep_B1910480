@@ -17,8 +17,10 @@
                         <h5 class="card-title text-uppercase fs-1">{{$movie->title}}</h5>
                         <p style="height: 100px" class="card-text overflow-auto mb-0 fst-italic">{{$movie->description}}</p>
                         <p class="card-text"><span style="font-weight: bold">Danh mục: </span>{{$movie->category->title}}</p>
+                        <p class="card-text"><span style="font-weight: bold">Từ khóa: </span>{{$movie->tags}}</p>
                         <p class="card-text"><span style="font-weight: bold">Thể loại: </span>{{$movie->genre->title}}</p>
                         <p class="card-text"><span style="font-weight: bold">Quốc gia: </span>{{$movie->country->title}}</p>
+                        <p class="card-text"><span style="font-weight: bold">Thời lượng: </span>{{$movie->lenght}}</p>
                         <p class="card-text">
                             <span style="font-weight: bold">Chất lượng: </span>
                             @if($movie->quality == 1) 

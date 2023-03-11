@@ -5,7 +5,7 @@
        <div class="panel-heading">
           <div class="row">
              <div class="col-xs-6">
-                <div class="yoast_breadcrumb hidden-xs"><span><a href="{{route('category', $category_slug->slug)}}">{{$category_slug->title}}</a></span></div>
+                <div class="yoast_breadcrumb hidden-xs"><span>Phim theo tags » <a href="">{{$tag}}</a></span></div>
              </div>
           </div>
        </div>
@@ -16,18 +16,18 @@
     <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
        <section>
           <div class="section-bar clearfix">
-             <h1 class="section-title"><span>{{$category_slug->title}}</span></h1>
+             <h1 class="section-title"><span>TAGS: {{$tag}}</span></h1>
           </div>
           <div class="halim_box">
-            @foreach ($category_movies as $category_movie)
+            @foreach ($movies as $movie)
                <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
                   <div class="halim-item">
-                     <a class="halim-thumb" href="{{route('movie', $category_movie->slug)}}" title="{{$category_movie->title}}">
-                        <figure><img class="lazy img-responsive" src="{{asset('./uploads/movie/'.$category_movie->image)}}" alt="{{$category_movie->title}}" title="{{$category_movie->title}}"></figure>
+                     <a class="halim-thumb" href="{{route('movie', $movie->slug)}}" title="{{$movie->title}}">
+                        <figure><img class="lazy img-responsive" src="{{asset('./uploads/movie/'.$movie->image)}}" alt="{{$movie->title}}" title="{{$movie->title}}"></figure>
                         <span class="status">
-                           @if($category_movie->quality == 1)
+                           @if($movie->quality == 1)
                               HD
-                           @elseif ($category_movie->quality == 2)
+                           @elseif ($movie->quality == 2)
                               Full HD
                            @else
                               SD
@@ -35,9 +35,9 @@
                         </span>
                         <span class="episode">
                            <i class="fa fa-play" aria-hidden="true"></i>
-                           @if($category_movie->subtitles == 1)
+                           @if($movie->subtitles == 1)
                               Vietsub
-                           @elseif($category_movie->subtitles == 2)
+                           @elseif($movie->subtitles == 2)
                               Engsub
                            @else
                               Lồng tiếng
@@ -46,7 +46,7 @@
                         <div class="icon_overlay"></div>
                         <div class="halim-post-title-box">
                            <div class="halim-post-title ">
-                              <p class="entry-title">{{$category_movie->title}}</p>
+                              <p class="entry-title">{{$movie->title}}</p>
                            </div>
                         </div>
                      </a>
@@ -64,7 +64,7 @@
                 <li><a class="page-numbers" href="">55</a></li>
                 <li><a class="next page-numbers" href=""><i class="hl-down-open rotate-right"></i></a></li>
              </ul> --}}
-             {!! $category_movies->links("pagination::bootstrap-4") !!}
+             {!! $movies->links("pagination::bootstrap-4") !!}
           </div>
        </section>
     </main>

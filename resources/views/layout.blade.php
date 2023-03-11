@@ -8,21 +8,8 @@
       <meta content="VN" name="geo.region" />
       <meta name="DC.language" scheme="utf-8" content="vi" />
       <meta name="language" content="Việt Nam">
-      <link rel="shortcut icon" href="https://www.pngkey.com/png/detail/360-3601772_your-logo-here-your-company-logo-here-png.png" type="image/x-icon" />
-      <meta name="revisit-after" content="1 days" />
-      <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
-      <title>Phim hay 2021 - Xem phim hay nhất</title>
-      <meta name="description" content="Phim hay 2021 - Xem phim hay nhất, xem phim online miễn phí, phim hot , phim nhanh" />
-      <link rel="canonical" href="">
-      <link rel="next" href="" />
-      <meta property="og:locale" content="vi_VN" />
-      <meta property="og:title" content="Phim hay 2020 - Xem phim hay nhất" />
-      <meta property="og:description" content="Phim hay 2020 - Xem phim hay nhất, phim hay trung quốc, hàn quốc, việt nam, mỹ, hong kong , chiếu rạp" />
-      <meta property="og:url" content="" />
-      <meta property="og:site_name" content="Phim hay 2021- Xem phim hay nhất" />
-      <meta property="og:image" content="" />
-      <meta property="og:image:width" content="300" />
-      <meta property="og:image:height" content="55" />
+      <title>PagodaFilms</title>
+      <link rel="shortcut icon" href="./images/filmmaking.png" type="image/x-icon" />
       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
       <link rel='dns-prefetch' href='//s.w.org' />
       <link rel='stylesheet' id='bootstrap-css' href='{{asset('css/bootstrap.min.css')}}' media='all' />
@@ -32,16 +19,35 @@
       <style type="text/css" id="wp-custom-css">
          .textwidget p a img {
          width: 100%;
+      }
+      </style>
+      <style>
+         #header .site-title {
+            background: url('./images/filmmaking.png') no-repeat top center;
+            background-size: contain;
+            text-indent: -9999px;
+         }
+         .logo {
+            display: block ;
+            text-align: center
+         }
+         .text-site {
+            margin-top: 5px;
+            font-size: 15px
+         }
+         .logo:hover {
+            color: #87c3f9;
          }
       </style>
-      <style>#header .site-title {background: url(https://www.pngkey.com/png/detail/360-3601772_your-logo-here-your-company-logo-here-png.png) no-repeat top left;background-size: contain;text-indent: -9999px;}</style>
    </head>
    <body class="home blog halimthemes halimmovies" data-masonry="">
       <header id="header">
          <div class="container">
             <div class="row" id="headwrap">
                <div class="col-md-3 col-sm-6 slogan">
-                  <p class="site-title"><a class="logo" href="" title="phim hay ">Phim Hay</p>
+                  <a class="logo" href="" title="phim hay">
+                     <p class="site-title"></p>
+                     <p class="text-site">PAGODA FILMS</p>
                   </a>
                </div>
                <div class="col-md-5 col-sm-6 halim-search-form hidden-xs">

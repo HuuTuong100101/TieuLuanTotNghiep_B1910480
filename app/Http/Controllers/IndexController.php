@@ -56,6 +56,15 @@ class IndexController extends Controller
         $genre_movies = Movie::orderBy('dateupdated','DESC')->where('genre_id', $genre_slug->id)->paginate(40);
         return view('pages.genre', compact('categories', 'countries', 'genres', 'genre_slug', 'genre_movies'));
     }
+
+    public function tags_phim($tag) {
+        $categories = Category::all()->where('status',1);
+        $countries = Country::all()->where('status',1);
+        $genres = Genre::all()->where('status',1);
+        
+        $movies = Movie::where('tags','LIKE','%'.$tag.'%')->orderBy('dateupdated', 'DESC')->paginate(40);
+        return view('pages.tags', compact('categories', 'countries', 'genres', 'movies', 'tag'));
+    }
     public function watch() {
         return view('pages.watch');
     }
