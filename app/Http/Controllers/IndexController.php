@@ -13,11 +13,12 @@ class IndexController extends Controller
 {
     public function home() {
         $hot_movies = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->get();
+        $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
         $categories = Category::all()->where('status',1);
         $countries = Country::all()->where('status',1);
         $genres = Genre::all()->where('status',1);
         $movies_categories = Category::with('movie')->orderBy('id', 'DESC')->where('status', '1')->get();
-        return view('pages.home', compact('categories', 'countries', 'genres', 'movies_categories', 'hot_movies'));
+        return view('pages.home', compact('categories', 'countries', 'genres', 'movies_categories', 'hot_movies', 'hot_movies_sidebar'));
     }
     public function movie($slug) {
         $categories = Category::all()->where('status',1);
@@ -25,7 +26,8 @@ class IndexController extends Controller
         $genres = Genre::all()->where('status',1);
         $movie = Movie::with('category', 'genre', 'country')->where('slug',$slug)->where('status', 1)->first();
         $movie_related = Movie::with('category', 'genre', 'country')->where('genre_id', $movie->genre->id)->whereNotIn('slug', [$slug])->get();
-        return view('pages.movie', compact('categories', 'countries', 'genres', 'movie', 'movie_related'));
+        $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
+        return view('pages.movie', compact('categories', 'countries', 'genres', 'movie', 'movie_related', 'hot_movies_sidebar'));
     }
 
     public function category($slug) {
@@ -35,7 +37,8 @@ class IndexController extends Controller
         // Lấy ra tên danh mục theo slug để hiển thị tên danh mục
         $category_slug = Category::where('slug',$slug)->first();
         $category_movies = Movie::orderBy('dateupdated','DESC')->where('category_id', $category_slug->id)->paginate(40);
-        return view('pages.category', compact('categories', 'countries', 'genres', 'category_slug', 'category_movies'));
+        $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
+        return view('pages.category', compact('categories', 'countries', 'genres', 'category_slug', 'category_movies', 'hot_movies_sidebar'));
     }
 
     public function country($slug) {
@@ -45,7 +48,8 @@ class IndexController extends Controller
         // Lấy ra tên quốc gia theo slug để hiển thị tên quốc gia
         $country_slug = Country::where('slug',$slug)->first();
         $country_movies = Movie::orderBy('dateupdated','DESC')->where('country_id', $country_slug->id)->paginate(40);
-        return view('pages.country', compact('categories', 'countries', 'genres', 'country_slug', 'country_movies'));
+        $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
+        return view('pages.country', compact('categories', 'countries', 'genres', 'country_slug', 'country_movies', 'hot_movies_sidebar'));
     }
     public function genre($slug) {
         $categories = Category::all()->where('status',1);
@@ -54,7 +58,8 @@ class IndexController extends Controller
         // Lấy ra tên thể loại theo slug để hiển thị tên thể loại
         $genre_slug = Genre::where('slug',$slug)->first();
         $genre_movies = Movie::orderBy('dateupdated','DESC')->where('genre_id', $genre_slug->id)->paginate(40);
-        return view('pages.genre', compact('categories', 'countries', 'genres', 'genre_slug', 'genre_movies'));
+        $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
+        return view('pages.genre', compact('categories', 'countries', 'genres', 'genre_slug', 'genre_movies', 'hot_movies_sidebar'));
     }
 
     public function tags_phim($tag) {
@@ -63,7 +68,8 @@ class IndexController extends Controller
         $genres = Genre::all()->where('status',1);
         
         $movies = Movie::where('tags','LIKE','%'.$tag.'%')->orderBy('dateupdated', 'DESC')->paginate(40);
-        return view('pages.tags', compact('categories', 'countries', 'genres', 'movies', 'tag'));
+        $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
+        return view('pages.tags', compact('categories', 'countries', 'genres', 'movies', 'tag', 'hot_movies_sidebar'));
     }
     public function watch() {
         return view('pages.watch');

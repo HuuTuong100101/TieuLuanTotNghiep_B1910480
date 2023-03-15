@@ -15,6 +15,7 @@
       <link rel='stylesheet' id='bootstrap-css' href='{{asset('css/bootstrap.min.css')}}' media='all' />
       <link rel='stylesheet' id='style-css' href= '{{asset('css/style.css')}}' media='all' />
       <link rel='stylesheet' id='wp-block-library-css' href= '{{asset('css/style.min.css')}}' media='all' />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.0-alpha1/dist/css/bootstrap.min.css">
       <script type='text/javascript' src='{{asset('js/jquery.min.js')}}' id='halim-jquery-js'></script>
       <style type="text/css" id="wp-custom-css">
          .textwidget p a img {
@@ -155,6 +156,7 @@
       </footer>
       <div id='easy-top'></div>
       <script type='text/javascript' src='{{asset('js/bootstrap.min.js')}}' id='bootstrap-js'></script>
+      <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@4.3.0-alpha1/dist/js/bootstrap.bundle.min.js'></script>
       <script type='text/javascript' src='{{asset('js/owl.carousel.min.js')}}' id='carousel-js'></script>
       <script type='text/javascript' src='{{asset('js/halimtheme-core.min.js')}}' id='halim-init-js'></script>
       <style>#overlay_mb{position:fixed;display:none;width:100%;height:100%;top:0;left:0;right:0;bottom:0;background-color:rgba(0, 0, 0, 0.7);z-index:99999;cursor:pointer}#overlay_mb .overlay_mb_content{position:relative;height:100%}.overlay_mb_block{display:inline-block;position:relative}#overlay_mb .overlay_mb_content .overlay_mb_wrapper{width:600px;height:auto;position:relative;left:50%;top:50%;transform:translate(-50%, -50%);text-align:center}#overlay_mb .overlay_mb_content .cls_ov{color:#fff;text-align:center;cursor:pointer;position:absolute;top:5px;right:5px;z-index:999999;font-size:14px;padding:4px 10px;border:1px solid #aeaeae;background-color:rgba(0, 0, 0, 0.7)}#overlay_mb img{position:relative;z-index:999}@media only screen and (max-width: 768px){#overlay_mb .overlay_mb_content .overlay_mb_wrapper{width:400px;top:3%;transform:translate(-50%, 3%)}}@media only screen and (max-width: 400px){#overlay_mb .overlay_mb_content .overlay_mb_wrapper{width:310px;top:3%;transform:translate(-50%, 3%)}}</style>
