@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Genre;
 use App\Models\Country;
 use Carbon\Carbon; // xử lý ngày
+use Illuminate\Support\Facades\File;
 class MovieController extends Controller
 {
     /**
@@ -17,10 +18,17 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $list_movie = Movie::with('category','genre','country')->get();
+        $list_movie = Movie::with('category','genre','country')->orderBy('id', 'DESC')->get();
         $list_category = Category::pluck('title', 'id');
         $list_genre = Genre::pluck('title', 'id');
         $list_country = Country::pluck('title', 'id');
+        // Lưu vào file json để làm chức năng search
+        $path = public_path().'\\json\\';
+        if (!is_dir($path)) {
+            mkdir($path, 0777, true);
+        }
+        // echo($path); 
+        File::put($path.'movie.json', json_encode($list_movie));
         return view('admin.movie.index', compact('list_movie', 'list_category', 'list_genre', 'list_country'));
     }
 

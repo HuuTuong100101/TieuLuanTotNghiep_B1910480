@@ -54,15 +54,14 @@
                <div class="col-md-5 col-sm-6 halim-search-form hidden-xs">
                   <div class="header-nav">
                      <div class="col-xs-12">
-                        <form id="search-form-pc" name="halimForm" role="search" action="" method="GET">
-                           <div class="form-group">
-                              <div class="input-group col-xs-12">
-                                 <input id="search" type="text" name="s" class="form-control" placeholder="Tìm kiếm..." autocomplete="off" required>
-                                 <i class="animate-spin hl-spin4 hidden"></i>
-                              </div>
+                        <div class="form-group">
+                           <div class="input-group col-xs-12">
+                              <input id="search" type="text" name="search" class="form-control" placeholder="Tìm kiếm..." autocomplete="off" required>
                            </div>
-                        </form>
-                        <ul class="ui-autocomplete ajax-results hidden"></ul>
+                        </div>
+                        <ul id="result" class="list-group" style="display: none;">
+
+                        </ul>
                      </div>
                   </div>
                </div>
@@ -159,7 +158,7 @@
       <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@4.3.0-alpha1/dist/js/bootstrap.bundle.min.js'></script>
       <script type='text/javascript' src='{{asset('js/owl.carousel.min.js')}}' id='carousel-js'></script>
       <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v16.0&appId=230816367401550&autoLogAppEvents=1" nonce="7R78KA0D"></script>
+      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v16.0&appId=230816367401550&autoLogAppEvents=1" nonce="7R78KA0D"></script>
       <script type='text/javascript' src='{{asset('js/halimtheme-core.min.js')}}' id='halim-init-js'></script>
       <style>#overlay_mb{position:fixed;display:none;width:100%;height:100%;top:0;left:0;right:0;bottom:0;background-color:rgba(0, 0, 0, 0.7);z-index:99999;cursor:pointer}#overlay_mb .overlay_mb_content{position:relative;height:100%}.overlay_mb_block{display:inline-block;position:relative}#overlay_mb .overlay_mb_content .overlay_mb_wrapper{width:600px;height:auto;position:relative;left:50%;top:50%;transform:translate(-50%, -50%);text-align:center}#overlay_mb .overlay_mb_content .cls_ov{color:#fff;text-align:center;cursor:pointer;position:absolute;top:5px;right:5px;z-index:999999;font-size:14px;padding:4px 10px;border:1px solid #aeaeae;background-color:rgba(0, 0, 0, 0.7)}#overlay_mb img{position:relative;z-index:999}@media only screen and (max-width: 768px){#overlay_mb .overlay_mb_content .overlay_mb_wrapper{width:400px;top:3%;transform:translate(-50%, 3%)}}@media only screen and (max-width: 400px){#overlay_mb .overlay_mb_content .overlay_mb_wrapper{width:310px;top:3%;transform:translate(-50%, 3%)}}</style>
       <style>
@@ -253,13 +252,44 @@
                }
             })
          });
+
+         $(".watch_trailer").click(function(e) {
+            e.preventDefault();
+            var aid = $(this).attr("href");
+            $('html,body').animate({scrollTop: $(aid).offset().top}, 'slow');
+         });
+
+         $(document).ready(function() {
+            $('#search').keyup(function (e) { 
+               $('#result').html('');
+               var search = $('#search').val();
+               // alert(search)
+               if (search!='') {
+                  var expression = new RegExp(search, "i");
+                  // alert(expression)
+                  $.getJSON('/json/movie.json', function(data) {
+                     $.each(data, function(key, value) {
+                        if (value.title.search(expression) != -1) {
+                           $('#result').css('display','inherit');
+                           $('#result').append('<li class="list-group-item link-class" style="cursor:pointer"><img height="40" width="40" src="/uploads/movie/'+value.image+'"> <span class="ml-3">'+value.title+'</span></li>');
+                        }
+                     });
+                  });
+               }
+            });
+            $('#result').on('click', 'li', function() {
+               var click_text = $(this).text();
+               $('#search').val(click_text);
+               $('#result').html('');
+            });
+         });
       </script>
-      <script type="text/javascript">
+      {{-- <script type="text/javascript">
           $(".watch_trailer").click(function(e) {
             e.preventDefault();
             var aid = $(this).attr("href");
             $('html,body').animate({scrollTop: $(aid).offset().top}, 'slow');
          });
-      </script>
+      </script> --}}
    </body>
 </html>
