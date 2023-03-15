@@ -40,7 +40,8 @@
         <div class="clearfix"></div>
     </div>
 </aside>
-{{-- Phần sidebar top-view có thời gian sẽ làm sau --}}
+{{-- Nếu có làm đếm số view sẽ làm thêm phần này không thì bỏ --}}
+{{-- Phần sidebar top-view có thời gian sẽ làm sau xem video 37, 38, 39 --}}
 {{-- <aside id="sidebar" class="col-xs-12 col-sm-12 col-md-4">
     <div id="halim_tab_popular_videos-widget-7" class="widget halim_tab_popular_videos-widget">
         <div class="section-bar clearfix">

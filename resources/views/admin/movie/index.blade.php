@@ -12,6 +12,7 @@
                     <th scope="col">Title</th>
                     <th scope="col">Image</th>
                     <th scope="col">Slug</th>
+                    <th scope="col">Trailer</th>
                     <th scope="col">Hot</th>
                     <th scope="col">DateCreated</th>
                     <th scope="col">DateUpdated</th>
@@ -24,8 +25,9 @@
                         <tr>
                         <th scope="row">{{$index}}</th>
                         <td>{{$movie->title}}</td>
-                        <td><img width="20%" src="{{asset('uploads/movie/'.$movie->image)}}" alt="#"></td>
+                        <td><img width="22%" src="{{asset('uploads/movie/'.$movie->image)}}" alt="#"></td>
                         <td>{{$movie->slug}}</td>
+                        <td>{{$movie->trailer}}</td>
                         <td>
                             @if ($movie->hot)
                                 hot

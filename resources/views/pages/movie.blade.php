@@ -29,11 +29,14 @@
                 <div class="movie_info col-xs-12">
                    <div class="movie-poster col-md-3">
                       <img class="movie-thumb" src="{{asset('./uploads/movie/'.$movie->image)}}" alt="{{$movie->title}}">
-                      <div class="bwa-content">
+                      {{-- <div class="bwa-content">
                          <div class="loader"></div>
                          <a href="{{route('watch')}}" class="bwac-btn">
                          <i class="fa fa-play"></i>
                          </a>
+                      </div> --}}
+                      <div class="d-block text-center">
+                         <a href="#watch_trailer" class="btn btn-success watch_trailer">Xem Trailer</a> <a style="width: 103.78px" href="" class="btn btn-primary">Xem Phim</a>
                       </div>
                    </div>
                    <div class="film-poster col-md-9">
@@ -65,12 +68,23 @@
                         <li class="list-info-group-item"><span>Thể loại</span> : <a href="{{route('genre',$movie->genre->slug)}}" rel="genre tag">{{$movie->genre->title}}</a></li>
                         <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{route('country',$movie->country->slug)}}" rel="country tag">{{$movie->country->title}}</a></li>
                      </ul>
-                      <div class="movie-trailer hidden"></div>
                    </div>
                 </div>
              </div>
              <div class="clearfix"></div>
-             <div id="halim_trailer"></div>
+             <div class="section-bar clearfix">
+                <h2 class="section-title"><span style="color:#ffed4d">Bình luận</span></h2>
+             </div>
+             <div class="entry-content htmlwrap clearfix bg-comment-fb">
+                <div class="video-item halim-entry-box">
+                   <article id="post-38424" class="item-content">
+                     @php
+                        $current_url = Request::url();
+                     @endphp
+                     <div class="fb-comments" data-href="{{$current_url}}" data-width="100%" data-numposts="100"></div>
+                   </article>
+                </div>
+             </div>
              <div class="clearfix"></div>
              <div class="section-bar clearfix">
                 <h2 class="section-title"><span style="color:#ffed4d">Mô tả phim</span></h2>
@@ -82,6 +96,18 @@
                    </article>
                 </div>
              </div>
+             <div class="clearfix"></div>
+             <div id="halim_trailer"></div>
+             <div class="section-bar clearfix">
+               <h2 class="section-title"><span style="color:#ffed4d">Trailer phim</span></h2>
+            </div>
+            <div class="entry-content htmlwrap clearfix">
+               <div class="video-item halim-entry-box">
+                  <article id="watch_trailer" class="item-content">
+                     <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{$movie->trailer}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                  </article>
+               </div>
+            </div>
              <div class="section-bar clearfix">
                <h2 class="section-title"><span style="color:#ffed4d">Tags phim</span></h2>
             </div>
