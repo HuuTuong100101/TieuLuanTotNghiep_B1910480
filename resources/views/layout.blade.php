@@ -10,12 +10,11 @@
       <meta name="language" content="Việt Nam">
       <title>PagodaFilms</title>
       <link rel="shortcut icon" href="./images/filmmaking.png" type="image/x-icon" />
-      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/fontawesome.min.css" integrity="sha512-cHxvm20nkjOUySu7jdwiUxgGy11vuVPE9YeK89geLMLMMEOcKFyS2i+8wo0FOwyQO/bL8Bvq1KMsqK4bbOsPnA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link rel='dns-prefetch' href='//s.w.org' />
       <link rel='stylesheet' id='bootstrap-css' href='{{asset('css/bootstrap.min.css')}}' media='all' />
       <link rel='stylesheet' id='style-css' href= '{{asset('css/style.css')}}' media='all' />
       <link rel='stylesheet' id='wp-block-library-css' href= '{{asset('css/style.min.css')}}' media='all' />
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.0-alpha1/dist/css/bootstrap.min.css">
       <script type='text/javascript' src='{{asset('js/jquery.min.js')}}' id='halim-jquery-js'></script>
       <style type="text/css" id="wp-custom-css">
          .textwidget p a img {
@@ -56,8 +55,11 @@
                      <div class="col-xs-12">
                         <div class="form-group">
                            <div class="input-group col-xs-12">
-                              <input id="search" type="text" name="search" class="form-control" placeholder="Tìm kiếm..." autocomplete="off" required>
-                           </div>
+                              <form action="{{route('search')}}" method="get" class="d-flex">
+                                 <input id="search" type="text" name="search" class="form-control" placeholder="Tìm kiếm..." autocomplete="off" required>
+                                 <button class="btn btn-primary">search</button>
+                              </div>
+                              </form>
                         </div>
                         <ul id="result" class="list-group" style="display: none;">
 
@@ -155,7 +157,7 @@
       </footer>
       <div id='easy-top'></div>
       <script type='text/javascript' src='{{asset('js/bootstrap.min.js')}}' id='bootstrap-js'></script>
-      <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@4.3.0-alpha1/dist/js/bootstrap.bundle.min.js'></script>
+      {{-- <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@4.3.0-alpha1/dist/js/bootstrap.bundle.min.js'></script> --}}
       <script type='text/javascript' src='{{asset('js/owl.carousel.min.js')}}' id='carousel-js'></script>
       <div id="fb-root"></div>
       <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v16.0&appId=230816367401550&autoLogAppEvents=1" nonce="7R78KA0D"></script>
@@ -269,19 +271,23 @@
                   // alert(expression)
                   $.getJSON('/json/movie.json', function(data) {
                      $.each(data, function(key, value) {
+                        // alert(value.title);
+                        // alert(value.title.search(expression));
                         if (value.title.search(expression) != -1) {
+                           var slug = value.slug;
                            $('#result').css('display','inherit');
-                           $('#result').append('<li class="list-group-item link-class" style="cursor:pointer"><img height="40" width="40" src="/uploads/movie/'+value.image+'"> <span class="ml-3">'+value.title+'</span></li>');
+                           $('#result').append('<li class="list-group-item link-class" style="cursor:pointer"><a href="http://127.0.0.1:8000/phim/'+value.slug+'"><img height="40" width="40" src="/uploads/movie/'+value.image+'"><span style="margin-left: 10px;">'+value.title+'</span></a></li>');
                         }
                      });
                   });
                }
             });
-            $('#result').on('click', 'li', function() {
-               var click_text = $(this).text();
-               $('#search').val(click_text);
-               $('#result').html('');
-            });
+
+            // $('#result').on('click', 'li', function() {
+            //    var click_text = $(this).text();
+            //    $('#search').val(click_text);
+            //    $('#result').html('');
+            // });
          });
       </script>
       {{-- <script type="text/javascript">

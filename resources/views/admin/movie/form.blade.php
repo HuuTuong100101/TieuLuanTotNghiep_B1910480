@@ -67,8 +67,16 @@
                                 {!! Form::select('phim_hot', ['1'=>'hot', '0'=>'không hot'], isset($movies) ? $movies->hot : '1', ['class'=>'form-select']) !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::label('genre', 'Genre', ['class'=>'mt-3']) !!}
-                                {!! Form::select('genre_id', $list_genre, isset($movies) ? $movies->genre_id : '1', ['class'=>'form-select']) !!}
+                                {!! Form::label('genre', 'Genre', ['class'=>'mt-3']) !!} <br>
+                                @foreach ($list_genre as $key => $genre)
+                                    @if (isset($movies))
+                                        {!! Form::checkbox('genre[]', $genre->id, (isset($movie_genre) && $movie_genre->contains($genre->id)) ? true : false) !!}
+                                    @else
+                                        {!! Form::checkbox('genre[]', $genre->id, '') !!}
+                                    @endif
+                                    {!! Form::label('genre', $genre->title, ['class'=>'me-3']) !!}
+                                @endforeach
+                                {{-- {!! Form::select('genre_id', $list_genre, isset($movies) ? $movies->genre_id : '1', ['class'=>'form-select']) !!} --}}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('Image', 'Image', ['class'=>'mt-3']) !!}

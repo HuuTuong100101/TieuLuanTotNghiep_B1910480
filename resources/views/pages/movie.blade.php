@@ -65,7 +65,13 @@
                         </li>
                         <li class="list-info-group-item"><span>Thời lượng</span> : {{$movie->lenght}}</li>
                         <li class="list-info-group-item"><span>Danh mục phim</span> : <a href="{{route('category',$movie->category->slug)}}" rel="category tag">{{$movie->category->title}}</a></li>
-                        <li class="list-info-group-item"><span>Thể loại</span> : <a href="{{route('genre',$movie->genre->slug)}}" rel="genre tag">{{$movie->genre->title}}</a></li>
+                        <li class="list-info-group-item"><span>Thể loại</span> : 
+                           @foreach ($movie->movie_genre as $gen)
+                              <a href="{{route('genre',$gen->slug)}}" rel="genre tag">
+                                 {{$gen->title}}
+                              </a>
+                           @endforeach
+                        </li>
                         <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{route('country',$movie->country->slug)}}" rel="country tag">{{$movie->country->title}}</a></li>
                      </ul>
                    </div>
@@ -135,7 +141,7 @@
        <section class="related-movies">
           <div id="halim_related_movies-2xx" class="wrap-slider">
              <div class="section-bar clearfix">
-                <h3 class="section-title"><span>PHIM CÙNG THỂ LOẠI</span></h3>
+                <h3 class="section-title"><span>PHIM CÙNG DANH MỤC</span></h3>
              </div>
              <div id="halim_related_movies-2" class="owl-carousel owl-theme related-film">
                @foreach ($movie_related as $movie)

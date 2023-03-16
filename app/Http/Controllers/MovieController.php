@@ -18,7 +18,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $list_movie = Movie::with('category','genre','country')->orderBy('id', 'DESC')->get();
+        $list_movie = Movie::with('category','movie_genre','country')->orderBy('id', 'DESC')->get();
         $list_category = Category::pluck('title', 'id');
         $list_genre = Genre::pluck('title', 'id');
         $list_country = Country::pluck('title', 'id');
@@ -40,7 +40,7 @@ class MovieController extends Controller
     public function create()
     {
         $list_category = Category::pluck('title', 'id');
-        $list_genre = Genre::pluck('title', 'id');
+        $list_genre = Genre::all();
         $list_country = Country::pluck('title', 'id');
         return view('admin.movie.form', compact('list_category','list_genre','list_country'));
     }
@@ -66,7 +66,7 @@ class MovieController extends Controller
         $movie->subtitles = $data['subtitles'];
         $movie->status = $data['status'];
         $movie->category_id = $data['category_id'];
-        $movie->genre_id = $data['genre_id'];
+        // $movie->genre_id = $data['genre_id'];
         $movie->country_id = $data['country_id'];
         $movie->hot = $data['phim_hot'];
         $movie->datecreated = Carbon::now('Asia/Ho_Chi_Minh');
@@ -84,7 +84,10 @@ class MovieController extends Controller
             echo $new_img;
         }
         $movie->save();
-        return redirect(route('movie.index'));
+
+        // Thêm vào bảng movie_genre:
+        $movie->movie_genre()->attach($data['genre']);
+        return redirect()->to('/movie');
     }
 
     /**
@@ -108,11 +111,12 @@ class MovieController extends Controller
     public function edit($id)
     {
         $movies = Movie::find($id);
-        $list_movie = Movie::with('category','genre','country')->get();
+        // $list_movie = Movie::with('category','genre','country')->get();
         $list_category = Category::pluck('title', 'id');
-        $list_genre = Genre::pluck('title', 'id');
+        $list_genre = Genre::all();
         $list_country = Country::pluck('title', 'id');
-        return view('admin.movie.form', compact('list_category','list_genre','list_country','movies','list_movie'));
+        $movie_genre = $movies->movie_genre;
+        return view('admin.movie.form', compact('list_category','list_genre','list_country','movies', 'movie_genre'));
     }
 
     /**
@@ -137,7 +141,6 @@ class MovieController extends Controller
         $movie->subtitles = $data['subtitles'];
         $movie->status = $data['status'];
         $movie->category_id = $data['category_id'];
-        $movie->genre_id = $data['genre_id'];
         $movie->country_id = $data['country_id'];
         $movie->hot = $data['phim_hot'];
         $movie->dateupdated = Carbon::now('Asia/Ho_Chi_Minh');
@@ -156,7 +159,8 @@ class MovieController extends Controller
             $movie->image = $new_img;
         }
         $movie->save();
-        return redirect()->back();
+        $movie->movie_genre()->sync($data['genre']);
+        return redirect()->to('/movie');
     }
 
     /**

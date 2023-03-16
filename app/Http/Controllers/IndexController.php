@@ -8,9 +8,23 @@ use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Espisode;
 use App\Models\Movie;
+use App\Models\Movie_Genre;
 
 class IndexController extends Controller
 {
+    public function search() {
+        if(isset($_GET['search'])) {
+            $search = $_GET['search'];
+            $categories = Category::all()->where('status',1);
+            $countries = Country::all()->where('status',1);
+            $genres = Genre::all()->where('status',1);
+            $search_movies = Movie::orderBy('dateupdated','DESC')->where('title', 'LIKE', '%'.$search.'%')->paginate(40);
+            $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
+            return view('pages.search', compact('categories', 'countries', 'genres', 'search_movies', 'hot_movies_sidebar', 'search'));
+        } else {
+            return redirect()->to('/');
+        }
+    }
     public function home() {
         $hot_movies = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->get();
         $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
@@ -24,8 +38,8 @@ class IndexController extends Controller
         $categories = Category::all()->where('status',1);
         $countries = Country::all()->where('status',1);
         $genres = Genre::all()->where('status',1);
-        $movie = Movie::with('category', 'genre', 'country')->where('slug',$slug)->where('status', 1)->first();
-        $movie_related = Movie::with('category', 'genre', 'country')->where('genre_id', $movie->genre->id)->whereNotIn('slug', [$slug])->get();
+        $movie = Movie::with('category', 'genre', 'country', 'movie_genre')->where('slug',$slug)->where('status', 1)->first();
+        $movie_related = Movie::with('category', 'genre', 'country')->where('category_id', $movie->category->id)->whereNotIn('slug', [$slug])->get();
         $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
         return view('pages.movie', compact('categories', 'countries', 'genres', 'movie', 'movie_related', 'hot_movies_sidebar'));
     }
@@ -57,7 +71,15 @@ class IndexController extends Controller
         $genres = Genre::all()->where('status',1);
         // Lấy ra tên thể loại theo slug để hiển thị tên thể loại
         $genre_slug = Genre::where('slug',$slug)->first();
-        $genre_movies = Movie::orderBy('dateupdated','DESC')->where('genre_id', $genre_slug->id)->paginate(40);
+        $movie_genres = Movie_Genre::where('genre_id', $genre_slug->id)->get();
+
+        $movie_ids = [];
+        foreach ($movie_genres as $movie_genre) {
+            $movie_ids[] = $movie_genre->movie_id;
+        }
+
+        $genre_movies = Movie::orderBy('dateupdated','DESC')->whereIn('id', $movie_ids)->paginate(40);
+
         $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
         return view('pages.genre', compact('categories', 'countries', 'genres', 'genre_slug', 'genre_movies', 'hot_movies_sidebar'));
     }

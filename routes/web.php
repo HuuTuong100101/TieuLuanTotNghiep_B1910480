@@ -31,6 +31,7 @@
     Route::get('/phim/{slug}', [IndexController::class, 'movie'])->name('movie');
     Route::get('/espisode', [IndexController::class, 'espisode'])->name('espisode');
     Route::get('/tag/{tag}', [IndexController::class, 'tags_phim'])->name('tag');
+    Route::get('/tim-kiem', [IndexController::class, 'search'])->name('search');
 
     Auth::routes();
     Route::get('/home', [HomeController::class, 'index'])->name('home');

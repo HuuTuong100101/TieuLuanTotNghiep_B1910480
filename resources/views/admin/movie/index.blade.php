@@ -11,6 +11,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
                     <th scope="col">Image</th>
+                    <th scope="col">Genre</th>
                     <th scope="col">Slug</th>
                     <th scope="col">Trailer</th>
                     <th scope="col">Hot</th>
@@ -25,7 +26,12 @@
                         <tr>
                         <th scope="row">{{$index}}</th>
                         <td>{{$movie->title}}</td>
-                        <td><img width="22%" src="{{asset('uploads/movie/'.$movie->image)}}" alt="#"></td>
+                        <td><img width="50%" src="{{asset('uploads/movie/'.$movie->image)}}" alt="#"></td>
+                        <td>
+                            @foreach ($movie->movie_genre as $genre)
+                                <span class="badge bg-secondary">{{$genre->title}}</span>
+                            @endforeach
+                        </td>
                         <td>{{$movie->slug}}</td>
                         <td>{{$movie->trailer}}</td>
                         <td>
