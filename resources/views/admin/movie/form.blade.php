@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Quản lý phim</div>
+                <div class="card-header">Thêm phim mới</div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -41,6 +41,10 @@
                             <div class="form-group">
                                 {!! Form::label('lenght', 'Lenght (Phút)', ['class'=>'mt-3']) !!}
                                 {!! Form::text('lenght', isset($movies) ? $movies->lenght : '', ['class'=>'form-control', 'placeholder'=>'Nhập dữ liệu (.../Phút)']) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('episode', 'Episode', ['class'=>'mt-3']) !!}
+                                {!! Form::text('episode', isset($movies) ? $movies->episode : '', ['class'=>'form-control', 'placeholder'=>'Nhập dữ liệu ...']) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('status', 'Status', ['class'=>'mt-3']) !!}

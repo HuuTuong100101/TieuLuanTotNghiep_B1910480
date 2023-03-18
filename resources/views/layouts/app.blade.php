@@ -95,6 +95,7 @@
             $('#CountryTable').DataTable();
             $('#GenreTable').DataTable();
         } );
+
         function ChangeToSlug()
             {
                 var slug;
@@ -124,7 +125,19 @@
                     slug = slug.replace(/\@\-|\-\@|\@/gi, '');
                     //In slug ra textbox có id “slug”
                 document.getElementById('slug').value = slug;
-            }
+            };
+        
+            $('.select-movie').change(function(){
+                var id = $(this).val();
+                $.ajax({
+                    url: "{{route('select-movie')}}",
+                    mothed: "GET",
+                    data: {id:id},
+                    success: function(data) {
+                        $('#show_episode').html(data);
+                    }
+                });
+            });
         </script>
 </body>
 </html>

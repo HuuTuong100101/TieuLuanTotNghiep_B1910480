@@ -5,7 +5,7 @@
        <div class="panel-heading">
           <div class="row">
              <div class="col-xs-6">
-                <div class="yoast_breadcrumb hidden-xs"><span><a href="{{route('category', $category_slug->slug)}}">{{$category_slug->title}}</a></span></div>
+                <div class="yoast_breadcrumb hidden-xs"><span><span>Danh mục » </span><a href="{{route('category', $category_slug->slug)}}">{{$category_slug->title}}</a></span></div>
              </div>
           </div>
        </div>

@@ -2,3 +2,7 @@ Những chức năng có thời gian sẽ quay lại làm
 - Video 37->39 : Sidebar top view
 - Video 40, 41: Season phim
 - Phần trailer phim sắp chiếu (Hiện chỉ làm phim đã chiếu)
+
+- 17/03/2023
+    + Số tập phim
+    + Xóa phim và xóa luôn phim trong bảng movie_genre

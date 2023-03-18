@@ -5,7 +5,18 @@
        <div class="panel-heading">
           <div class="row">
              <div class="col-xs-6">
-                <div class="yoast_breadcrumb hidden-xs"><span><span><a href="{{route('category',$movie->category->slug)}}">{{$movie->category->title}}</a> » <span><a href="{{route('country',$movie->country->slug)}}">{{$movie->country->title}}</a> » <span class="breadcrumb_last" aria-current="page">{{$movie->title}}</span></span></span></span></div>
+                <div class="yoast_breadcrumb hidden-xs">
+                  <span>
+                     <span>
+                        <a href="{{route('category',$movie->category->slug)}}">{{$movie->category->title}}</a> » 
+                        <a href="{{route('country',$movie->country->slug)}}">{{$movie->country->title}}</a> » 
+                        @foreach ($movie->movie_genre as $gen)
+                           <a href="{{route('genre',$gen->slug)}}">{{$gen->title}}</a> » 
+                        @endforeach
+                        <span class="breadcrumb_last" aria-current="page">{{$movie->title}}</span>
+                     </span>
+                  </span>
+               </div>
              </div>
           </div>
        </div>
@@ -29,12 +40,6 @@
                 <div class="movie_info col-xs-12">
                    <div class="movie-poster col-md-3">
                       <img class="movie-thumb" src="{{asset('./uploads/movie/'.$movie->image)}}" alt="{{$movie->title}}">
-                      {{-- <div class="bwa-content">
-                         <div class="loader"></div>
-                         <a href="{{route('watch')}}" class="bwac-btn">
-                         <i class="fa fa-play"></i>
-                         </a>
-                      </div> --}}
                       <div class="d-block text-center">
                          <a href="#watch_trailer" class="btn btn-success watch_trailer">Xem Trailer</a> <a style="width: 103.78px" href="" class="btn btn-primary">Xem Phim</a>
                       </div>
@@ -64,6 +69,7 @@
                            </span>
                         </li>
                         <li class="list-info-group-item"><span>Thời lượng</span> : {{$movie->lenght}}</li>
+                        <li class="list-info-group-item"><span>Số tập</span> : {{$movie->episode}}</li>
                         <li class="list-info-group-item"><span>Danh mục phim</span> : <a href="{{route('category',$movie->category->slug)}}" rel="category tag">{{$movie->category->title}}</a></li>
                         <li class="list-info-group-item"><span>Thể loại</span> : 
                            @foreach ($movie->movie_genre as $gen)

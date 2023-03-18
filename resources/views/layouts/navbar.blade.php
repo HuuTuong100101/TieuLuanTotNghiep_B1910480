@@ -19,7 +19,7 @@
             <a class="nav-link" href="{{route('movie.index')}}">Phim</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('espisode.create')}}">Tập phim</a>
+            <a class="nav-link" href="{{route('episode.index')}}">Tập phim</a>
           </li>
         </ul>
         <form class="d-flex" role="search">

@@ -5,7 +5,7 @@
        <div class="panel-heading">
           <div class="row">
              <div class="col-xs-6">
-                <div class="yoast_breadcrumb hidden-xs"><span><span>Quốc gia » <span class="breadcrumb_last" aria-current="page">{{$country_slug->title}}</span></span></span></div>
+                <div class="yoast_breadcrumb hidden-xs"><span><span>Quốc gia » <a href="{{route('country', $country_slug->slug)}}"><span class="breadcrumb_last" aria-current="page">{{$country_slug->title}}</span></a></span></span></div>
              </div>
           </div>
        </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Movie;
+use App\Models\Movie_Genre;
 use App\Models\Category;
 use App\Models\Genre;
 use App\Models\Country;
@@ -62,11 +63,11 @@ class MovieController extends Controller
         $movie->trailer = $data['trailer'];
         $movie->tags = $data['tags'];
         $movie->lenght = $data['lenght'];
+        $movie->episode = $data['episode'];
         $movie->quality = $data['quality'];
         $movie->subtitles = $data['subtitles'];
         $movie->status = $data['status'];
         $movie->category_id = $data['category_id'];
-        // $movie->genre_id = $data['genre_id'];
         $movie->country_id = $data['country_id'];
         $movie->hot = $data['phim_hot'];
         $movie->datecreated = Carbon::now('Asia/Ho_Chi_Minh');
@@ -137,6 +138,7 @@ class MovieController extends Controller
         $movie->trailer = $data['trailer'];
         $movie->tags = $data['tags'];
         $movie->lenght = $data['lenght'];
+        $movie->episode = $data['episode'];
         $movie->quality = $data['quality'];
         $movie->subtitles = $data['subtitles'];
         $movie->status = $data['status'];
@@ -175,7 +177,10 @@ class MovieController extends Controller
         if($movie) {
             unlink('../public/uploads/movie/'.$movie->image);
             $movie->delete();
-            return redirect(route('movie.index'));
+            // return redirect(route('movie.index'));
         }
+
+        // Movie_Genre::where('movie_id',$id)->delete();
+        return redirect()->to(route('movie.index'));
     }
 }

@@ -11,12 +11,14 @@
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
                     <th scope="col">Image</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Country</th>
                     <th scope="col">Genre</th>
                     <th scope="col">Slug</th>
                     <th scope="col">Trailer</th>
                     <th scope="col">Hot</th>
-                    <th scope="col">DateCreated</th>
-                    <th scope="col">DateUpdated</th>
+                    <th scope="col">Episode</th>
+                    {{-- <th scope="col">DateUpdated</th> --}}
                     <th scope="col">Active/Inactive</th>
                     <th scope="col">Detail</th>
                 </tr>
@@ -27,6 +29,8 @@
                         <th scope="row">{{$index}}</th>
                         <td>{{$movie->title}}</td>
                         <td><img width="50%" src="{{asset('uploads/movie/'.$movie->image)}}" alt="#"></td>
+                        <td>{{$movie->category->title}}</td>
+                        <td>{{$movie->country->title}}</td>
                         <td>
                             @foreach ($movie->movie_genre as $genre)
                                 <span class="badge bg-secondary">{{$genre->title}}</span>
@@ -41,8 +45,8 @@
                                 không hot
                             @endif
                         </td>
-                        <td>{{$movie->datecreated}}</td>
-                        <td>{{$movie->dateupdated}}</td>
+                        <td>{{$movie->episode}}</td>
+                        {{-- <td>{{$movie->dateupdated}}</td> --}}
                         <td>
                             @if ($movie->status)
                                 hiển thị

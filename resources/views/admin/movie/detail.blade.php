@@ -40,6 +40,8 @@
                                 Lồng tiếng
                             @endif
                         </p>
+                        <p class="card-text"><span style="font-weight: bold">Ngày tạo: </span>{{$movie->DateCreated}}</p>
+                        <p class="card-text"><span style="font-weight: bold">Ngày cập nhật: </span>{{$movie->DateUpdated}}</p>
                         {!! Form::open(['method'=>'DELETE', 'route'=>['movie.destroy', $movie->id], 'class'=>'d-inline-block' ,'onsubmit' => 'return confirm("Bạn có muốn xóa không ?")']) !!}
                             {!! Form::submit('Xóa', ['class'=>'btn btn-danger']) !!}
                         {!! Form::close() !!}
