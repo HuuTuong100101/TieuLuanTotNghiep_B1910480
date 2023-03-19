@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\Genre;
-use App\Models\Espisode;
+use App\Models\Episode;
 use App\Models\Movie;
 use App\Models\Movie_Genre;
 
@@ -93,8 +93,17 @@ class IndexController extends Controller
         $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
         return view('pages.tags', compact('categories', 'countries', 'genres', 'movies', 'tag', 'hot_movies_sidebar'));
     }
-    public function watch() {
-        return view('pages.watch');
+    public function watch($slug) {
+        $categories = Category::all()->where('status',1);
+        $countries = Country::all()->where('status',1);
+        $genres = Genre::all()->where('status',1);
+        
+        $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
+        $movie = Movie::with('category', 'genre', 'country', 'movie_genre', 'episodes')->where('slug',$slug)->where('status', 1)->first();
+        $movie_related = Movie::with('category', 'genre', 'country')->where('category_id', $movie->category->id)->whereNotIn('slug', [$slug])->get();
+
+        // return response()->json($movie);
+        return view('pages.watch',compact('categories', 'countries', 'genres', 'hot_movies_sidebar', 'movie', 'movie_related'));
     }
 
     public function espisode() {

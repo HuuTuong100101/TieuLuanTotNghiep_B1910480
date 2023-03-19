@@ -41,7 +41,8 @@
                    <div class="movie-poster col-md-3">
                       <img class="movie-thumb" src="{{asset('./uploads/movie/'.$movie->image)}}" alt="{{$movie->title}}">
                       <div class="d-block text-center">
-                         <a href="#watch_trailer" class="btn btn-success watch_trailer">Xem Trailer</a> <a style="width: 103.78px" href="" class="btn btn-primary">Xem Phim</a>
+                         <a href="#watch_trailer" class="btn btn-success watch_trailer">Xem Trailer</a>
+                         <a style="width: 103.78px" href="{{route('watch', $movie->slug)}}" class="btn btn-primary">Xem Phim</a>
                       </div>
                    </div>
                    <div class="film-poster col-md-9">

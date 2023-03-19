@@ -28,6 +28,6 @@ class Movie extends Model
         }
 
         public function episodes() {
-            return $this->belongsToMany(Episode::class);
+            return $this->hasMany(Episode::class);
         }
     }
