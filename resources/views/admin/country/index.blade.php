@@ -13,7 +13,7 @@
                     <th scope="col">Slug</th>
                     <th scope="col">Description</th>
                     <th scope="col">Active/Inactive</th>
-                    <th scope="col">Manage</th>
+                    <th scope="col" style="width:95px;">Manage</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -31,7 +31,7 @@
                             @endif
                         </td>
                         <td>
-                            {!! Form::open(['method'=>'DELETE', 'route'=>['country.destroy', $country->id], 'onsubmit' => 'return confirm("Bạn có muốn xóa không ?")']) !!}
+                            {!! Form::open(['method'=>'DELETE', 'route'=>['country.destroy', $country->id], 'onsubmit' => 'return confirm("Bạn có muốn xóa không ?")', 'class'=>'d-inline-block']) !!}
                                 {!! Form::submit('Xóa', ['class'=>'btn btn-danger']) !!}
                             {!! Form::close() !!}
                             <a href="{{route('country.edit', $country->id)}}" class="btn btn-warning">Sửa</a>
