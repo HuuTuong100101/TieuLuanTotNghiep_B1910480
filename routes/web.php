@@ -27,9 +27,10 @@
     Route::get('/danh-muc/{slug}', [IndexController::class, 'category'])->name('category');
     Route::get('/the-loai/{slug}', [IndexController::class, 'genre'])->name('genre');
     Route::get('/quoc-gia/{slug}', [IndexController::class, 'country'])->name('country');
-    Route::get('/xem-phim/{slug}', [IndexController::class, 'watch'])->name('watch');
+    Route::get('/xem-phim/{slug}/tap-{number_episode}', [IndexController::class, 'watch'])->name('watch');
     Route::get('/phim/{slug}', [IndexController::class, 'movie'])->name('movie');
     Route::get('/espisode', [IndexController::class, 'espisode'])->name('espisode');
+    Route::get('/number-episode', [IndexController::class, 'espisode'])->name('number-episode');
     Route::get('/tag/{tag}', [IndexController::class, 'tags_phim'])->name('tag');
     Route::get('/tim-kiem', [IndexController::class, 'search'])->name('search');
 

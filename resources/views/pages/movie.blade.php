@@ -42,7 +42,7 @@
                       <img class="movie-thumb" src="{{asset('./uploads/movie/'.$movie->image)}}" alt="{{$movie->title}}">
                       <div class="d-block text-center">
                          <a href="#watch_trailer" class="btn btn-success watch_trailer">Xem Trailer</a>
-                         <a style="width: 103.78px" href="{{route('watch', $movie->slug)}}" class="btn btn-primary">Xem Phim</a>
+                         <a style="width: 103.78px" href="{{route('watch', ['slug' => $movie->slug, 'number_episode' => 1])}}" class="btn btn-primary">Xem Phim</a>
                       </div>
                    </div>
                    <div class="film-poster col-md-9">
@@ -82,20 +82,6 @@
                         <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{route('country',$movie->country->slug)}}" rel="country tag">{{$movie->country->title}}</a></li>
                      </ul>
                    </div>
-                </div>
-             </div>
-             <div class="clearfix"></div>
-             <div class="section-bar clearfix">
-                <h2 class="section-title"><span style="color:#ffed4d">Bình luận</span></h2>
-             </div>
-             <div class="entry-content htmlwrap clearfix bg-comment-fb">
-                <div class="video-item halim-entry-box">
-                   <article id="post-38424" class="item-content">
-                     @php
-                        $current_url = Request::url();
-                     @endphp
-                     <div class="fb-comments" data-href="{{$current_url}}" data-width="100%" data-numposts="100"></div>
-                   </article>
                 </div>
              </div>
              <div class="clearfix"></div>

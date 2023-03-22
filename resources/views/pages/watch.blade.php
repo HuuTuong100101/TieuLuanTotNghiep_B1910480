@@ -16,8 +16,11 @@
 <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
    <section id="content" class="test">
       <div class="clearfix wrap-content">
-         <iframe width="100%" height="500" src="https://www.youtube.com/embed/CBAOiFTJo9Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-         {{-- <iframe width="100%" height="500" src="https://www.youtube.com/embed/r958O404e4U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --}}
+         @foreach ($movie->episodes as $episode)
+            @if ($episode->episode == $number_episode)
+               <iframe width="100%" height="500" src="https://www.youtube.com/embed/{{$episode->link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            @endif
+         @endforeach
          <div class="button-watch">
             <ul class="halim-social-plugin col-xs-4 hidden-xs">
                <li class="fb-like" data-href="" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></li>
@@ -68,27 +71,46 @@
          <div class="text-center">
             <div id="halim-ajax-list-server"></div>
          </div>
-         <div id="halim-list-server">
-            <div class="tab-content">
-               <div role="tabpanel" class="tab-pane active server-1" id="server-0">
-                  <div class="halim-server">
-                     <ul class="halim-list-eps">
-                        @foreach ($movie->episodes as $key => $episode)
-                           <a href="#">
-                              <li class="halim-episode"><span class="halim-btn halim-btn-2 halim-info-1-2 box-shadow" data-post-id="37976" data-server="1" data-episode="2" data-position="" data-embed="0" data-title="Xem phim {{$movie->title}} - Tập {{$episode->episode}}" data-h1="{{$movie->title}} - tập {{$episode->episode}}">{{$episode->episode}}</span></li>
-                           </a>
-                        @endforeach
-                     </ul>
-                     <div class="clearfix"></div>
+         @if ($movie->episode > 1)
+            <div id="halim-list-server">
+               <div class="section-bar clearfix">
+                  <h2 class="section-title"><span style="color:#ffed4d">Tập phim</span></h2>
+               </div>
+               <div class="tab-content">
+                  <div role="tabpanel" class="tab-pane active server-1" id="server-0">
+                     <div class="halim-server">
+                        <ul class="halim-list-eps">
+                           @foreach ($movie->episodes as $key => $episode)
+                              <a href="{{route('watch', ['slug' => $movie->slug, 'number_episode' => $key+1])}}">
+                                 <li class="halim-episode"><span class="halim-btn halim-btn-2 halim-info-1-2 box-shadow {{$key + 1 == $number_episode ? 'active' : ''}}" data-post-id="37976" data-server="1" data-episode="2" data-position="" data-embed="0" data-title="Xem phim {{$movie->title}} - Tập {{$episode->episode}}" data-h1="{{$movie->title}} - tập {{$episode->episode}}">{{$episode->episode}}</span></li>
+                              </a>
+                           @endforeach
+                        </ul>
+                        <div class="clearfix"></div>
+                     </div>
                   </div>
                </div>
             </div>
-         </div>
+         @endif
          <div class="clearfix"></div>
          <div class="htmlwrap clearfix">
             <div id="lightout"></div>
          </div>
    </section>
+   <div class="clearfix"></div>
+   <div class="section-bar clearfix">
+      <h2 class="section-title"><span style="color:#ffed4d">Bình luận</span></h2>
+   </div>
+   <div class="entry-content htmlwrap clearfix bg-comment-fb">
+      <div class="video-item halim-entry-box">
+         <article id="post-38424" class="item-content">
+         @php
+            $current_url = Request::url();
+         @endphp
+         <div class="fb-comments" data-href="{{$current_url}}" data-width="100%" data-numposts="100"></div>
+         </article>
+      </div>
+   </div>
    <section class="related-movies">
       <div id="halim_related_movies-2xx" class="wrap-slider">
          <div class="section-bar clearfix">

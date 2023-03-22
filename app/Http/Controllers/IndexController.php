@@ -93,7 +93,7 @@ class IndexController extends Controller
         $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
         return view('pages.tags', compact('categories', 'countries', 'genres', 'movies', 'tag', 'hot_movies_sidebar'));
     }
-    public function watch($slug) {
+    public function watch($slug, $number_episode) {
         $categories = Category::all()->where('status',1);
         $countries = Country::all()->where('status',1);
         $genres = Genre::all()->where('status',1);
@@ -103,7 +103,7 @@ class IndexController extends Controller
         $movie_related = Movie::with('category', 'genre', 'country')->where('category_id', $movie->category->id)->whereNotIn('slug', [$slug])->get();
 
         // return response()->json($movie);
-        return view('pages.watch',compact('categories', 'countries', 'genres', 'hot_movies_sidebar', 'movie', 'movie_related'));
+        return view('pages.watch',compact('categories', 'countries', 'genres', 'hot_movies_sidebar', 'movie', 'movie_related', 'number_episode'));
     }
 
     public function espisode() {
