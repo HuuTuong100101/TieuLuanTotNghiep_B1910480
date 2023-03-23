@@ -36,6 +36,8 @@
                                 Vietsub
                             @elseif($movie->subtitles == 2)
                                 Engsub
+                            @elseif($movie->subtitles == 3)
+                                Thuyết minh
                             @else
                                 Lồng tiếng
                             @endif

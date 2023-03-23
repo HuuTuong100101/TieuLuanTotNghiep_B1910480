@@ -33,6 +33,8 @@
     Route::get('/number-episode', [IndexController::class, 'espisode'])->name('number-episode');
     Route::get('/tag/{tag}', [IndexController::class, 'tags_phim'])->name('tag');
     Route::get('/tim-kiem', [IndexController::class, 'search'])->name('search');
+    Route::get('/new', [IndexController::class, 'new'])->name('new');
+    Route::get('/subtitle/{sub}', [IndexController::class, 'subtitle'])->name('subtitle');
 
     Auth::routes();
     Route::get('/home', [HomeController::class, 'index'])->name('home');

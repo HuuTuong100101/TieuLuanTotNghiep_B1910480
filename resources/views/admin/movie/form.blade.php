@@ -56,7 +56,7 @@
                             </div>
                             <div class="form-group">
                                 {!! Form::label('subtitles', 'Subtitles', ['class'=>'mt-3']) !!}
-                                {!! Form::select('subtitles', ['1'=>'Vietsub', '0'=>'Lồng tiếng', '2'=>'Endsub'], isset($movies) ? $movies->subtitles : '1', ['class'=>'form-select']) !!}
+                                {!! Form::select('subtitles', ['1'=>'Vietsub', '0'=>'Lồng tiếng', '2'=>'Engsub', '3'=>'Thuyết minh'], isset($movies) ? $movies->subtitles : '1', ['class'=>'form-select']) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('category', 'Category', ['class'=>'mt-3']) !!}
@@ -80,7 +80,6 @@
                                     @endif
                                     {!! Form::label('genre', $genre->title, ['class'=>'me-3']) !!}
                                 @endforeach
-                                {{-- {!! Form::select('genre_id', $list_genre, isset($movies) ? $movies->genre_id : '1', ['class'=>'form-select']) !!} --}}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('Image', 'Image', ['class'=>'mt-3']) !!}

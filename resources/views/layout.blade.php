@@ -9,7 +9,7 @@
       <meta name="DC.language" scheme="utf-8" content="vi" />
       <meta name="language" content="Việt Nam">
       <title>PagodaFilms</title>
-      <link rel="shortcut icon" href="./images/filmmaking.png" type="image/x-icon" />
+      <link rel="shortcut icon" href="/images/filmmaking.png" type="image/x-icon" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/fontawesome.min.css" integrity="sha512-cHxvm20nkjOUySu7jdwiUxgGy11vuVPE9YeK89geLMLMMEOcKFyS2i+8wo0FOwyQO/bL8Bvq1KMsqK4bbOsPnA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link rel='dns-prefetch' href='//s.w.org' />
       <link rel='stylesheet' id='bootstrap-css' href='{{asset('css/bootstrap.min.css')}}' media='all' />
@@ -23,7 +23,7 @@
       </style>
       <style>
          #header .site-title {
-            background: url('./images/filmmaking.png') no-repeat top center;
+            background: url('/images/filmmaking.png') no-repeat top center;
             background-size: contain;
             text-indent: -9999px;
          }
@@ -117,8 +117,11 @@
                               @endforeach
                            </ul>
                         </li>
+                        <li class="mega"><a title="Phim mới" href="{{route('new')}}">Phim mới</a></li>
+                        <li class="mega"><a title="Phim lồng tiếng" href="{{route('subtitle', 0)}}">Phim lồng tiếng</a></li>
+                        <li class="mega"><a title="Phim thuyết minh" href="{{route('subtitle', 3)}}">Phim thuyết minh</a></li>
                         @foreach ($categories as $category)
-                        <li class="mega"><a title={{$category->title}} href="{{route('category', $category->slug)}}">{{$category->title}}</a></li>
+                           <li class="mega"><a title={{$category->title}} href="{{route('category', $category->slug)}}">{{$category->title}}</a></li>
                         @endforeach
                      </ul>
                   </div>

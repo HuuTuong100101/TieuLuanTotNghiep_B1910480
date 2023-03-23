@@ -106,6 +106,26 @@ class IndexController extends Controller
         return view('pages.watch',compact('categories', 'countries', 'genres', 'hot_movies_sidebar', 'movie', 'movie_related', 'number_episode'));
     }
 
+    public function new() {
+        $new_movies = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->paginate(40);
+        $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
+        $categories = Category::all()->where('status',1);
+        $countries = Country::all()->where('status',1);
+        $genres = Genre::all()->where('status',1);
+        
+        return view('pages.new', compact('categories', 'countries', 'genres', 'new_movies', 'hot_movies_sidebar'));
+    }
+
+    public function subtitle($sub) {
+        $sub_movies = Movie::orderBy('dateupdated', 'DESC')->where('subtitles', $sub)->paginate(40);
+        $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
+        $categories = Category::all()->where('status',1);
+        $countries = Country::all()->where('status',1);
+        $genres = Genre::all()->where('status',1);
+        
+        return view('pages.sub', compact('categories', 'countries', 'genres', 'sub_movies', 'hot_movies_sidebar', 'sub'));
+    }
+
     public function espisode() {
         return view('pages.espisode');
     }

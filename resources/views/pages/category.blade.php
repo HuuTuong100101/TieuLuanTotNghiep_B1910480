@@ -39,6 +39,8 @@
                               Vietsub
                            @elseif($category_movie->subtitles == 2)
                               Engsub
+                           @elseif($category_movie->subtitles == 3)
+                              Thuyết minh
                            @else
                               Lồng tiếng
                            @endif
