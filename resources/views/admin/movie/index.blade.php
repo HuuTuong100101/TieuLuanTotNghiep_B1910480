@@ -17,6 +17,7 @@
                     <th scope="col">Slug</th>
                     <th scope="col">Trailer</th>
                     <th scope="col">Hot</th>
+                    <th scope="col">Year</th>
                     <th scope="col">Episode</th>
                     {{-- <th scope="col">DateUpdated</th> --}}
                     <th scope="col">Active/Inactive</th>
@@ -44,6 +45,9 @@
                             @else
                                 không hot
                             @endif
+                        </td>
+                        <td>
+                            {!! Form::selectYear('year',2023, 1990, $movie->year != NULL ? $movie->year : 0, ['class' => 'select-year', 'id' => $movie->id]) !!}
                         </td>
                         <td>{{$movie->episode}}</td>
                         {{-- <td>{{$movie->dateupdated}}</td> --}}

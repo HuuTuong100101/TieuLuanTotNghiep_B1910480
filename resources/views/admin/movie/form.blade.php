@@ -55,6 +55,10 @@
                                 {!! Form::select('quality', ['1'=>'HD', '0'=>'SD', '2'=>'Full HD'], isset($movies) ? $movies->quality : '1', ['class'=>'form-select']) !!}
                             </div>
                             <div class="form-group">
+                                {!! Form::label('year', 'Year', ['class'=>'mt-3']) !!}
+                                {!! Form::selectYear('year', 2023, 2000, isset($movies) ? $movies->year : '2023', ['class'=>'form-select']) !!}
+                            </div>
+                            <div class="form-group">
                                 {!! Form::label('subtitles', 'Subtitles', ['class'=>'mt-3']) !!}
                                 {!! Form::select('subtitles', ['1'=>'Vietsub', '0'=>'Lồng tiếng', '2'=>'Engsub', '3'=>'Thuyết minh'], isset($movies) ? $movies->subtitles : '1', ['class'=>'form-select']) !!}
                             </div>

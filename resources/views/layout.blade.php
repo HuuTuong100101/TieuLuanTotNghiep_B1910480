@@ -102,6 +102,14 @@
                      <ul id="menu-menu_1" class="nav navbar-nav navbar-left">
                         <li class="current-menu-item active"><a title="Trang Chủ" href="{{route('homepage')}}">Trang Chủ</a></li>
                         <li class="mega dropdown">
+                           <a title="Danh mục" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Danh mục<span class="caret"></span></a>
+                           <ul role="menu" class=" dropdown-menu">
+                              @foreach ($categories as $category)
+                              <li class="mega"><a title={{$category->title}} href="{{route('category', $category->slug)}}">{{$category->title}}</a></li>
+                              @endforeach
+                           </ul>
+                        </li>
+                        <li class="mega dropdown">
                            <a title="Thể Loại" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Thể Loại <span class="caret"></span></a>
                            <ul role="menu" class=" dropdown-menu">
                               @foreach ($genres as $genre)
@@ -117,12 +125,22 @@
                               @endforeach
                            </ul>
                         </li>
+                        <li class="mega dropdown">
+                           <a title="Năm" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Năm <span class="caret"></span></a>
+                           <ul role="menu" class=" dropdown-menu">
+                              {{-- @foreach ($countries as $country) --}}
+                              @for ($i=2023; $i>=2000; $i--)
+                                 <li class="mega"><a title="{{$i}}" href="{{route('year', $i)}}">{{$i}}</a></li>
+                              @endfor
+                              {{-- @endforeach --}}
+                           </ul>
+                        </li>
                         <li class="mega"><a title="Phim mới" href="{{route('new')}}">Phim mới</a></li>
                         <li class="mega"><a title="Phim lồng tiếng" href="{{route('subtitle', 0)}}">Phim lồng tiếng</a></li>
                         <li class="mega"><a title="Phim thuyết minh" href="{{route('subtitle', 3)}}">Phim thuyết minh</a></li>
-                        @foreach ($categories as $category)
+                        {{-- @foreach ($categories as $category)
                            <li class="mega"><a title={{$category->title}} href="{{route('category', $category->slug)}}">{{$category->title}}</a></li>
-                        @endforeach
+                        @endforeach --}}
                      </ul>
                   </div>
                   <ul class="nav navbar-nav navbar-left" style="background:#000;">

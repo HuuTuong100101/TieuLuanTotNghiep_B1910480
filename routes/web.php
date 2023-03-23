@@ -35,6 +35,7 @@
     Route::get('/tim-kiem', [IndexController::class, 'search'])->name('search');
     Route::get('/new', [IndexController::class, 'new'])->name('new');
     Route::get('/subtitle/{sub}', [IndexController::class, 'subtitle'])->name('subtitle');
+    Route::get('/year/{year}', [IndexController::class, 'year'])->name('year');
 
     Auth::routes();
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -48,4 +49,5 @@
     Route::resource('genre', GenreController::class);
     Route::resource('country', CountryController::class);
     Route::resource('episode', EpisodeController::class);
+    Route::get('/update-year', [MovieController::class, 'update_year']);
 ?>

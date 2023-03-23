@@ -88,6 +88,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="//cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+    
     <script type="text/javascript">
         $(document).ready( function () {
             $('#MovieTable').DataTable();
@@ -138,6 +139,21 @@
                     }
                 });
             });
-        </script>
+
+            $('.select-year').change(function(){
+                var year = $(this).val();
+                var id_phim = $(this).attr('id');
+                // alert(id_phim);
+                // alert(year);
+                $.ajax({
+                    url: "{{url('/update-year')}}",
+                    method: "GET",
+                    data: {year:year, id_phim:id_phim},
+                    success: function() {
+                        alert('Cập nhật năm thành công !')
+                    }
+                })
+            })
+    </script>
 </body>
 </html>

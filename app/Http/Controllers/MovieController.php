@@ -64,6 +64,11 @@ class MovieController extends Controller
         $movie->tags = $data['tags'];
         $movie->lenght = $data['lenght'];
         $movie->episode = $data['episode'];
+        if($data['year']) {
+            $movie->year = $data['year'];
+        } else {
+            $movie->year = '2023';
+        }
         $movie->quality = $data['quality'];
         $movie->subtitles = $data['subtitles'];
         $movie->status = $data['status'];
@@ -137,6 +142,7 @@ class MovieController extends Controller
         $movie->description = $data['description'];
         $movie->trailer = $data['trailer'];
         $movie->tags = $data['tags'];
+        $movie->year = $data['year'];
         $movie->lenght = $data['lenght'];
         $movie->episode = $data['episode'];
         $movie->quality = $data['quality'];
@@ -182,5 +188,12 @@ class MovieController extends Controller
 
         // Movie_Genre::where('movie_id',$id)->delete();
         return redirect()->to(route('movie.index'));
+    }
+
+    public function update_year(Request $request) {
+        $data = $request->all();
+        $movie = Movie::find($data['id_phim']);
+        $movie->year = $data['year'];
+        $movie->save();
     }
 }
