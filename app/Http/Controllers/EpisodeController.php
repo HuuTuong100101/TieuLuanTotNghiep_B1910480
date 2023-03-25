@@ -138,8 +138,8 @@ class EpisodeController extends Controller
 
         $output = '<option value="">--- Danh sách tập phim chưa có link phim ---</option>';
         foreach($arr_espisodes as $arr_espisode) {
-            echo ($arr_espisode);
-            $output.= '<option value="'.$arr_espisode.'">'.$arr_espisode.'</option>';
+            $output.='<option value="'.$arr_espisode.'">';
+            // $output.= '<option value="'.$arr_espisode.'">'.$arr_espisode.'</option>';
         }
         echo $output;
     }

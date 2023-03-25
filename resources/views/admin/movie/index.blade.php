@@ -14,12 +14,9 @@
                     <th scope="col">Category</th>
                     <th scope="col">Country</th>
                     <th scope="col">Genre</th>
-                    <th scope="col">Slug</th>
-                    <th scope="col">Trailer</th>
                     <th scope="col">Hot</th>
                     <th scope="col">Year</th>
                     <th scope="col">Episode</th>
-                    {{-- <th scope="col">DateUpdated</th> --}}
                     <th scope="col">Active/Inactive</th>
                     <th scope="col">Detail</th>
                 </tr>
@@ -37,8 +34,6 @@
                                 <span class="badge bg-secondary">{{$genre->title}}</span>
                             @endforeach
                         </td>
-                        <td>{{$movie->slug}}</td>
-                        <td>{{$movie->trailer}}</td>
                         <td>
                             @if ($movie->hot)
                                 hot

@@ -130,6 +130,7 @@
         
             $('.select-movie').change(function(){
                 var id = $(this).val();
+                // alert(id);
                 $.ajax({
                     url: "{{route('select-movie')}}",
                     mothed: "GET",

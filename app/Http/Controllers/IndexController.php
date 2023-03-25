@@ -43,9 +43,13 @@ class IndexController extends Controller
         $countries = Country::all()->where('status',1);
         $genres = Genre::all()->where('status',1);
         $movie = Movie::with('category', 'genre', 'country', 'movie_genre')->where('slug',$slug)->where('status', 1)->first();
+        $new_episode = Episode::where('movie_id', $movie->id)->orderBy('id', 'DESC')->take(3)->get();
         $movie_related = Movie::with('category', 'genre', 'country')->where('category_id', $movie->category->id)->whereNotIn('slug', [$slug])->get();
         $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
-        return view('pages.movie', compact('categories', 'countries', 'genres', 'movie', 'movie_related', 'hot_movies_sidebar'));
+        $all_episode = Episode::where('movie_id', $movie->id)->get()->count();
+        // dd($movie->count());
+        // return response()->json($new_episode);
+        return view('pages.movie', compact('categories', 'countries', 'genres', 'movie', 'movie_related', 'hot_movies_sidebar', 'new_episode', 'all_episode'));
     }
 
     // Trang danh mục

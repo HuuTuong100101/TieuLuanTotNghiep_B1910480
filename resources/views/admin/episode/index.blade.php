@@ -10,12 +10,13 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Episode</th>
                     <th scope="col">Link</th>
                     <th scope="col">DateCreated</th>
                     <th scope="col">DateUpdated</th>
                     <th scope="col">Active/Inactive</th>
-                    <th scope="col">Manage</th>
+                    <th scope="col" style="width:95px;">Manage</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -23,6 +24,7 @@
                         <tr>
                         <th scope="row">{{$index}}</th>
                         <td>{{$episode->movie->title}}</td>
+                        <th scope="row"><img width="30%" src="{{asset('/uploads/movie/'.$episode->movie->image)}}" alt="{{$episode->movie->title}}"></th>
                         <td>{{$episode->episode}}</td>
                         <td>{{$episode->link}}</td>
                         <td>{{$episode->datecreated}}</td>

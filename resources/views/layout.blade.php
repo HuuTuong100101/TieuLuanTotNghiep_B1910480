@@ -23,7 +23,7 @@
       </style>
       <style>
          #header .site-title {
-            background: url('/images/filmmaking.png') no-repeat top center;
+            background: url('/images/logo2.png') no-repeat top center;
             background-size: contain;
             text-indent: -9999px;
          }
@@ -45,9 +45,9 @@
          <div class="container">
             <div class="row" id="headwrap">
                <div class="col-md-3 col-sm-6 slogan">
-                  <a class="logo" href="" title="phim hay">
+                  <a class="logo" href="" title="pagodafilms">
                      <p class="site-title"></p>
-                     <p class="text-site">PAGODA FILMS</p>
+                     {{-- <p class="text-site">PAGODA FILMS</p> --}}
                   </a>
                </div>
                <div class="col-md-5 col-sm-6 halim-search-form hidden-xs">

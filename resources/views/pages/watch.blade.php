@@ -18,7 +18,7 @@
       <div class="clearfix wrap-content">
          @foreach ($movie->episodes as $episode)
             @if ($episode->episode == $number_episode)
-               <iframe width="100%" height="500" allowfullscreen src="https://short.ink/_4kesfrga" frameborder="0" scrolling="0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+               <iframe width="100%" height="500" allowfullscreen src="https://www.youtube.com/embed/{{$episode->link}}" frameborder="0" scrolling="0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             @endif
          @endforeach
          <div class="button-watch">
@@ -81,8 +81,12 @@
                      <div class="halim-server">
                         <ul class="halim-list-eps">
                            @foreach ($movie->episodes as $key => $episode)
-                              <a href="{{route('watch', ['slug' => $movie->slug, 'number_episode' => $key+1])}}">
-                                 <li class="halim-episode"><span class="halim-btn halim-btn-2 halim-info-1-2 box-shadow {{$key + 1 == $number_episode ? 'active' : ''}}" data-post-id="37976" data-server="1" data-episode="2" data-position="" data-embed="0" data-title="Xem phim {{$movie->title}} - Tập {{$episode->episode}}" data-h1="{{$movie->title}} - tập {{$episode->episode}}">{{$episode->episode}}</span></li>
+                              <a href="{{route('watch', ['slug' => $movie->slug, 'number_episode' => $episode->episode])}}">
+                                 <li class="halim-episode">
+                                    <span class="halim-btn halim-btn-2 halim-info-1-2 box-shadow {{$key + 1 == $number_episode ? 'active' : ''}}" data-post-id="37976" data-server="1" data-episode="2" data-position="" data-embed="0" data-title="Xem phim {{$movie->title}} - Tập {{$episode->episode}}" data-h1="{{$movie->title}} - tập {{$episode->episode}}">
+                                       {{$episode->episode}}
+                                    </span>
+                                 </li>
                               </a>
                            @endforeach
                         </ul>

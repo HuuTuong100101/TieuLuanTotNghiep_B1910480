@@ -18,6 +18,8 @@
                         <p style="height: 100px" class="card-text overflow-auto mb-0 fst-italic">{{$movie->description}}</p>
                         <p class="card-text"><span style="font-weight: bold">Danh mục: </span>{{$movie->category->title}}</p>
                         <p class="card-text"><span style="font-weight: bold">Từ khóa: </span>{{$movie->tags}}</p>
+                        <p class="card-text"><span style="font-weight: bold">Trailer: </span>{{$movie->trailer}}</p>
+                        <p class="card-text"><span style="font-weight: bold">Slugs: </span>{{$movie->slug}}</p>
                         <p class="card-text"><span style="font-weight: bold">Quốc gia: </span>{{$movie->country->title}}</p>
                         <p class="card-text"><span style="font-weight: bold">Thời lượng: </span>{{$movie->lenght}}</p>
                         <p class="card-text">
@@ -42,8 +44,8 @@
                                 Lồng tiếng
                             @endif
                         </p>
-                        <p class="card-text"><span style="font-weight: bold">Ngày tạo: </span>{{$movie->DateCreated}}</p>
-                        <p class="card-text"><span style="font-weight: bold">Ngày cập nhật: </span>{{$movie->DateUpdated}}</p>
+                        <p class="card-text"><span style="font-weight: bold">Ngày tạo: </span>{{$movie->datecreated}}</p>
+                        <p class="card-text"><span style="font-weight: bold">Ngày cập nhật: </span>{{$movie->dateupdated}}</p>
                         {!! Form::open(['method'=>'DELETE', 'route'=>['movie.destroy', $movie->id], 'class'=>'d-inline-block' ,'onsubmit' => 'return confirm("Bạn có muốn xóa không ?")']) !!}
                             {!! Form::submit('Xóa', ['class'=>'btn btn-danger']) !!}
                         {!! Form::close() !!}

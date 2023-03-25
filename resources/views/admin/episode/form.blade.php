@@ -14,9 +14,9 @@
                     @endif
                     
                     @if (!isset($episode))
-                        {!! Form::open(['route'=>'episode.store','method'=>'POST']) !!}
+                        {!! Form::open(['route'=>'episode.store','method'=>'POST', "autocomplete"=>"off"]) !!}
                     @else
-                        {!! Form::open(['route'=>['episode.update', $episode->id],'method'=>'PUT']) !!}
+                        {!! Form::open(['route'=>['episode.update', $episode->id],'method'=>'PUT', "autocomplete"=>"off"]) !!}
                     @endif
                             <div class="form-group">
                                 @if (!isset($episode))
@@ -29,11 +29,16 @@
                             </div>
                             <div class="form-group">
                                 @if (!isset($episode))
-                                    <label for="episode" class="mt-3">Chọn tập phim</label>
-                                    <select name="episode" id="show_episode" class="form-select">
+                                <label for="exampleDataList" class="form-label mt-3">Tập phim</label>
+                                <input name="episode" class="form-control" list="show_episode" id="exampleDataList" placeholder="Tìm kiếm tập phim ...">
+                                <datalist id="show_episode">
+                                    {{--  --}}
+                                </datalist>
+                                    {{-- <label for="episode" class="mt-3">Chọn tập phim</label>
+                                    <select name="episode" id="show_episode" class="form-select selectpicker" data-live-search="true">
 
-                                        {{--  --}}
-                                    </select>
+                                        
+                                    </select> --}}
                                 @else 
                                     {!! Form::label('episode', 'episode', ['class'=>'mt-3']) !!}
                                     {!! Form::text('episode', $episode->episode, ['class'=>'form-control', 'disabled']) !!}

@@ -72,13 +72,27 @@
                            </span>
                         </li>
                         <li class="list-info-group-item"><span>Thời lượng</span> : {{$movie->lenght}}</li>
-                        <li class="list-info-group-item"><span>Số tập</span> : {{$movie->episode}}</li>
+                     <li class="list-info-group-item"><span>Tập phim</span> : 
+                        {{$all_episode}}/{{$movie->episode}} 
+                        @if ($all_episode == $movie->epiosde)
+                           - Hoàn Thành
+                        @else
+                           - Đang cập nhật ...
+                        @endif
+                     </li>
                         <li class="list-info-group-item"><span>Danh mục phim</span> : <a href="{{route('category',$movie->category->slug)}}" rel="category tag">{{$movie->category->title}}</a></li>
                         <li class="list-info-group-item"><span>Thể loại</span> : 
                            @foreach ($movie->movie_genre as $gen)
                               <a href="{{route('genre',$gen->slug)}}" rel="genre tag">
                                  {{$gen->title}}
                               </a>
+                           @endforeach
+                        </li>
+                        <li class="list-info-group-item"><span>Tập mới nhất</span> : 
+                           @foreach ($new_episode as $new)
+                           <a href="{{route('watch', ['slug' => $movie->slug, 'number_episode' => $new->episode])}}">
+                              Tập {{$new->episode}}
+                           </a>
                            @endforeach
                         </li>
                         <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{route('country',$movie->country->slug)}}" rel="country tag">{{$movie->country->title}}</a></li>
