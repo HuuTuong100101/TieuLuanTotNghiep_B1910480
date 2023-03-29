@@ -40,7 +40,7 @@
                 <div class="movie_info col-xs-12">
                    <div class="movie-poster col-md-3">
                       <img class="movie-thumb" src="{{asset('./uploads/movie/'.$movie->image)}}" alt="{{$movie->title}}">
-                      <div class="d-block text-center">
+                      <div class="d-block text-center mt-3">
                          <a href="#watch_trailer" class="btn btn-success watch_trailer">Xem Trailer</a>
                          <a style="width: 103.78px" href="{{route('watch', ['slug' => $movie->slug, 'number_episode' => 1])}}" class="btn btn-primary">Xem Phim</a>
                       </div>
@@ -74,7 +74,7 @@
                         <li class="list-info-group-item"><span>Thời lượng</span> : {{$movie->lenght}}</li>
                      <li class="list-info-group-item"><span>Tập phim</span> : 
                         {{$all_episode}}/{{$movie->episode}} 
-                        @if ($all_episode == $movie->epiosde)
+                        @if ($all_episode == $movie->episode)
                            - Hoàn Thành
                         @else
                            - Đang cập nhật ...
@@ -168,7 +168,7 @@
                               @endif
                            </span>
                            <span class="episode">
-                              <i class="fa fa-play" aria-hidden="true"></i>
+                              {{count($movie->episodes)}}/{{$movie->episode}} |          
                               @if($movie->subtitles == 1)
                                     Vietsub
                               @elseif($movie->subtitles == 2)

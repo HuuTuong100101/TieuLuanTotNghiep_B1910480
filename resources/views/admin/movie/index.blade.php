@@ -9,16 +9,17 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Country</th>
-                    <th scope="col">Genre</th>
-                    <th scope="col">Hot</th>
-                    <th scope="col">Year</th>
-                    <th scope="col">Episode</th>
-                    <th scope="col">Active/Inactive</th>
-                    <th scope="col">Detail</th>
+                    <th scope="col">Tên_phim</th>
+                    <th scope="col">Ảnh</th>
+                    <th scope="col">Danh_mục</th>
+                    <th scope="col">Quốc_gia</th>
+                    <th scope="col">Thể_loại</th>
+                    <th scope="col">Phim_hot</th>
+                    <th scope="col">Năm_PH</th>
+                    <th scope="col">Số_tập</th>
+                    <th scope="col">Số_tập_đã_thêm</th>
+                    <th scope="col">Ẩn/Hiện</th>
+                    <th scope="col">Chi_tiết</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -45,7 +46,9 @@
                             {!! Form::selectYear('year',2023, 1990, $movie->year != NULL ? $movie->year : 0, ['class' => 'select-year', 'id' => $movie->id]) !!}
                         </td>
                         <td>{{$movie->episode}}</td>
-                        {{-- <td>{{$movie->dateupdated}}</td> --}}
+                        <td>
+                            {{count($movie->episodes)}} / {{$movie->episode}}
+                        </td>
                         <td>
                             @if ($movie->status)
                                 hiển thị

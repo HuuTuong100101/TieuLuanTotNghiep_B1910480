@@ -137,7 +137,7 @@
                               @endif
                            </span>
                            <span class="episode">
-                              <i class="fa fa-play" aria-hidden="true"></i>
+                              {{count($movie->episodes)}}/{{$movie->episode}} |
                               @if($movie->subtitles == 1)
                                     Vietsub
                               @elseif($movie->subtitles == 2)
