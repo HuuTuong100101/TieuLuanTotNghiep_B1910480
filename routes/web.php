@@ -36,6 +36,7 @@
     Route::get('/new', [IndexController::class, 'new'])->name('new');
     Route::get('/subtitle/{sub}', [IndexController::class, 'subtitle'])->name('subtitle');
     Route::get('/year/{year}', [IndexController::class, 'year'])->name('year');
+    Route::get('/filter', [IndexController::class, 'filter'])->name('filter');
 
     Auth::routes();
     Route::get('/home', [HomeController::class, 'index'])->name('home');

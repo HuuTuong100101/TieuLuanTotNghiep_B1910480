@@ -67,12 +67,12 @@
                      </div>
                   </div>
                </div>
-               <div class="col-md-4 hidden-xs">
+               {{-- <div class="col-md-4 hidden-xs">
                   <div id="get-bookmark" class="box-shadow"><i class="hl-bookmark"></i><span> Bookmarks</span><span class="count">0</span></div>
                   <div id="bookmark-list" class="hidden bookmark-list-on-pc">
                      <ul style="margin: 0;"></ul>
                   </div>
-               </div>
+               </div> --}}
             </div>
          </div>
       </header>
@@ -86,16 +86,16 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                   </button>
-                  <button type="button" class="navbar-toggle collapsed pull-right expand-search-form" data-toggle="collapse" data-target="#search-form" aria-expanded="false">
+                  {{-- <button type="button" class="navbar-toggle collapsed pull-right expand-search-form" data-toggle="collapse" data-target="#search-form" aria-expanded="false">
                   <span class="hl-search" aria-hidden="true"></span>
                   </button>
                   <button type="button" class="navbar-toggle collapsed pull-right get-bookmark-on-mobile">
-                  Bookmarks<i class="hl-bookmark" aria-hidden="true"></i>
+                     Bookmarks<i class="hl-bookmark" aria-hidden="true"></i>
                   <span class="count">0</span>
                   </button>
                   <button type="button" class="navbar-toggle collapsed pull-right get-locphim-on-mobile">
-                  <a href="javascript:;" id="expand-ajax-filter" style="color: #ffed4d;">Lọc <i class="fas fa-filter"></i></a>
-                  </button>
+                     <a href="javascript:;" id="expand-ajax-filter" style="color: #ffed4d;">Lọc <i class="fas fa-filter"></i></a>
+                  </button> --}}
                </div>
                <div class="collapse navbar-collapse" id="halim">
                   <div class="menu-menu_1-container">
@@ -128,24 +128,17 @@
                         <li class="mega dropdown">
                            <a title="Năm" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Năm <span class="caret"></span></a>
                            <ul role="menu" class=" dropdown-menu">
-                              {{-- @foreach ($countries as $country) --}}
                               @for ($i=2023; $i>=2000; $i--)
                                  <li class="mega"><a title="{{$i}}" href="{{route('year', $i)}}">{{$i}}</a></li>
                               @endfor
-                              {{-- @endforeach --}}
                            </ul>
                         </li>
                         <li class="mega"><a title="Phim mới" href="{{route('new')}}">Phim mới</a></li>
                         <li class="mega"><a title="Phim lồng tiếng" href="{{route('subtitle', 0)}}">Phim lồng tiếng</a></li>
                         <li class="mega"><a title="Phim thuyết minh" href="{{route('subtitle', 3)}}">Phim thuyết minh</a></li>
-                        {{-- @foreach ($categories as $category)
-                           <li class="mega"><a title={{$category->title}} href="{{route('category', $category->slug)}}">{{$category->title}}</a></li>
-                        @endforeach --}}
                      </ul>
+                     <button style="" class="btn btn-danger filter-btn">Lọc phim</button>
                   </div>
-                  <ul class="nav navbar-nav navbar-left" style="background:#000;">
-                     <li><a href="#" onclick="locphim()" style="color: #ffed4d;">Lọc Phim</a></li>
-                  </ul>
                </div>
             </nav>
             <div class="collapse navbar-collapse" id="search-form">
@@ -158,7 +151,43 @@
       </div>
       </div>
       <div class="container">
-         <div class="row fullwith-slider"></div>
+         <div class="row filter box-filter">
+            <form class="form-inline" action="{{route('filter')}}" method="GET">
+               <div class="form-group">
+                 <select name="category" id="" class="form-control">
+                     <option value="">-- Chọn danh mục --</option>
+                    @foreach ($categories as $category)
+                        <option value="{{$category->id}}">{{$category->title}}</option>
+                     @endforeach
+                 </select>
+               </div>
+               <div class="form-group">
+                  <select name="genre" id="" class="form-control">
+                     <option value="">-- Chọn thể loại --</option>
+                     @foreach ($genres as $genre)
+                        <option value="{{$genre->id}}">{{$genre->title}}</option>
+                     @endforeach
+                 </select>
+               </div>
+               <div class="form-group">
+                  <select name="country" id="" class="form-control">
+                     <option value="">-- Chọn quốc gia --</option>
+                     @foreach ($countries as $country)
+                        <option value="{{$country->id}}">{{$country->title}}</option>
+                     @endforeach
+                 </select>
+               </div>
+               <div class="form-group">
+                  <select name="year" id="" class="form-control">
+                     <option value="">-- Chọn năm phát hành --</option>
+                     @for ($i=2023; $i>=2000; $i--)
+                        <option value="{{$i}}">{{$i}}</option>
+                     @endfor
+                 </select>
+               </div>
+               <button type="submit" class="btn btn-default">Filter</button>
+             </form>
+         </div>
       </div>
       <div class="container">
          @yield('content')
@@ -303,13 +332,11 @@
                   });
                }
             });
-
-            // $('#result').on('click', 'li', function() {
-            //    var click_text = $(this).text();
-            //    $('#search').val(click_text);
-            //    $('#result').html('');
-            // });
          });
+
+         $('.filter-btn').click(function(){
+            $('.box-filter').toggle(200);
+         })
       </script>
       {{-- <script type="text/javascript">
           $(".watch_trailer").click(function(e) {

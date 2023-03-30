@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
+
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\Genre;
@@ -12,6 +14,140 @@ use App\Models\Movie_Genre;
 
 class IndexController extends Controller
 {
+
+    // Trang lọc phim
+
+    public function filter(Request $request) {
+        $data = $request->all();
+
+        $category_data = $data['category'];
+        $genre_data = $data['genre'];
+        $country_data = $data['country'];
+        $year_data = $data['year'];
+
+        $categories = Category::all()->where('status',1);
+        $countries = Country::all()->where('status',1);
+        $genres = Genre::all()->where('status',1);
+        $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
+        
+        if ($category_data == '' && $country_data == '' && $genre_data == '' && $year_data == '') {
+            return redirect()->to('/');
+        } elseif ($category_data == '' && $country_data == '' && $genre_data == '') {
+            $movies = Movie::with('episodes')
+                            ->orderBy('dateupdated', 'DESC')
+                            ->where('year', $year_data)
+                            ->paginate(40);;
+            return view('pages.filter', compact('movies', 'categories', 'genres', 'countries', 'hot_movies_sidebar'));
+        } elseif ($country_data == '' && $genre_data == '' && $year_data == '') {
+            $movies = Movie::with('episodes')
+                            ->orderBy('dateupdated', 'DESC')
+                            ->where('category_id', $category_data)
+                            ->paginate(40);;
+            return view('pages.filter', compact('movies', 'categories', 'genres', 'countries', 'hot_movies_sidebar'));
+        } elseif ($category_data == '' && $country_data == '' && $year_data == '') {
+            $movies = Movie::with('episodes')
+                            ->join('movie_genre', 'movies.id', '=', 'movie_genre.movie_id')
+                            ->where('genre_id', $genre_data)
+                            ->paginate(40);;
+            return view('pages.filter', compact('movies', 'categories', 'genres', 'countries', 'hot_movies_sidebar'));
+        } elseif($category_data == '' && $genre_data == '' && $year_data == '') {
+            $movies = Movie::with('episodes')
+                            ->orderBy('dateupdated', 'DESC')
+                            ->where('country_id', $country_data)
+                            ->paginate(40);;
+            return view('pages.filter', compact('movies', 'categories', 'genres', 'countries', 'hot_movies_sidebar'));
+        } elseif ($category_data == '' && $country_data == '') {
+            $movies = Movie::with('episodes')
+                            ->join('movie_genre', 'movies.id', '=', 'movie_genre.movie_id')
+                            ->orderBy('dateupdated', 'DESC')
+                            ->where('genre_id', $genre_data)
+                            ->where('year', $year_data)
+                            ->paginate(40);;
+            return view('pages.filter', compact('movies', 'categories', 'genres', 'countries', 'hot_movies_sidebar'));
+        } elseif ($category_data == '' && $genre_data == '') {
+            $movies = Movie::with('episodes')
+                            ->orderBy('dateupdated', 'DESC')
+                            ->where('country_id', $country_data)
+                            ->where('year', $year_data)
+                            ->paginate(40);;
+            return view('pages.filter', compact('movies', 'categories', 'genres', 'countries', 'hot_movies_sidebar'));
+        } elseif ($category_data == '' && $year_data == '') {
+            $movies = Movie::with('episodes')
+                            ->join('movie_genre', 'movies.id', '=', 'movie_genre.movie_id')
+                            ->orderBy('dateupdated', 'DESC')
+                            ->where('genre_id', $genre_data)
+                            ->where('country_id', $country_data)
+                            ->paginate(40);;
+            return view('pages.filter', compact('movies', 'categories', 'genres', 'countries', 'hot_movies_sidebar'));
+        } elseif ($country_data == '' && $genre_data == '') {
+            $movies = Movie::with('episodes')
+                            ->orderBy('dateupdated', 'DESC')
+                            ->where('category_id', $category_data)
+                            ->where('year', $year_data)
+                            ->paginate(40);;
+            return view('pages.filter', compact('movies', 'categories', 'genres', 'countries', 'hot_movies_sidebar'));
+        } elseif ($country_data == '' && $year_data == '') {
+            $movies = Movie::with('episodes')
+                            ->join('movie_genre', 'movies.id', '=', 'movie_genre.movie_id')
+                            ->orderBy('dateupdated', 'DESC')
+                            ->where('genre_id', $genre_data)
+                            ->where('category_id', $category_data)
+                            ->paginate(40);;
+            return view('pages.filter', compact('movies', 'categories', 'genres', 'countries', 'hot_movies_sidebar'));
+        } elseif ($genre_data == '' && $year_data == '') {
+            $movies = Movie::with('episodes')
+                            ->orderBy('dateupdated', 'DESC')
+                            ->where('category_id', $category_data)
+                            ->where('country_id', $country_data)
+                            ->paginate(40);;
+            return view('pages.filter', compact('movies', 'categories', 'genres', 'countries', 'hot_movies_sidebar'));
+        } elseif ($category_data == '') {
+            $movies = Movie::with('episodes')
+                            ->join('movie_genre', 'movies.id', '=', 'movie_genre.movie_id')
+                            ->orderBy('dateupdated', 'DESC')
+                            ->where('genre_id', $genre_data)
+                            ->where('country_id', $country_data)
+                            ->where('year', $year_data)
+                            ->paginate(40);;
+            return view('pages.filter', compact('movies', 'categories', 'genres', 'countries', 'hot_movies_sidebar'));
+        } elseif ($country_data == '') {
+            $movies = Movie::with('episodes')
+                            ->join('movie_genre', 'movies.id', '=', 'movie_genre.movie_id')
+                            ->orderBy('dateupdated', 'DESC')
+                            ->where('genre_id', $genre_data)
+                            ->where('category_id', $category_data)
+                            ->where('year', $year_data)
+                            ->paginate(40);;
+            return view('pages.filter', compact('movies', 'categories', 'genres', 'countries', 'hot_movies_sidebar'));
+        } elseif ($year_data == '') {
+            $movies = Movie::with('episodes')
+                            ->join('movie_genre', 'movies.id', '=', 'movie_genre.movie_id')
+                            ->orderBy('dateupdated', 'DESC')
+                            ->where('genre_id', $genre_data)
+                            ->where('category_id', $category_data)
+                            ->where('country_id', $country_data)
+                            ->paginate(40);;
+            return view('pages.filter', compact('movies', 'categories', 'genres', 'countries', 'hot_movies_sidebar'));
+        } elseif ($genre_data == '') {
+            $movies = Movie::with('episodes')
+                            ->orderBy('dateupdated', 'DESC')
+                            ->where('category_id', $category_data)
+                            ->where('year', $year_data)
+                            ->where('country_id', $country_data)
+                            ->paginate(40);;
+            return view('pages.filter', compact('movies', 'categories', 'genres', 'countries', 'hot_movies_sidebar'));
+        } else {
+            $movies = Movie::with('episodes')
+                            ->join('movie_genre', 'movies.id', '=', 'movie_genre.movie_id')
+                            ->orderBy('dateupdated', 'DESC')
+                            ->where('genre_id', $genre_data)
+                            ->where('category_id', $category_data)
+                            ->where('country_id', $country_data)
+                            ->where('year', $year_data)
+                            ->paginate(40);;
+            return view('pages.filter', compact('movies', 'categories', 'genres', 'countries', 'hot_movies_sidebar'));
+        }
+    }
     // Trang search
     public function search() {
         if(isset($_GET['search'])) {
