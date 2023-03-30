@@ -151,43 +151,7 @@
       </div>
       </div>
       <div class="container">
-         <div class="row filter box-filter">
-            <form class="form-inline" action="{{route('filter')}}" method="GET">
-               <div class="form-group">
-                 <select name="category" id="" class="form-control">
-                     <option value="">-- Chọn danh mục --</option>
-                    @foreach ($categories as $category)
-                        <option value="{{$category->id}}">{{$category->title}}</option>
-                     @endforeach
-                 </select>
-               </div>
-               <div class="form-group">
-                  <select name="genre" id="" class="form-control">
-                     <option value="">-- Chọn thể loại --</option>
-                     @foreach ($genres as $genre)
-                        <option value="{{$genre->id}}">{{$genre->title}}</option>
-                     @endforeach
-                 </select>
-               </div>
-               <div class="form-group">
-                  <select name="country" id="" class="form-control">
-                     <option value="">-- Chọn quốc gia --</option>
-                     @foreach ($countries as $country)
-                        <option value="{{$country->id}}">{{$country->title}}</option>
-                     @endforeach
-                 </select>
-               </div>
-               <div class="form-group">
-                  <select name="year" id="" class="form-control">
-                     <option value="">-- Chọn năm phát hành --</option>
-                     @for ($i=2023; $i>=2000; $i--)
-                        <option value="{{$i}}">{{$i}}</option>
-                     @endfor
-                 </select>
-               </div>
-               <button type="submit" class="btn btn-default">Filter</button>
-             </form>
-         </div>
+         @include('pages.include.filter')
       </div>
       <div class="container">
          @yield('content')
