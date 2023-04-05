@@ -51,4 +51,7 @@
     Route::resource('country', CountryController::class);
     Route::resource('episode', EpisodeController::class);
     Route::get('/update-year', [MovieController::class, 'update_year']);
+    Route::get('/update-status', [MovieController::class, 'update_status']);
+    Route::get('/update-category', [MovieController::class, 'update_category']);
+    Route::get('/update-country', [MovieController::class, 'update_country']);
 ?>

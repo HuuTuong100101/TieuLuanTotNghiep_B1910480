@@ -9,17 +9,16 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Tên_phim</th>
+                    <th scope="col">Tên phim</th>
                     <th scope="col">Ảnh</th>
-                    <th scope="col">Danh_mục</th>
-                    <th scope="col">Quốc_gia</th>
-                    <th scope="col">Thể_loại</th>
-                    <th scope="col">Phim_hot</th>
-                    <th scope="col">Năm_PH</th>
-                    <th scope="col">Số_tập</th>
-                    <th scope="col">Số_tập_đã_thêm</th>
+                    <th scope="col">Danh mục</th>
+                    <th scope="col">Quốc gia</th>
+                    <th scope="col">Thể loại</th>
+                    <th scope="col">Phim hot</th>
+                    <th scope="col">Năm PH</th>
+                    <th scope="col">Tập phim</th>
                     <th scope="col">Ẩn/Hiện</th>
-                    <th scope="col">Chi_tiết</th>
+                    <th scope="col">Chi tiết</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,15 +26,24 @@
                         <tr>
                         <th scope="row">{{$index}}</th>
                         <td>{{$movie->title}}</td>
-                        <td><img width="50%" src="{{asset('uploads/movie/'.$movie->image)}}" alt="#"></td>
-                        <td>{{$movie->category->title}}</td>
-                        <td>{{$movie->country->title}}</td>
+                        <td>
+                            <img width="100" src="{{asset('uploads/movie/'.$movie->image)}}" alt="#">
+                            {{-- {!! Form::file('image',['class'=>'change-img form-control-file', 'data-movie_id'=>$movie->id, 'id'=>'file-{{$movie->id}}' ,'accept'=>'image/*']) !!} --}}
+                        </td>
+                        <td>
+                            {!! Form::select('category', $list_category, isset($movie) ? $movie->category->id : '1', ['class'=>'form-select select-category w-auto', 'id' => $movie->id]) !!}
+                        </td>
+                        <td>
+                            {!! Form::select('country', $list_country, isset($movie) ? $movie->country->id : '1', ['class'=>'form-select select-country w-auto', 'id' => $movie->id]) !!}
+                        </td>
                         <td>
                             @foreach ($movie->movie_genre as $genre)
                                 <span class="badge bg-secondary">{{$genre->title}}</span>
                             @endforeach
                         </td>
                         <td>
+                            {{-- {!! From::select('hot', ['1'=>hot]) !!} --}}
+                            {{-- Đếm view để xác định độ hot --}}
                             @if ($movie->hot)
                                 hot
                             @else
@@ -43,18 +51,13 @@
                             @endif
                         </td>
                         <td>
-                            {!! Form::selectYear('year',2023, 1990, $movie->year != NULL ? $movie->year : 0, ['class' => 'select-year', 'id' => $movie->id]) !!}
+                            {!! Form::selectYear('year',2023, 1990, $movie->year != NULL ? $movie->year : 0, ['class' => 'select-year form-select w-auto', 'id' => $movie->id]) !!}
                         </td>
-                        <td>{{$movie->episode}}</td>
                         <td>
                             {{count($movie->episodes)}} / {{$movie->episode}}
                         </td>
                         <td>
-                            @if ($movie->status)
-                                hiển thị
-                            @else
-                                ẩn
-                            @endif
+                            {!! Form::select('status', ['1'=>'hiển thị', '0'=>'ẩn'],isset($movie) ? $movie->status : '0',['class'=>'form-select select-status w-auto', 'id' => $movie->id]) !!}
                         </td>
                         <td>
                             <a href="{{route('movie.show', $movie->id)}}" class="btn btn-outline-info">Detail</a>

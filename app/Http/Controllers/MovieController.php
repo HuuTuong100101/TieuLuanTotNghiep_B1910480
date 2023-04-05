@@ -199,4 +199,25 @@ class MovieController extends Controller
         $movie->year = $data['year'];
         $movie->save();
     }
+
+    public function update_status(Request $request) {
+        $data = $request->all();
+        $movie = Movie::find($data['id_phim']);
+        $movie->status = $data['status'];
+        $movie->save();
+    }
+
+    public function update_category(Request $request) {
+        $data = $request->all();
+        $movie = Movie::find($data['id_phim']);
+        $movie->category_id = $data['category'];
+        $movie->save();
+    }
+
+    public function update_country(Request $request) {
+        $data = $request->all();
+        $movie = Movie::find($data['id_phim']);
+        $movie->country_id = $data['country'];
+        $movie->save();
+    }
 }

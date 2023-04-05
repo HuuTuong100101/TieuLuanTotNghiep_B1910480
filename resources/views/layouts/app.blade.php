@@ -17,6 +17,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
 </head>
 <body>
     <div id="app">
@@ -155,6 +156,57 @@
                     }
                 })
             })
+
+            $('.select-status').change(function(){
+                var status = $(this).val();
+                var id_phim = $(this).attr('id');
+                // alert(id_phim);
+                // alert(status);
+                $.ajax({
+                    url: "{{url('/update-status')}}",
+                    method: "GET",
+                    data: {status:status, id_phim:id_phim},
+                    success: function() {
+                        alert('Cập nhật trạng thái thành công !')
+                    }
+                })
+            })
+
+            $('.select-category').change(function(){
+                var category = $(this).val();
+                var id_phim = $(this).attr('id');
+                // alert(id_phim);
+                // alert(category);
+                $.ajax({
+                    url: "{{url('/update-category')}}",
+                    method: "GET",
+                    data: {category:category, id_phim:id_phim},
+                    success: function() {
+                        alert('Cập nhật danh mục thành công !')
+                    }
+                })
+            })
+
+            $('.select-country').change(function(){
+                var country = $(this).val();
+                var id_phim = $(this).attr('id');
+                // alert(id_phim);
+                // alert(country);
+                $.ajax({
+                    url: "{{url('/update-country')}}",
+                    method: "GET",
+                    data: {country:country, id_phim:id_phim},
+                    success: function() {
+                        alert('Cập nhật quốc gia thành công !')
+                    }
+                })
+            })
+
+            // $(document).on('change','.change-img', function(){
+            //     var id_phim = $(this).data('movie_id');
+            //     var files = $('#file-'+id_phim).data();
+            //     console.log(files)
+            // })
     </script>
 </body>
 </html>
