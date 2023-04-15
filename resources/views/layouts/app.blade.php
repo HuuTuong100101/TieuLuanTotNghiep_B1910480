@@ -202,11 +202,36 @@
                 })
             })
 
-            // $(document).on('change','.change-img', function(){
-            //     var id_phim = $(this).data('movie_id');
-            //     var files = $('#file-'+id_phim).data();
-            //     console.log(files)
-            // })
+            $(document).on('change','.change-img', function(){
+                var id_phim = $(this).data('movie_id');
+                var files = $("#"+id_phim)[0].files;
+                // console.log(files)
+
+                var image = document.getElementById(id_phim).files[0];
+                // console.log(image)
+                var form_data = new FormData();
+
+                form_data.append("file", document.getElementById(id_phim).files[0]);
+                form_data.append("id_phim",id_phim);
+
+                $.ajax({
+                        url:"{{route('update-image-movie')}}",
+                        method:"POST",
+                        headers:{
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data:form_data,
+
+                        contentType:false,
+                        cache:false,
+                        processData:false,
+
+                        success:function(){
+                            location.reload();
+                            alert('Cập nhật hình ảnh thành công !');
+                        }
+                });
+            })
     </script>
 </body>
 </html>

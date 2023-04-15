@@ -96,6 +96,8 @@
                            @endforeach
                         </li>
                         <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{route('country',$movie->country->slug)}}" rel="country tag">{{$movie->country->title}}</a></li>
+                        <li class="list-info-group-item"><span>Số bài đánh giá</span> : {{$sum_rating}}</li>
+                        <li class="list-info-group-item"><span>Số sao trung bình</span> : {{$rating}}</li>
                      </ul>
                    </div>
                 </div>
@@ -112,6 +114,30 @@
                 </div>
              </div>
              <div class="clearfix"></div>
+            <div class="section-bar clearfix">
+               <h2 class="section-title"><span style="color:#ffed4d">Đánh giá về phim này</span></h2>
+            </div>
+            <div class="entry-content htmlwrap clearfix">
+               <div class="video-item halim-entry-box">
+                  <article class="item-content rating-style">
+                     <ul class="list-inline"  title="Average Rating">
+                        @for($count=1; $count<=5; $count++)
+                          <li 
+                              title="star_rating"
+                              id="{{$movie->id}}-{{$count}}"
+                              data-index="{{$count}}"
+                              data-movie_id="{{$movie->id}}"
+                              class="rating"
+                              style="cursor:pointer; 
+                              font-size:30px;"
+                           >
+                              &#9733;
+                           </li>
+                        @endfor
+                     </ul>
+                  </article>
+               </div>
+            </div>
              <div id="halim_trailer"></div>
              <div class="section-bar clearfix">
                <h2 class="section-title"><span style="color:#ffed4d">Trailer phim</span></h2>

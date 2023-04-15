@@ -4,6 +4,7 @@
       <meta charset="utf-8" />
       <meta content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
       <meta name="theme-color" content="#234556">
+      <meta name="csrf-token" content="{{ csrf_token() }}" />
       <meta http-equiv="Content-Language" content="vi" />
       <meta content="VN" name="geo.region" />
       <meta name="DC.language" scheme="utf-8" content="vi" />
@@ -298,9 +299,56 @@
             });
          });
 
-         $('.filter-btn').click(function(){
+         $('.filter-btn').click(function() {
             $('.box-filter').toggle(200);
          })
+
+         // Rating 
+         function remove_background(movie_id) {
+            for(var count = 1; count <= 5; count++) {
+               $('#'+movie_id+'-'+count).css('color', '#ccc');
+            }
+         }
+
+          //hover chuột đánh giá sao
+         $(document).on('mouseenter', '.rating', function() {
+            var index = $(this).data("index");
+            var movie_id = $(this).data('movie_id');
+            remove_background(movie_id);
+            for(var count = 1; count<=index; count++) {
+               $('#'+movie_id+'-'+count).css('color', '#ffcc00');
+            }
+          });
+         //nhả chuột ko đánh giá
+         $(document).on('mouseleave', '.rating', function(){
+            var index = $(this).data("index");
+            var movie_id = $(this).data('movie_id');
+            remove_background(movie_id);
+         });
+
+          //click đánh giá sao
+         $(document).on('click', '.rating', function() {
+               var index = $(this).data("index");
+               var movie_id = $(this).data("movie_id");
+               $.ajax({
+                  url: "{{ route('add-rating') }}",
+                  method: "POST",
+                  headers: {
+                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  data: {index:index, movie_id:movie_id},
+                  success: function(data) {
+                     if(data == 'done') {
+                        alert("Bạn đã đánh giá "+index +" trên 5");
+                        location.reload();
+                     } else if (data =='exist') {
+                        alert("Bạn đã đánh giá phim này rồi,cảm ơn bạn nhé");
+                     } else {
+                        alert("Lỗi đánh giá");
+                     }
+                  }
+               });
+          });
       </script>
       {{-- <script type="text/javascript">
           $(".watch_trailer").click(function(e) {

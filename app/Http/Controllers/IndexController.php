@@ -10,6 +10,7 @@ use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Episode;
 use App\Models\Movie;
+use App\Models\Rating;
 use App\Models\Movie_Genre;
 
 class IndexController extends Controller
@@ -185,7 +186,10 @@ class IndexController extends Controller
         $all_episode = Episode::where('movie_id', $movie->id)->get()->count();
         // dd($movie->count());
         // return response()->json($new_episode);
-        return view('pages.movie', compact('categories', 'countries', 'genres', 'movie', 'movie_related', 'hot_movies_sidebar', 'new_episode', 'all_episode'));
+        $rating = Rating::where('movie_id', $movie->id)->avg('rating');
+        $rating = round($rating);
+        $sum_rating = Rating::where('movie_id', $movie->id)->count();
+        return view('pages.movie', compact('categories', 'countries', 'genres', 'movie', 'movie_related', 'hot_movies_sidebar', 'new_episode', 'all_episode', 'rating', 'sum_rating'));
     }
 
     // Trang danh mục
@@ -287,6 +291,22 @@ class IndexController extends Controller
         $genres = Genre::all()->where('status',1);
         
         return view('pages.year', compact('categories', 'countries', 'genres', 'year_movies', 'hot_movies_sidebar', 'year'));
+    }
+
+    public function add_rating(Request $request) {
+        $data = $request->all();
+        $ip_address = $request->ip();
+        $rating_count = Rating::where('movie_id', $data['movie_id'])->where('ip_address', $ip_address)->count();
+        if($rating_count > 0) {
+            echo 'exist';
+        } else {
+            $rating = new Rating();
+            $rating->movie_id = $data['movie_id'];
+            $rating->rating = $data['index'];
+            $rating->ip_address = $ip_address;
+            $rating->save();
+            echo 'done';
+        }
     }
 
     public function espisode() {

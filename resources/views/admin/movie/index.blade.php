@@ -10,7 +10,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Tên phim</th>
-                    <th scope="col">Ảnh</th>
+                    <th class="text-center" scope="col">Ảnh</th>
                     <th scope="col">Danh mục</th>
                     <th scope="col">Quốc gia</th>
                     <th scope="col">Thể loại</th>
@@ -26,9 +26,10 @@
                         <tr>
                         <th scope="row">{{$index}}</th>
                         <td>{{$movie->title}}</td>
-                        <td>
+                        <td class="text-center">
                             <img width="100" src="{{asset('uploads/movie/'.$movie->image)}}" alt="#">
-                            {{-- {!! Form::file('image',['class'=>'change-img form-control-file', 'data-movie_id'=>$movie->id, 'id'=>'file-{{$movie->id}}' ,'accept'=>'image/*']) !!} --}}
+                            {!! Form::label($movie->id, 'Đổi ảnh', ['class'=>'mt-3 btn btn-success w-100']) !!}
+                            {!! Form::file('image',['class'=>'change-img form-control-file invisible', 'data-movie_id'=>$movie->id, 'id'=>$movie->id ,'accept'=>'image/*']) !!}
                         </td>
                         <td>
                             {!! Form::select('category', $list_category, isset($movie) ? $movie->category->id : '1', ['class'=>'form-select select-category w-auto', 'id' => $movie->id]) !!}

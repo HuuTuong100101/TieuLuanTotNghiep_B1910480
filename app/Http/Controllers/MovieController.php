@@ -220,4 +220,23 @@ class MovieController extends Controller
         $movie->country_id = $data['country'];
         $movie->save();
     }
+
+    public function update_image_movie(Request $request) {
+        $get_img = $request->file('file');
+        $id_phim = $request->id_phim;
+        $movie = Movie::find($id_phim);
+        $path = '../public/uploads/movie/';
+
+        if($get_img) {
+            if(!empty($movie->image)) {
+                unlink('../public/uploads/movie/'.$movie->image);
+            }
+            $get_name_img = $get_img->getClientOriginalName(); // Lấy ra tên ảnh
+            $name_img = current(explode('.', $get_name_img)); // Lấy tên trước phần mở rộng
+            $new_img = $name_img.rand(0,99999).'.'.$get_img->getClientOriginalExtension();
+            $get_img->move($path,$new_img);
+            $movie->image = $new_img;
+        }
+        $movie->save();
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
     use Illuminate\Support\Facades\Route;
+    use Illuminate\Support\Facades\Auth;
     use App\Http\Controllers\IndexController;
     use App\Http\Controllers\HomeController;
 
@@ -37,6 +38,7 @@
     Route::get('/subtitle/{sub}', [IndexController::class, 'subtitle'])->name('subtitle');
     Route::get('/year/{year}', [IndexController::class, 'year'])->name('year');
     Route::get('/filter', [IndexController::class, 'filter'])->name('filter');
+    Route::post('/add-rating', [IndexController::class, 'add_rating'])->name('add-rating');
 
     Auth::routes();
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -54,4 +56,5 @@
     Route::get('/update-status', [MovieController::class, 'update_status']);
     Route::get('/update-category', [MovieController::class, 'update_category']);
     Route::get('/update-country', [MovieController::class, 'update_country']);
+    Route::post('/update-image-movie', [MovieController::class, 'update_image_movie'])->name('update-image-movie');
 ?>
