@@ -11,12 +11,12 @@ use App\Models\Country;
 use App\Models\Episode;
 use Carbon\Carbon; // xử lý ngày
 use Illuminate\Support\Facades\File;
+use Exception;
 class MovieController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -39,7 +39,6 @@ class MovieController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -53,7 +52,6 @@ class MovieController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -92,18 +90,20 @@ class MovieController extends Controller
             $movie->image = $new_img;
             echo $new_img;
         }
-        $movie->save();
-
-        // Thêm vào bảng movie_genre:
-        $movie->movie_genre()->attach($data['genre']);
-        return redirect()->to('/movie');
+        try {
+            $movie->save();
+            // Thêm vào bảng movie_genre:
+            $movie->movie_genre()->attach($data['genre']);
+            return redirect()->back()->with('success', 'Thêm phim thành công');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Thêm phim không thành công');
+        }
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -115,7 +115,6 @@ class MovieController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -133,7 +132,6 @@ class MovieController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -169,74 +167,103 @@ class MovieController extends Controller
             $get_img->move($path,$new_img);
             $movie->image = $new_img;
         }
-        $movie->save();
-        $movie->movie_genre()->sync($data['genre']);
-        return redirect()->to('/movie');
+        try {
+            $movie->save();
+            $movie->movie_genre()->sync($data['genre']);
+            return redirect()->back()->with('success', 'Cập nhật phim thành công');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Cập nhật phim không thành công');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $movie = Movie::find($id);
-        if($movie) {
-            unlink('../public/uploads/movie/'.$movie->image);
-            $movie->delete();
-            // return redirect(route('movie.index'));
+        try {
+            $movie = Movie::find($id);
+            if($movie) {
+                unlink('../public/uploads/movie/'.$movie->image);
+                $movie->delete();
+            }
+            return redirect()->to('/movie')->with('success', 'Xóa phim thành công');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Xóa phim không thành công');
         }
-
-        // Movie_Genre::where('movie_id',$id)->delete();
-        return redirect()->to(route('movie.index'));
     }
 
     public function update_year(Request $request) {
-        $data = $request->all();
-        $movie = Movie::find($data['id_phim']);
-        $movie->year = $data['year'];
-        $movie->save();
+        try {
+            $data = $request->all();
+            $movie = Movie::find($data['id_phim']);
+            $movie->year = $data['year'];
+            $movie->save();
+            return redirect()->back()->with('success', 'Cập nhật năm phim thành công');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Cập nhật năm phim không thành công');
+        }
     }
 
     public function update_status(Request $request) {
-        $data = $request->all();
-        $movie = Movie::find($data['id_phim']);
-        $movie->status = $data['status'];
-        $movie->save();
+        try {
+            $data = $request->all();
+            $movie = Movie::find($data['id_phim']);
+            $movie->status = $data['status'];
+            $movie->save();
+            return redirect()->back()->with('success', 'Cập nhật trạng thái thành công');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Cập nhật trạng thái không thành công');
+        }
     }
 
     public function update_category(Request $request) {
-        $data = $request->all();
-        $movie = Movie::find($data['id_phim']);
-        $movie->category_id = $data['category'];
-        $movie->save();
+        try {
+            $data = $request->all();
+            $movie = Movie::find($data['id_phim']);
+            $movie->category_id = $data['category'];
+            $movie->save();
+            return redirect()->back()->with('success', 'Cập nhật danh mục thành công');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Cập nhật danh mục không thành công');
+        }
     }
 
     public function update_country(Request $request) {
-        $data = $request->all();
-        $movie = Movie::find($data['id_phim']);
-        $movie->country_id = $data['country'];
-        $movie->save();
+        try {
+            $data = $request->all();
+            $movie = Movie::find($data['id_phim']);
+            $movie->country_id = $data['country'];
+            $movie->save();
+            return redirect()->back()->with('success', 'Cập nhật quốc gia thành công');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Cập nhật quốc gia không thành công');
+        }
     }
 
     public function update_image_movie(Request $request) {
-        $get_img = $request->file('file');
-        $id_phim = $request->id_phim;
-        $movie = Movie::find($id_phim);
-        $path = '../public/uploads/movie/';
+        try {
+            $get_img = $request->file('file');
+            $id_phim = $request->id_phim;
+            $movie = Movie::find($id_phim);
+            $path = '../public/uploads/movie/';
 
-        if($get_img) {
-            if(!empty($movie->image)) {
-                unlink('../public/uploads/movie/'.$movie->image);
+            if($get_img) {
+                if(!empty($movie->image)) {
+                    unlink('../public/uploads/movie/'.$movie->image);
+                }
+                $get_name_img = $get_img->getClientOriginalName(); // Lấy ra tên ảnh
+                $name_img = current(explode('.', $get_name_img)); // Lấy tên trước phần mở rộng
+                $new_img = $name_img.rand(0,99999).'.'.$get_img->getClientOriginalExtension();
+                $get_img->move($path,$new_img);
+                $movie->image = $new_img;
             }
-            $get_name_img = $get_img->getClientOriginalName(); // Lấy ra tên ảnh
-            $name_img = current(explode('.', $get_name_img)); // Lấy tên trước phần mở rộng
-            $new_img = $name_img.rand(0,99999).'.'.$get_img->getClientOriginalExtension();
-            $get_img->move($path,$new_img);
-            $movie->image = $new_img;
+            $movie->save();
+            return redirect()->back()->with('success', 'Cập nhật hình ảnh thành công');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Cập nhật hình ảnh không thành công');
         }
-        $movie->save();
     }
 }

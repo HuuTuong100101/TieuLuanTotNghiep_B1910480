@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
-use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Exception;
 
 class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -22,7 +21,6 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -33,7 +31,6 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -43,15 +40,18 @@ class CategoryController extends Controller
         $category->slug = $data['slug'];
         $category->description = $data['description'];
         $category->status = $data['status'];
-        $category->save();
-        return redirect()->back();
+        try {
+            $category->save();
+            return redirect()->back()->with('success', 'Thêm danh mục thành công');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Thêm danh mục không thành công');
+        }
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -62,7 +62,6 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -76,7 +75,6 @@ class CategoryController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -86,19 +84,26 @@ class CategoryController extends Controller
         $category->slug = $data['slug'];
         $category->description = $data['description'];
         $category->status = $data['status'];
-        $category->save();
-        return redirect()->back();
+        try {
+            $category->save();
+            return redirect()->back()->with('success', 'Cập nhật danh mục thành công');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Cập nhật danh mục không thành công');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Category::find($id)->delete();
-        return redirect()->back();
+        try {
+            Category::find($id)->delete();
+            return redirect()->back()->with('success', 'Xóa danh mục thành công');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Xóa danh mục không thành công');
+        }
     }
 }

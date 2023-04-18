@@ -5,14 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Country;
 use Exception;
-use Yoeunes\Toastr\Toastr;
 
 class CountryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -23,7 +21,6 @@ class CountryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -34,7 +31,6 @@ class CountryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -46,9 +42,9 @@ class CountryController extends Controller
         $country->status = $data['status'];
         try {
             $country = $country->save();
-            return redirect()->back()->with('success', __('Thêm quốc gia thành công'));
+            return redirect()->back()->with('success', 'Thêm quốc gia thành công');
         } catch (Exception $e) {
-            return redirect()->back()->with('error', __('Thêm quốc gia thành công'));
+            return redirect()->back()->with('error', 'Thêm quốc gia không thành công');
         }
     }
 
@@ -56,7 +52,6 @@ class CountryController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -67,7 +62,6 @@ class CountryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -81,7 +75,6 @@ class CountryController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -91,19 +84,27 @@ class CountryController extends Controller
         $country->slug = $data['slug'];
         $country->description = $data['description'];
         $country->status = $data['status'];
-        $country->save();
-        return redirect()->back();
+        try {
+            $country = $country->save();
+            return redirect()->back()->with('success', 'Cập nhật quốc gia thành công');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Cập nhật quốc gia không thành công');
+        }
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Country::find($id)->delete();
-        return redirect()->back();
+        try {
+            Country::find($id)->delete();
+            return redirect()->back()->with('success', 'Xóa quốc gia thành công');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Xóa quốc gia không thành công');
+        }
     }
 }

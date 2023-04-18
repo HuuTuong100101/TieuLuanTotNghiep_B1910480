@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Genre;
+use Exception;
 
 class GenreController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -21,7 +21,6 @@ class GenreController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -32,7 +31,6 @@ class GenreController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -42,15 +40,18 @@ class GenreController extends Controller
         $genre->slug = $data['slug'];
         $genre->description = $data['description'];
         $genre->status = $data['status'];
-        $genre->save();
-        return redirect()->back();
+        try {
+            $genre->save();
+            return redirect()->back()->with('success', 'Thêm thể loại thành công');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Thêm thể loại không thành công');
+        }
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -61,7 +62,6 @@ class GenreController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -75,7 +75,6 @@ class GenreController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -85,19 +84,26 @@ class GenreController extends Controller
         $genre->slug = $data['slug'];
         $genre->description = $data['description'];
         $genre->status = $data['status'];
-        $genre->save();
-        return redirect()->back();
+        try {
+            $genre->save();
+            return redirect()->back()->with('success', 'Cập nhật thể loại thành công');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Cập nhật thể loại không thành công');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Genre::find($id)->delete();
-        return redirect()->back();
+        try {
+            Genre::find($id)->delete();
+            return redirect()->back()->with('success', 'Xóa thể loại thành công');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Xóa thể loại không thành công');
+        }
     }
 }

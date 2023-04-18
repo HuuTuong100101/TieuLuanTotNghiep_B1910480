@@ -3,14 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
-use App\Models\Movie_Genre;
-use App\Models\Category;
-use App\Models\Genre;
-use App\Models\Country;
 use App\Models\Episode;
 use Carbon\Carbon; // xử lý ngày
-use Facade\FlareClient\View;
-use Illuminate\Support\Facades\File;
+use Exception;
 
 use Illuminate\Http\Request;
 
@@ -19,7 +14,6 @@ class EpisodeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -31,7 +25,6 @@ class EpisodeController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -43,7 +36,6 @@ class EpisodeController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -56,16 +48,18 @@ class EpisodeController extends Controller
         $episode->status = $data['status'];
         $episode->datecreated = Carbon::now('Asia/Ho_Chi_Minh');
         $episode->dateupdated = Carbon::now('Asia/Ho_Chi_Minh');
-
-        $episode->save();
-        return redirect()->to('/episode');
+        try {
+            $episode->save();
+            return redirect()->back()->with('success', 'Thêm tập phim thành công');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Thêm tập phim không thành công');
+        }
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -76,7 +70,6 @@ class EpisodeController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -90,7 +83,6 @@ class EpisodeController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -99,22 +91,28 @@ class EpisodeController extends Controller
         $episode->link = $data['link'];
         $episode->status = $data['status'];
         $episode->dateupdated = Carbon::now('Asia/Ho_Chi_Minh');
-
-        $episode->save();
-        return redirect()->to('/episode');
+        try {
+            $episode->save();
+            return redirect()->back()->with('success', 'Cập nhật tập phim thành công');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Cập nhật tập phim không thành công');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $episode = Episode::find($id);
-        $episode->delete();
-        return redirect()->to('/episode');
+        try {
+            $episode = Episode::find($id);
+            $episode->delete();
+            return redirect()->back()->with('success', 'Xóa tập phim thành công');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Xóa tập phim không thành công');
+        }
     }
 
     public function select_movie(){

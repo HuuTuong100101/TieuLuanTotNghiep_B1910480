@@ -152,7 +152,7 @@
                     method: "GET",
                     data: {year:year, id_phim:id_phim},
                     success: function() {
-                        alert('Cập nhật năm thành công !')
+                        return window.location.assign("/movie")
                     }
                 })
             })
@@ -167,7 +167,7 @@
                     method: "GET",
                     data: {status:status, id_phim:id_phim},
                     success: function() {
-                        alert('Cập nhật trạng thái thành công !')
+                        return window.location.assign("/movie")
                     }
                 })
             })
@@ -182,7 +182,7 @@
                     method: "GET",
                     data: {category:category, id_phim:id_phim},
                     success: function() {
-                        alert('Cập nhật danh mục thành công !')
+                        return window.location.assign("/movie")
                     }
                 })
             })
@@ -197,7 +197,7 @@
                     method: "GET",
                     data: {country:country, id_phim:id_phim},
                     success: function() {
-                        alert('Cập nhật quốc gia thành công !')
+                        return window.location.assign("/movie")
                     }
                 })
             })
@@ -227,8 +227,9 @@
                         processData:false,
 
                         success:function(){
-                            location.reload();
-                            alert('Cập nhật hình ảnh thành công !');
+                            return window.location.assign("/movie")
+                            // location.reload();
+                            // alert('Cập nhật hình ảnh thành công !');
                         }
                 });
             })
