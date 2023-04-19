@@ -7,6 +7,16 @@
             <div class="card">
                 <div class="card-header">Thêm tập phim</div>
                 <div class="card-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -21,10 +31,10 @@
                             <div class="form-group">
                                 @if (!isset($episode))
                                     {!! Form::label('movie', 'Movie', ['class'=>'mt-3']) !!}
-                                    {!! Form::select('movie',['-1' => 'Chọn Phim','---phim---' => $movies], isset($episode) ? $episode->movie->id : '-1', ['class'=>'form-select select-movie']) !!}
+                                    {!! Form::select('movie_id',['phim' => $movies, '' => '--Chọn phim--'],'', ['class'=>'form-select select-movie']) !!}
                                 @else
                                     {!! Form::label('movie', 'Movie', ['class'=>'mt-3']) !!}
-                                    {!! Form::text('movie', $episode->movie->title, ['class'=>'form-control', 'disabled']) !!}
+                                    {!! Form::text('movie_id', $episode->movie->title, ['class'=>'form-control', 'disabled']) !!}
                                 @endif 
                             </div>
                             <div class="form-group">

@@ -39,7 +39,23 @@ class EpisodeController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $request->validate(
+            [
+                'movie_id' => 'required|unique:episodes|max:255',
+                'episode' => 'required|numeric',
+                'link' => 'required|unique:episodes|max:255',
+                'status' => 'required',
+            ],
+
+            [
+                'movie_id.required' => 'Bạn chưa chọn phim',
+                'movie_id.unique' => 'id phim đã tồn tại',
+                'episode.required' => 'Tập phim không được bỏ trống',
+                'episode.numeric' => 'Tập phim phải là số',
+                'link.required' => 'Link tập phim không được bỏ trống',
+                'link.unique' => 'Link tập phim đã tồn tại',
+            ]
+        );
 
         $episode = new Episode();
         $episode->movie_id = $data['movie'];
@@ -86,7 +102,17 @@ class EpisodeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
+        $data = $request->validate(
+            [
+                'link' => 'required|unique:episodes|max:255',
+                'status' => 'required',
+            ],
+
+            [
+                'link.required' => 'Link tập phim không được bỏ trống',
+                'link.unique' => 'Link tập phim đã tồn tại',
+            ]
+        );
         $episode = Episode::find($id);
         $episode->link = $data['link'];
         $episode->status = $data['status'];

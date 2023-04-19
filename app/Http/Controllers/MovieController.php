@@ -55,7 +55,50 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $request->validate(
+            [
+                'title' => 'required|unique:movies|max:255',
+                'slug' => 'required|unique:movies|max:255',
+                'description' => 'required|unique:movies|max:255',
+                'trailer' => 'required|unique:movies|max:255',
+                'tags' => 'required|unique:movies|max:255',
+                'year' => 'required|max:255',
+                'lenght' => 'required|max:255',
+                'episode' => 'required|numeric',
+                'quality' => 'required',
+                'subtitles' => 'required',
+                'category_id' => 'required',
+                'country_id' => 'required',
+                'phim_hot' => 'required',
+                'status' => 'required',
+                'genre' => 'required',
+                'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg'
+            ],
+
+            [
+                'title.required' => 'Tên phim không được bỏ trống',
+                'title.unique' => 'Tên phim đã tồn tại',
+                'slug.required' => 'Slug phim không được bỏ trống',
+                'slug.unique' => 'Slug phim đã tồn tại',
+                'description.required' => 'Mô tả phim không được bỏ trống',
+                'description.unique' => 'Mô tả phim đã tồn tại',
+                'trailer.required' => 'Trailer phim không được bỏ trống',
+                'trailer.unique' => 'Trailer phim đã tồn tại',
+                'tags.required' => 'tags phim không được bỏ trống',
+                'tags.unique' => 'tags phim đã tồn tại',
+                'lenght.required' => 'Thời lượng phim không được bỏ trống',
+                'quality.required' => 'Chất lượng phim lượng phim không được bỏ trống',
+                'subtitles.required' => 'Ngôn ngữ trong phim không được bỏ trống',
+                'category_id.required' => 'Danh mục phim không được bỏ trống',
+                'country_id.required' => 'Quốc gia sản xuất phim không được bỏ trống',
+                'year.required' => 'Năm sản xuất phim không được bỏ trống',
+                'genre.required' => 'Thể loại phim không được bỏ trống',
+                'episode.required' => 'Số tập phim không được bỏ trống',
+                'image.required' => 'Bạn chưa chọn hình ảnh',
+                'image.mimes' => 'File hình ảnh không đúng định dạng',
+                'episode.numeric' => 'Số tập phim phải là số nguyên'
+            ]
+        );
 
         $movie = new Movie();
         $movie->title = $data['title'];
@@ -135,7 +178,43 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
+        $data = $request->validate(
+            [
+                'title' => 'required|max:255',
+                'slug' => 'required|max:255',
+                'description' => 'required|max:255',
+                'trailer' => 'required|max:255',
+                'tags' => 'required|max:255',
+                'year' => 'required|max:255',
+                'lenght' => 'required|max:255',
+                'episode' => 'required|numeric',
+                'quality' => 'required',
+                'subtitles' => 'required',
+                'category_id' => 'required',
+                'country_id' => 'required',
+                'phim_hot' => 'required',
+                'status' => 'required',
+                'genre' => 'required',
+                'image' => ''
+            ],
+
+            [
+                'title.required' => 'Tên phim không được bỏ trống',
+                'slug.required' => 'Slug phim không được bỏ trống',
+                'description.required' => 'Mô tả phim không được bỏ trống',
+                'trailer.required' => 'Trailer phim không được bỏ trống',
+                'tags.required' => 'tags phim không được bỏ trống',
+                'lenght.required' => 'Thời lượng phim không được bỏ trống',
+                'quality.required' => 'Chất lượng phim lượng phim không được bỏ trống',
+                'subtitles.required' => 'Ngôn ngữ trong phim không được bỏ trống',
+                'category_id.required' => 'Danh mục phim không được bỏ trống',
+                'country_id.required' => 'Quốc gia sản xuất phim không được bỏ trống',
+                'year.required' => 'Năm sản xuất phim không được bỏ trống',
+                'genre.required' => 'Thể loại phim không được bỏ trống',
+                'episode.required' => 'Số tập phim không được bỏ trống',
+                'episode.numeric' => 'Số tập phim phải là số nguyên',
+            ]
+        );
 
         $movie = Movie::find($id);
         $movie->title = $data['title'];

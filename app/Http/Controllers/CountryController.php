@@ -34,7 +34,23 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $request->validate(
+            [
+                'title' => 'required|unique:countries|max:255',
+                'slug' => 'required|unique:countries|max:255',
+                'description' => 'required|unique:countries|max:255',
+                'status' => 'required',
+            ],
+
+            [
+                'title.required' => 'Tên quốc gia không được bỏ trống',
+                'title.unique' => 'Tên quốc gia đã tồn tại',
+                'slug.required' => 'Slug quốc gia không được bỏ trống',
+                'slug.unique' => 'Slug quốc gia đã tồn tại',
+                'description.required' => 'Mô tả quốc gia không được bỏ trống',
+                'description.unique' => 'Mô tả quốc gia đã tồn tại',
+            ]
+        );
         $country = new Country();
         $country->title = $data['title'];
         $country->slug = $data['slug'];
@@ -78,7 +94,20 @@ class CountryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
+        $data = $request->validate(
+            [
+                'title' => 'required|max:255',
+                'slug' => 'required|max:255',
+                'description' => 'required|max:255',
+                'status' => 'required',
+            ],
+
+            [
+                'title.required' => 'Tên quốc gia không được bỏ trống',
+                'slug.required' => 'Slug quốc gia không được bỏ trống',
+                'description.required' => 'Mô tả quốc gia không được bỏ trống',
+            ]
+        );
         $country = Country::find($id);
         $country->title = $data['title'];
         $country->slug = $data['slug'];

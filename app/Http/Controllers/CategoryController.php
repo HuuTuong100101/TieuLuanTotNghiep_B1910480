@@ -34,7 +34,24 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $request->validate(
+            [
+                'title' => 'required|unique:categories|max:255',
+                'slug' => 'required|unique:categories|max:255',
+                'description' => 'required|unique:categories|max:255',
+                'status' => 'required',
+            ],
+
+            [
+                'title.required' => 'Tên danh mục không được bỏ trống',
+                'title.unique' => 'Tên danh mục đã tồn tại',
+                'slug.required' => 'Slug danh mục không được bỏ trống',
+                'slug.unique' => 'Slug danh mục đã tồn tại',
+                'description.required' => 'Mô tả danh mục không được bỏ trống',
+                'description.unique' => 'Mô tả danh mục đã tồn tại',
+            ]
+        );
+        // $data = $request->all();
         $category = new Category();
         $category->title = $data['title'];
         $category->slug = $data['slug'];
@@ -78,7 +95,20 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
+        $data = $request->validate(
+            [
+                'title' => 'required|max:255',
+                'slug' => 'required|max:255',
+                'description' => 'required|max:255',
+                'status' => 'required',
+            ],
+
+            [
+                'title.required' => 'Tên danh mục không được bỏ trống',
+                'slug.required' => 'Slug danh mục không được bỏ trống',
+                'description.required' => 'Mô tả danh mục không được bỏ trống',
+            ]
+        );
         $category = Category::find($id);
         $category->title = $data['title'];
         $category->slug = $data['slug'];
