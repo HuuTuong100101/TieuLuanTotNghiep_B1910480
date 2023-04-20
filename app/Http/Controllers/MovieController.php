@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Movie;
-use App\Models\Movie_Genre;
+// use App\Models\Movie_Genre;
 use App\Models\Category;
 use App\Models\Genre;
 use App\Models\Country;
-use App\Models\Episode;
+// use App\Models\Episode;
 use Carbon\Carbon; // xử lý ngày
 use Illuminate\Support\Facades\File;
 use Exception;
@@ -226,6 +226,7 @@ class MovieController extends Controller
         $movie->lenght = $data['lenght'];
         $movie->episode = $data['episode'];
         $movie->quality = $data['quality'];
+        $movie->views = 0;
         $movie->subtitles = $data['subtitles'];
         $movie->status = $data['status'];
         $movie->category_id = $data['category_id'];

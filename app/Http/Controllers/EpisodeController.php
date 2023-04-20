@@ -167,4 +167,10 @@ class EpisodeController extends Controller
         }
         echo $output;
     }
+
+    // public function Count_Views($id) {
+    //     $episode = Episode::find($id);
+    //     $episode->views += 1;
+    //     $episode->save();
+    // }
 }

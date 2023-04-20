@@ -98,6 +98,7 @@
                         <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{route('country',$movie->country->slug)}}" rel="country tag">{{$movie->country->title}}</a></li>
                         <li class="list-info-group-item"><span>Số bài đánh giá</span> : {{$sum_rating}}</li>
                         <li class="list-info-group-item"><span>Số sao trung bình</span> : {{$rating}}</li>
+                        <li class="list-info-group-item"><span>Lượt quan tâm</span> : {{$movie->views}}</li>
                      </ul>
                    </div>
                 </div>

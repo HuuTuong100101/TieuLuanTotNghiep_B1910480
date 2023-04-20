@@ -189,6 +189,9 @@ class IndexController extends Controller
         $rating = Rating::where('movie_id', $movie->id)->avg('rating');
         $rating = round($rating);
         $sum_rating = Rating::where('movie_id', $movie->id)->count();
+
+        $movie->views += 1;
+        $movie->save();
         return view('pages.movie', compact('categories', 'countries', 'genres', 'movie', 'movie_related', 'hot_movies_sidebar', 'new_episode', 'all_episode', 'rating', 'sum_rating'));
     }
 
