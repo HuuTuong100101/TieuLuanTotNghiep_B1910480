@@ -63,7 +63,7 @@ class MovieController extends Controller
                 'trailer' => 'required|unique:movies|max:255',
                 'tags' => 'required|unique:movies|max:255',
                 'year' => 'required|max:255',
-                'lenght' => 'required|max:255',
+                'lenght' => 'required|numeric',
                 'episode' => 'required|numeric',
                 'quality' => 'required',
                 'subtitles' => 'required',
@@ -96,7 +96,8 @@ class MovieController extends Controller
                 'episode.required' => 'Số tập phim không được bỏ trống',
                 'image.required' => 'Bạn chưa chọn hình ảnh',
                 'image.mimes' => 'File hình ảnh không đúng định dạng',
-                'episode.numeric' => 'Số tập phim phải là số nguyên'
+                'episode.numeric' => 'Số tập phim phải là số nguyên',
+                'lenght.numeric' => 'Thời lượng phim phải là số nguyên'
             ]
         );
 
@@ -186,7 +187,7 @@ class MovieController extends Controller
                 'trailer' => 'required|max:255',
                 'tags' => 'required|max:255',
                 'year' => 'required|max:255',
-                'lenght' => 'required|max:255',
+                'lenght' => 'required|numeric',
                 'episode' => 'required|numeric',
                 'quality' => 'required',
                 'subtitles' => 'required',
@@ -213,6 +214,7 @@ class MovieController extends Controller
                 'genre.required' => 'Thể loại phim không được bỏ trống',
                 'episode.required' => 'Số tập phim không được bỏ trống',
                 'episode.numeric' => 'Số tập phim phải là số nguyên',
+                'lenght.numeric' => 'thời lượng phim phải là số nguyên'
             ]
         );
 
@@ -226,7 +228,6 @@ class MovieController extends Controller
         $movie->lenght = $data['lenght'];
         $movie->episode = $data['episode'];
         $movie->quality = $data['quality'];
-        $movie->views = 0;
         $movie->subtitles = $data['subtitles'];
         $movie->status = $data['status'];
         $movie->category_id = $data['category_id'];

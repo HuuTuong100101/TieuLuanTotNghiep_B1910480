@@ -2,7 +2,12 @@
 
 @section('content')
 <div class="container">
-    <a href="{{route('episode.create')}}" class="btn btn-success mt-3 mb-3">Thêm Tập Phim</a>
+    {{-- <a href="{{route('episode.create')}}" class="btn btn-success mt-3 mb-3">Thêm Tập Phim</a> --}}
+    <div class="title-table-admin">
+        <h2>
+            Quản lý tập phim
+        </h2>
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-12">
             <table class="table align-middle" id="MovieTable">
@@ -16,7 +21,7 @@
                     <th scope="col">DateCreated</th>
                     <th scope="col">DateUpdated</th>
                     <th scope="col">Active/Inactive</th>
-                    <th scope="col" style="width:95px;">Manage</th>
+                    <th scope="col" style="width:105px;">Manage</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -36,7 +41,7 @@
                                 ẩn
                             @endif
                         </td>
-                        <td>
+                        <td class="manage-active">
                             {!! Form::open(['method'=>'DELETE', 'route'=>['episode.destroy', $episode->id], 'onsubmit' => 'return confirm("Bạn có muốn xóa không ?")',  'class'=>"d-inline-block"]) !!}
                                 {!! Form::submit('Xóa', ['class'=>'btn btn-danger']) !!}
                             {!! Form::close() !!}
