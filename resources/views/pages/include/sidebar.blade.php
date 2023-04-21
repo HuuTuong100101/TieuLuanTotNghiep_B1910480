@@ -12,6 +12,7 @@
                 @foreach ($hot_movies_sidebar as $movie)
                     <div class="item post-37176">
                         <a href="{{route('movie', $movie->slug)}}" title="{{$movie->title}}">
+                            {{-- <p>{{$movie->id}} || {{$rating->movie_id}}</p> --}}
                             <div class="item-link">
                             <img src="{{asset('uploads/movie/'.$movie->image)}}" class="lazy post-thumb" alt="{{$movie->tile}}" title="{{$movie->tile}}" />
                             <span class="is_trailer">
@@ -26,11 +27,42 @@
                             </div>
                             <p class="title">{{$movie->title}}</p>
                         </a>
+                        <div>
+                            {{-- @if (is_array($avg_rating) || is_object($avg_rating) || !is_array($avg_rating) || !is_object($avg_rating)) --}}
+                                {{-- @php
+                                    $new = $avg_rating
+                                @endphp
+                                @foreach ($new as $rating)
+                                    <p>{{$rating}}</p>
+                                @endforeach --}}
+                            {{-- @endif --}}
+                        </div>
                         <div class="viewsCount" style="color: #9d9d9d;">{{$movie->views}} lượt quan tâm</div>
                         <div style="float: left;">
-                            <span class="user-rate-image post-large-rate stars-large-vang" style="display: block;/* width: 100%; */">
-                            <span style="width: 0%"></span>
-                            </span>
+                            <ul class="list-inline"  title="Average Rating">
+                                @for($count=1; $count<=5; $count++)
+                                    @php
+                                        $avg = 0;
+                                        $avg_rating_copy = $avg_rating;
+                                        foreach ($avg_rating_copy as $rating) {
+                                            if ($rating->movie_id == $movie->id) {
+                                                $avg = $rating->AVG_RATING;
+                                            }
+                                        }
+                                        if($count<=$avg){ 
+                                            $color = 'color:#ffcc00;'; //mau vang
+                                        }
+                                        else {
+                                            $color = 'color:#ccc;'; //mau xam
+                                        }
+                                    @endphp
+                                    <li 
+                                        style="cursor:pointer; {{$color}} font-size:15px;"
+                                    >
+                                            &#9733;
+                                    </li>
+                                @endfor
+                            </ul>
                         </div>
                     </div>
                 @endforeach

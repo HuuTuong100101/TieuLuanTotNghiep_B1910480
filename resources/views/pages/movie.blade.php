@@ -29,14 +29,6 @@
           <div class="clearfix wrap-content">
             
              <div class="halim-movie-wrapper">
-                <div class="title-block">
-                   <div id="bookmark" class="bookmark-img-animation primary_ribbon" data-id="38424">
-                      <div class="halim-pulse-ring"></div>
-                   </div>
-                   <div class="title-wrapper" style="font-weight: bold;">
-                      Bookmark
-                   </div>
-                </div>
                 <div class="movie_info col-xs-12">
                    <div class="movie-poster col-md-3">
                       <img class="movie-thumb" src="{{asset('./uploads/movie/'.$movie->image)}}" alt="{{$movie->title}}">
@@ -97,7 +89,33 @@
                         </li>
                         <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{route('country',$movie->country->slug)}}" rel="country tag">{{$movie->country->title}}</a></li>
                         <li class="list-info-group-item"><span>Số bài đánh giá</span> : {{$sum_rating}}</li>
-                        <li class="list-info-group-item"><span>Số sao trung bình</span> : {{$rating}}</li>
+                        <li class="list-info-group-item d-flex">
+                           <span>Số sao trung bình</span> :
+                           <ul class="list-inline text-center"  title="Average Rating" style="flex: 1;">
+                              @for($count=1; $count<=5; $count++)
+                                  @php
+                                      $avg = 0;
+                                      $avg_rating_copy = $avg_rating;
+                                      foreach ($avg_rating_copy as $rating) {
+                                          if ($rating->movie_id == $movie->id) {
+                                              $avg = $rating->AVG_RATING;
+                                          }
+                                      }
+                                      if($count<=$avg){ 
+                                          $color = 'color:#ffcc00;'; //mau vang
+                                      }
+                                      else {
+                                          $color = 'color:#ccc;'; //mau xam
+                                      }
+                                  @endphp
+                                  <li 
+                                      style="cursor:pointer; {{$color}} font-size:15px;"
+                                  >
+                                          &#9733;
+                                  </li>
+                              @endfor
+                          </ul>
+                        </li>
                         <li class="list-info-group-item"><span>Lượt quan tâm</span> : {{$movie->views}}</li>
                      </ul>
                    </div>
