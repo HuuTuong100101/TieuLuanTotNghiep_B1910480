@@ -125,7 +125,7 @@
              <div class="section-bar clearfix">
                 <h2 class="section-title"><span style="color:#ffed4d">Mô tả phim</span></h2>
              </div>
-             <div class="entry-content htmlwrap clearfix">
+             <div class="entry-content htmlwrap clearfix" style="height: 200px; overflow: auto">
                 <div class="video-item halim-entry-box">
                    <article id="post-38424" class="item-content">
                      {{$movie->description}}
