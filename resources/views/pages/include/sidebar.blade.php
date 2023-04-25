@@ -39,7 +39,7 @@
                         </div>
                         <div class="viewsCount" style="color: #9d9d9d;">{{$movie->views}} lượt quan tâm</div>
                         <div style="float: left;">
-                            <ul class="list-inline"  title="Average Rating">
+                            <ul class="list-inline"  title="Average Rating" style="margin-left: 0">
                                 @for($count=1; $count<=5; $count++)
                                     @php
                                         $avg = 0;
@@ -57,7 +57,11 @@
                                         }
                                     @endphp
                                     <li 
-                                        style="cursor:pointer; {{$color}} font-size:15px;"
+                                        style="cursor:pointer; 
+                                        padding-right: 0;
+                                        padding-left:0; 
+                                        {{$color}} 
+                                        font-size:15px;"
                                     >
                                             &#9733;
                                     </li>

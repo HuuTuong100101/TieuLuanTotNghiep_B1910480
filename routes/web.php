@@ -41,10 +41,11 @@
     Route::get('/filter', [IndexController::class, 'filter'])->name('filter');
     Route::post('/add-rating', [IndexController::class, 'add_rating'])->name('add-rating');
 
+    
+    // Route admin
     Auth::routes();
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-    // Route admin
+    Route::get('/RegisterAdmin', [HomeController::class, 'register'])->name('RegisterAdmin');
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('select-movie', [EpisodeController::class, 'select_movie'])->name('select-movie');
 

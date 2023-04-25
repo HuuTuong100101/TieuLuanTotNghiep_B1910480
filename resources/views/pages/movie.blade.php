@@ -147,7 +147,7 @@
                               data-index="{{$count}}"
                               data-movie_id="{{$movie->id}}"
                               class="rating"
-                              style="cursor:pointer; 
+                              style="cursor:pointer;
                               font-size:30px;"
                            >
                               &#9733;

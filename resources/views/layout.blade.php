@@ -24,9 +24,10 @@
       </style>
       <style>
          #header .site-title {
-            background: url('/images/logo2.png') no-repeat top center;
+            background: url('/images/motchill.png') no-repeat top center;
             background-size: contain;
             text-indent: -9999px;
+            height: 77px;
          }
          .logo {
             display: block ;
@@ -45,7 +46,7 @@
       <header id="header">
          <div class="container">
             <div class="row" id="headwrap">
-               <div class="col-md-3 col-sm-6 slogan">
+               <div class="col-md-3 col-sm-6 slogan" style="margin: 10px 20px;">
                   <a class="logo" href="" title="pagodafilms">
                      <p class="site-title"></p>
                      {{-- <p class="text-site">PAGODA FILMS</p> --}}
@@ -58,7 +59,7 @@
                            <div class="input-group col-xs-12">
                               <form action="{{route('search')}}" method="get" class="d-flex">
                                  <input id="search" type="text" name="search" class="form-control" placeholder="Tìm kiếm..." autocomplete="off" required>
-                                 <button class="btn btn-primary">search</button>
+                                 <button class="btn btn-primary" style="margin-left: 20px;">search</button>
                               </div>
                               </form>
                         </div>
@@ -68,12 +69,6 @@
                      </div>
                   </div>
                </div>
-               {{-- <div class="col-md-4 hidden-xs">
-                  <div id="get-bookmark" class="box-shadow"><i class="hl-bookmark"></i><span> Bookmarks</span><span class="count">0</span></div>
-                  <div id="bookmark-list" class="hidden bookmark-list-on-pc">
-                     <ul style="margin: 0;"></ul>
-                  </div>
-               </div> --}}
             </div>
          </div>
       </header>
@@ -87,16 +82,6 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                   </button>
-                  {{-- <button type="button" class="navbar-toggle collapsed pull-right expand-search-form" data-toggle="collapse" data-target="#search-form" aria-expanded="false">
-                  <span class="hl-search" aria-hidden="true"></span>
-                  </button>
-                  <button type="button" class="navbar-toggle collapsed pull-right get-bookmark-on-mobile">
-                     Bookmarks<i class="hl-bookmark" aria-hidden="true"></i>
-                  <span class="count">0</span>
-                  </button>
-                  <button type="button" class="navbar-toggle collapsed pull-right get-locphim-on-mobile">
-                     <a href="javascript:;" id="expand-ajax-filter" style="color: #ffed4d;">Lọc <i class="fas fa-filter"></i></a>
-                  </button> --}}
                </div>
                <div class="collapse navbar-collapse" id="halim">
                   <div class="menu-menu_1-container">
@@ -172,7 +157,6 @@
       </footer>
       <div id='easy-top'></div>
       <script type='text/javascript' src='{{asset('js/bootstrap.min.js')}}' id='bootstrap-js'></script>
-      {{-- <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@4.3.0-alpha1/dist/js/bootstrap.bundle.min.js'></script> --}}
       <script type='text/javascript' src='{{asset('js/owl.carousel.min.js')}}' id='carousel-js'></script>
       <div id="fb-root"></div>
       <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v16.0&appId=230816367401550&autoLogAppEvents=1" nonce="7R78KA0D"></script>
@@ -350,12 +334,5 @@
                });
           });
       </script>
-      {{-- <script type="text/javascript">
-          $(".watch_trailer").click(function(e) {
-            e.preventDefault();
-            var aid = $(this).attr("href");
-            $('html,body').animate({scrollTop: $(aid).offset().top}, 'slow');
-         });
-      </script> --}}
    </body>
 </html>

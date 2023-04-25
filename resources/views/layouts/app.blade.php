@@ -106,6 +106,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                       <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     </a>
                   </li>
+                  <li class="treeview">
+                    <a href="{{ route('RegisterAdmin') }}">
+                      <i class="fa fa-user"></i> <span>{{ __('Register') }}</span>
+                    </a>
+                  </li>
                   <li class="treeview {{( $segment == 'category') ? 'active' : ''}}">
                     <a href="#">
                       <i class="fa fa-bars"></i>
