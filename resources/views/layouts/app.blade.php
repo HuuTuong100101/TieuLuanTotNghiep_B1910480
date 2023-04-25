@@ -291,10 +291,10 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             <div class="col_3">
               <div class="col-md-3 widget widget1">
                 <div class="r3_counter_box">
-                  <i class="pull-left fa fa-dollar icon-rounded"></i>
+                  <i class="pull-left fa fa-bars icon-rounded"></i>
                   <div class="stats">
-                    <h5><strong>$452</strong></h5>
-                    <span>Total Revenue</span>
+                    <h5><strong>{{$total_Category}}</strong></h5>
+                    <span>Danh mục phim</span>
                   </div>
                 </div>
               </div>
@@ -302,26 +302,26 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                 <div class="r3_counter_box">
                   <i class="pull-left fa fa-laptop user1 icon-rounded"></i>
                   <div class="stats">
-                    <h5><strong>$1019</strong></h5>
-                    <span>Online Revenue</span>
+                    <h5><strong>{{$total_Genre}}</strong></h5>
+                    <span>Thể loại phim</span>
                   </div>
                 </div>
               </div>
               <div class="col-md-3 widget widget1">
                 <div class="r3_counter_box">
-                  <i class="pull-left fa fa-money user2 icon-rounded"></i>
+                  <i class="pull-left fa fa-globe user2 icon-rounded"></i>
                   <div class="stats">
-                    <h5><strong>$1012</strong></h5>
-                    <span>Expenses</span>
+                    <h5><strong>{{$total_Country}}</strong></h5>
+                    <span>Quốc gia sản xuất</span>
                   </div>
                 </div>
               </div>
               <div class="col-md-3 widget widget1">
                 <div class="r3_counter_box">
-                  <i class="pull-left fa fa-pie-chart dollar1 icon-rounded"></i>
+                  <i class="pull-left fa fa-film dollar1 icon-rounded"></i>
                   <div class="stats">
-                    <h5><strong>$450</strong></h5>
-                    <span>Expenditure</span>
+                    <h5><strong>{{$total_Movie}}</strong></h5>
+                    <span>Phim</span>
                   </div>
                 </div>
               </div>
@@ -329,8 +329,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                 <div class="r3_counter_box">
                   <i class="pull-left fa fa-users dollar2 icon-rounded"></i>
                   <div class="stats">
-                    <h5><strong>1450</strong></h5>
-                    <span>Total Users</span>
+                    <h5><strong>{{$total_User}}</strong></h5>
+                    <span>Tài khoản quản trị</span>
                   </div>
                 </div>
               </div>
