@@ -94,6 +94,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
               </div>
               @php
                 $segment = Request::segment(1);
+                $segment2 = Request::segment(2);
               @endphp
               <div
                 class="collapse navbar-collapse"
@@ -101,15 +102,29 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
               >
                 <ul class="sidebar-menu">
                   <li class="header">MAIN NAVIGATION</li>
-                  <li class="treeview">
+                  <li class="treeview {{( $segment == 'home') ? 'active' : ''}}">
                     <a href="{{route('home')}}">
                       <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     </a>
                   </li>
-                  <li class="treeview">
-                    <a href="{{ route('RegisterAdmin') }}">
-                      <i class="fa fa-user"></i> <span>{{ __('Register') }}</span>
+                  <li class="treeview {{( $segment == 'user' || $segment == 'register') ? 'active' : ''}}">
+                    <a href="#">
+                      <i class="fa fa-user"></i>
+                      <span>Tài khoản quản trị</span>
+                      <i class="fa fa-angle-left pull-right"></i>
                     </a>
+                    <ul class="treeview-menu">
+                      <li class="{{( $segment == 'user') ? 'active' : ''}}">
+                        <a href="{{route('user.index')}}"
+                          ><i class="fa fa-angle-right"></i>Liệt kê tài khoản</a
+                        >
+                      </li>
+                      <li class="{{( $segment == 'register') ? 'active' : ''}}">
+                        <a href="{{ route('register') }}">
+                          <i class="fa fa-angle-right"></i> <span>Thêm tài khoản quản trị</span>
+                        </a>
+                      </li>
+                    </ul>
                   </li>
                   <li class="treeview {{( $segment == 'category') ? 'active' : ''}}">
                     <a href="#">
@@ -118,12 +133,12 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                       <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                      <li>
+                      <li class="{{( $segment == 'category' && $segment2 != 'create') ? 'active' : ''}}">
                         <a href="{{route('category.index')}}"
                           ><i class="fa fa-angle-right"></i>Liệt kê danh mục</a
                         >
                       </li>
-                      <li>
+                      <li class="{{( $segment == 'category' && $segment2 == 'create') ? 'active' : ''}}">
                         <a href="{{route('category.create')}}"
                           ><i class="fa fa-angle-right"></i>Thêm danh mục</a
                         >
@@ -137,12 +152,12 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                         <i class="fa fa-angle-left pull-right"></i>
                       </a>
                       <ul class="treeview-menu">
-                        <li>
+                        <li class="{{( $segment == 'country' && $segment2 != 'create') ? 'active' : ''}}">
                           <a href="{{route('country.index')}}"
                             ><i class="fa fa-angle-right"></i>Liệt kê quốc gia</a
                           >
                         </li>
-                        <li>
+                        <li class="{{( $segment == 'country' && $segment2 == 'create') ? 'active' : ''}}">
                           <a href="{{route('country.create')}}"
                             ><i class="fa fa-angle-right"></i>Thêm quốc gia</a
                           >
@@ -156,12 +171,12 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                         <i class="fa fa-angle-left pull-right"></i>
                       </a>
                       <ul class="treeview-menu">
-                        <li>
+                        <li class="{{( $segment == 'genre' && $segment2 != 'create') ? 'active' : ''}}">
                           <a href="{{route('genre.index')}}"
                             ><i class="fa fa-angle-right"></i>Liệt kê Thể loại</a
                           >
                         </li>
-                        <li>
+                        <li class="{{( $segment == 'genre' && $segment2 == 'create') ? 'active' : ''}}">
                           <a href="{{route('genre.create')}}"
                             ><i class="fa fa-angle-right"></i>Thêm Thể loại</a
                           >
@@ -175,12 +190,12 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                         <i class="fa fa-angle-left pull-right"></i>
                       </a>
                       <ul class="treeview-menu">
-                        <li>
+                        <li class="{{( $segment == 'movie' && $segment2 != 'create') ? 'active' : ''}}">
                           <a href="{{route('movie.index')}}"
                             ><i class="fa fa-angle-right"></i>Liệt kê phim</a
                           >
                         </li>
-                        <li>
+                        <li class="{{( $segment == 'movie' && $segment2 == 'create') ? 'active' : ''}}">
                           <a href="{{route('movie.create')}}"
                             ><i class="fa fa-angle-right"></i>Thêm phim</a
                           >
@@ -194,12 +209,12 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                       <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                      <li>
+                      <li class="{{( $segment == 'episode' && $segment2 != 'create') ? 'active' : ''}}">
                         <a href="{{route('episode.index')}}"
                           ><i class="fa fa-angle-right"></i>Liệt kê tập phim</a
                         >
                       </li>
-                      <li>
+                      <li class="{{( $segment == 'episode' && $segment2 == 'create') ? 'active' : ''}}">
                         <a href="{{route('episode.create')}}"
                           ><i class="fa fa-angle-right"></i>Thêm tập phim</a
                         >
@@ -249,7 +264,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                   >
                     <div class="profile_img">
                       <div class="user-name">
-                        <p>Hi, Admin</p>
+                        <p>Hi, {{Auth::user()->name}}</p>
                         <span>Welcome to admin page</span>
                       </div>
                       <i class="fa fa-angle-down lnr"></i>

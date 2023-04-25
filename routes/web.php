@@ -4,7 +4,6 @@
     use Illuminate\Support\Facades\Auth;
     use App\Http\Controllers\IndexController;
     use App\Http\Controllers\HomeController;
-    use App\Http\Controllers\Auth\RegisterController;
 
     // Admin controller
     use App\Http\Controllers\CategoryController;
@@ -13,6 +12,7 @@
     use App\Http\Controllers\MovieController;
     use App\Http\Controllers\EpisodeController;
     use App\Http\Controllers\CountryController;
+    use App\Http\Controllers\UserController;
 
     /*
     |--------------------------------------------------------------------------
@@ -45,7 +45,6 @@
     // Route admin
     Auth::routes();
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/RegisterAdmin', [HomeController::class, 'register'])->name('RegisterAdmin');
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('select-movie', [EpisodeController::class, 'select_movie'])->name('select-movie');
 
@@ -54,6 +53,7 @@
     Route::resource('genre', GenreController::class);
     Route::resource('country', CountryController::class);
     Route::resource('episode', EpisodeController::class);
+    Route::resource('user', UserController::class);
     Route::get('/update-year', [MovieController::class, 'update_year']);
     Route::get('/update-status', [MovieController::class, 'update_status']);
     Route::get('/update-category', [MovieController::class, 'update_category']);
