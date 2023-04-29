@@ -146,12 +146,36 @@
       <footer id="footer" class="clearfix">
          <div class="container footer-columns">
             <div class="row container">
-               <div class="widget about col-xs-12 col-sm-4 col-md-4">
-                  <div class="footer-logo">
-                     <img class="img-responsive" src="https://img.favpng.com/9/23/19/movie-logo-png-favpng-nRr1DmYq3SNYSLN8571CHQTEG.jpg" alt="Phim hay 2021- Xem phim hay nhất" />
+               <div class="widget about col-xs-12 col-sm-3 col-md-3">
+                  <div class="footer-logo" style="margin-left: 45px; margin-top: auto;">
+                     <img class="img-responsive" src="/images/motchill.png" alt="Phim hay 2021- Xem phim hay nhất" />
                   </div>
-                  Liên hệ QC: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e5958d8c888d849ccb868aa58288848c89cb868a88">[email&#160;protected]</a>
                </div>
+               <div class="widget about col-xs-12 col-sm-3 col-md-3">
+                  Liên hệ công việc:
+                  <div>Hotline: 093 956 6579</div>
+                  <div>Facebook: <a href="https://www.facebook.com/profile.php?id=100008592283761">Nguyễn Hữu Tường</a></div>
+                  <div>Zalo: <a href="https://zalo.me/0939566579">Nguyễn Hữu Tường</a></div>
+                  <div>Email: tn732506@gmail.com</div>
+               </div>
+               <div class="widget about col-xs-12 col-sm-3 col-md-3">
+                  Danh mục phim: 
+                  @foreach ($categories as $category)
+                     <div><a title={{$category->title}} href="{{route('category', $category->slug)}}">{{$category->title}}</a></div>
+                  @endforeach
+                  <div><a title="Phim mới" href="{{route('new')}}">Phim mới</a></div>
+                  <div><a title="Phim lồng tiếng" href="{{route('subtitle', 0)}}">Phim lồng tiếng</a></div>
+                  <div><a title="Phim thuyết minh" href="{{route('subtitle', 3)}}">Phim thuyết minh</a></div>
+               </div>
+               <div class="widget about col-xs-12 col-sm-3 col-md-3">
+                  Web xem phim khác: 
+                  <div><a title="Khoái phim" href="https://khoaiphim.com/">Khoái phim</a></div>
+                  <div><a title="Phim hay mới" href="https://phimhaymoi.com/">Phim hay mới</a></div>
+                  <div><a title="Ghiền phim hay" href="https://ghienphimhay.com/">Ghiền phim hay</a></div>
+               </div>
+            </div>
+            <div class="row container text-center">
+               Copyright © MOT CHILL 2023 xem phim online
             </div>
          </div>
       </footer>

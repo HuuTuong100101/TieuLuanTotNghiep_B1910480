@@ -1,7 +1,9 @@
 body{
     width: 100%;
-    height: auto;
-    background: url('https://wallpapers-hub.art/wallpaper-images/645141.jpg');
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background: url('../../images/background.jpg');
     font-family: "Robato",sans-serif;
     font-size: 17px;
   }

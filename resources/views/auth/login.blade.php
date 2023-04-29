@@ -25,7 +25,12 @@
                 @enderror
             </div>
 
+            <div class="input-group" style="flex-direction: row-reverse;">
+                <a style="margin: 0 5px;" href="{{route('password.request')}}">Quên mật khẩu</a>
+            </div>
+
             <div class="input-group">
+            {{-- <button class="btn btn-md btn-rounded btn-block form-control submit"><a href="{{route('password.request')}}">Quen MK</a></button> --}}
             <button class="btn btn-md btn-rounded btn-block form-control submit" type="submit"><i class="fas fa-sign-in-alt"></i>{{ __('Login') }}</button>
             </div>
         </form>
