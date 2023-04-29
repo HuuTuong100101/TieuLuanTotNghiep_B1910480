@@ -29,12 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $total_User = User::all()->count();
-        $total_Country = Country::all()->count();
-        $total_Category = Category::all()->count();
-        $total_Movie = Movie::all()->count();
-        $total_Genre = Genre::all()->count();
-        return view('home', compact('total_User', 'total_Country', 'total_Category', 'total_Movie', 'total_Genre'));
+        return view('home');
     }
 
 }

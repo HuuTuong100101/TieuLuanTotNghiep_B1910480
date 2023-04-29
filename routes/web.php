@@ -13,6 +13,8 @@
     use App\Http\Controllers\EpisodeController;
     use App\Http\Controllers\CountryController;
     use App\Http\Controllers\UserController;
+    use Illuminate\Foundation\Auth\EmailVerificationRequest;
+    use Illuminate\Http\Request;
 
     /*
     |--------------------------------------------------------------------------
@@ -44,7 +46,7 @@
     
     // Route admin
     Auth::routes();
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->middleware(['auth','verified'])->name('home');
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('select-movie', [EpisodeController::class, 'select_movie'])->name('select-movie');
 
@@ -59,4 +61,18 @@
     Route::get('/update-category', [MovieController::class, 'update_category']);
     Route::get('/update-country', [MovieController::class, 'update_country']);
     Route::post('/update-image-movie', [MovieController::class, 'update_image_movie'])->name('update-image-movie');
+
+    Route::get('/email/verify', function () {
+        return view('auth.verify');
+    })->middleware('auth')->name('verification.notice');
+
+    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+        $request->fulfill();
+        return redirect('/home');
+    })->middleware(['auth', 'signed'])->name('verification.verify');
+
+    Route::post('/email/verification-notification', function (Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+        return back()->with('message', 'Verification link sent!');
+    })->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 ?>
