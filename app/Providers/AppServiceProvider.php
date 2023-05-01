@@ -11,6 +11,7 @@ use App\Models\Movie_Genre;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Http\Request;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Request $request)
     {
         $Movie_Genres = Movie_Genre::join('genres', 'genres.id', '=', 'Movie_Genre.genre_id')
             ->selectRaw('sum(genre_id) as SUM, genre_id, title')
@@ -45,6 +46,8 @@ class AppServiceProvider extends ServiceProvider
             ->join('genres', 'genres.id', '=', 'Movie_Genre.genre_id')
             ->selectRaw('sum(views) as SUM, genre_id, genres.title')
             ->groupBy('genre_id', 'genres.title')
+            ->orderBy('SUM', 'DESC')
+            ->take(5)
             ->get();
 
         $data_genre_views_chart = "";

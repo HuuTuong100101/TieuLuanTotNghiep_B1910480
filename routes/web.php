@@ -13,6 +13,7 @@
     use App\Http\Controllers\EpisodeController;
     use App\Http\Controllers\CountryController;
     use App\Http\Controllers\UserController;
+    use App\Http\Controllers\Shetabit_visitController;
     use Illuminate\Foundation\Auth\EmailVerificationRequest;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Password;

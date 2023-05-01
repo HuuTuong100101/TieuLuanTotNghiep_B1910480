@@ -19,6 +19,7 @@ class IndexController extends Controller
     // Trang lọc phim
 
     public function filter(Request $request) {
+        $request->visitor()->visit();
         $data = $request->all();
 
         $category_data = $data['category'];
@@ -150,7 +151,8 @@ class IndexController extends Controller
         }
     }
     // Trang search
-    public function search() {
+    public function search(Request $request) {
+        $request->visitor()->visit();
         if(isset($_GET['search'])) {
             $search = $_GET['search'];
             $search_movies = Movie::orderBy('dateupdated','DESC')->where('title', 'LIKE', '%'.$search.'%')->paginate(40);
@@ -161,7 +163,9 @@ class IndexController extends Controller
         }
     }
     // Trang home
-    public function home() {
+    public function home(Request $request) {
+        $request->visitor()->visit();
+
         $hot_movies = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->get();
         $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
         $movies_categories = Category::with('movie')->orderBy('id', 'DESC')->where('status', '1')->get();
@@ -170,7 +174,8 @@ class IndexController extends Controller
     }
 
     // Trang chi tiết phim
-    public function movie($slug) {
+    public function movie($slug, Request $request) {
+        $request->visitor()->visit();
         $movie = Movie::with('category', 'genre', 'country', 'movie_genre')->where('slug',$slug)->where('status', 1)->first();
         $new_episode = Episode::where('movie_id', $movie->id)->orderBy('id', 'DESC')->take(3)->get();
         $movie_related = Movie::with('category', 'genre', 'country')->where('category_id', $movie->category->id)->whereNotIn('slug', [$slug])->get();
@@ -187,7 +192,8 @@ class IndexController extends Controller
     }
 
     // Trang danh mục
-    public function category($slug) {
+    public function category($slug, Request $request) {
+        $request->visitor()->visit();
         // Lấy ra tên danh mục theo slug để hiển thị tên danh mục
         $category_slug = Category::where('slug',$slug)->first();
         $category_movies = Movie::orderBy('dateupdated','DESC')->where('category_id', $category_slug->id)->paginate(40);
@@ -196,7 +202,8 @@ class IndexController extends Controller
     }
 
     // Trang phim theo quốc gia
-    public function country($slug) {
+    public function country($slug, Request $request) {
+        $request->visitor()->visit();
         // Lấy ra tên quốc gia theo slug để hiển thị tên quốc gia
         $country_slug = Country::where('slug',$slug)->first();
         $country_movies = Movie::orderBy('dateupdated','DESC')->where('country_id', $country_slug->id)->paginate(40);
@@ -205,7 +212,8 @@ class IndexController extends Controller
     }
 
     // Trang phim theo thể loại
-    public function genre($slug) {
+    public function genre($slug, Request $request) {
+        $request->visitor()->visit();
         // Lấy ra tên thể loại theo slug để hiển thị tên thể loại
         $genre_slug = Genre::where('slug',$slug)->first();
         $movie_genres = Movie_Genre::where('genre_id', $genre_slug->id)->get();
@@ -222,14 +230,16 @@ class IndexController extends Controller
     }
 
     // Trang phim theo tag
-    public function tags_phim($tag) {
+    public function tags_phim($tag, Request $request) {
+        $request->visitor()->visit();
         $movies = Movie::where('tags','LIKE','%'.$tag.'%')->orderBy('dateupdated', 'DESC')->paginate(40);
         $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
         return view('pages.tags', compact('movies', 'tag', 'hot_movies_sidebar'));
     }
 
     // Trang xem phim
-    public function watch($slug, $number_episode) {
+    public function watch($slug, $number_episode, Request $request) {
+        $request->visitor()->visit();
         $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
         $movie = Movie::with('category', 'genre', 'country', 'movie_genre', 'episodes')->where('slug',$slug)->where('status', 1)->first();
         $movie_related = Movie::with('category', 'genre', 'country')->where('category_id', $movie->category->id)->whereNotIn('slug', [$slug])->get();
@@ -239,26 +249,30 @@ class IndexController extends Controller
     }
 
     // Trang phim mới
-    public function new() {
+    public function new(Request $request) {
+        $request->visitor()->visit();
         $new_movies = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->paginate(40);
         $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
         return view('pages.new', compact('new_movies', 'hot_movies_sidebar'));
     }
 
     // Trang phim theo subtitle (thuyết minh/ lồng tiếng)
-    public function subtitle($sub) {
+    public function subtitle($sub, Request $request) {
+        $request->visitor()->visit();
         $sub_movies = Movie::orderBy('dateupdated', 'DESC')->where('subtitles', $sub)->paginate(40);
         $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
         return view('pages.sub', compact('sub_movies', 'hot_movies_sidebar', 'sub'));
     }
 
-    public function year($year) {
+    public function year($year, Request $request) {
+        $request->visitor()->visit();
         $year_movies = Movie::orderBy('dateupdated', 'DESC')->where('year', $year)->paginate(40);
         $hot_movies_sidebar = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->take(20)->get();
         return view('pages.year', compact('year_movies', 'hot_movies_sidebar', 'year'));
     }
 
     public function add_rating(Request $request) {
+        $request->visitor()->visit();
         $data = $request->all();
         $ip_address = $request->ip();
         $rating_count = Rating::where('movie_id', $data['movie_id'])->where('ip_address', $ip_address)->count();
@@ -274,9 +288,9 @@ class IndexController extends Controller
         }
     }
 
-    public function espisode() {
-        return view('pages.espisode');
-    }
+    // public function espisode() {
+    //     return view('pages.espisode');
+    // }
 }
 
 ?>

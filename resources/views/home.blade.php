@@ -15,5 +15,8 @@
             <div id="top_x_div" style="height: 370px;"></div>
         </div>
     </div>
+    <div class="row justify-content-center">
+
+    </div>
 </div>
 @endsection

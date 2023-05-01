@@ -53,6 +53,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script type="text/javascript">
+
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
@@ -62,6 +63,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         ]);
 
         var options = {
+          // backgroundColor: '#f1f1f1',
           title: 'Thể loại phim',
           is3D: true,
         };
@@ -80,10 +82,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         ]);
 
         var options = {
+          // backgroundColor: '#f1f1f1',
           width: 550,
           legend: { position: 'none' },
           chart: {
-            title: 'Lượt quan tâm đối với từng thể loại phim',
+            title: 'Top 5 thể loại phim có lượt quan tâm cao nhất',
             subtitle: 'Genre Views',
           },
           axes: {
