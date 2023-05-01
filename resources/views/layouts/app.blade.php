@@ -32,7 +32,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
       type="text/css"
     />
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> --}}
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <!-- //side nav css file -->
     <!-- js-->
@@ -51,13 +50,55 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <!--//Metis Menu -->
 
     <script src="//cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <style>
-      #chartdiv {
-        width: 100%;
-        height: 295px;
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          <?php echo $data_genre_chart; ?>
+        ]);
+
+        var options = {
+          title: 'Thể loại phim',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
       }
-    </style>
+
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+        var data = new google.visualization.arrayToDataTable([
+          ['Genre', 'Views'],
+          <?php echo $data_genre_views_chart; ?>
+        ]);
+
+        var options = {
+          width: 550,
+          legend: { position: 'none' },
+          chart: {
+            title: 'Lượt quan tâm đối với từng thể loại phim',
+            subtitle: 'Genre Views',
+          },
+          axes: {
+            x: {
+              0: { side: 'top', label: 'Thể loại phim'} // Top x-axis.
+            }
+          },
+          bar: { groupWidth: "90%" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        // Convert the Classic options to Material options.
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      };
+    </script>
   </head>
 
   <body class="cbp-spmenu-push">
@@ -342,18 +383,18 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
               </div>
             </div>
             <!-- for amcharts js -->
-            <script src="{{ asset('backend/js/amcharts.js') }}"></script>
-            <script src="{{ asset('backend/js/serial.js') }}"></script>
-            <script src="{{ asset('backend/js/export.min.js') }}"></script>
-            <link
+            {{-- <script src="{{ asset('backend/js/amcharts.js') }}"></script> --}}
+            {{-- <script src="{{ asset('backend/js/serial.js') }}"></script> --}}
+            {{-- <script src="{{ asset('backend/js/export.min.js') }}"></script> --}}
+            {{-- <link
               rel="stylesheet"
               href="css/export.css"
               type="text/css"
               media="all"
-            />
-            <script src="{{ asset('backend/js/light.js') }}"></script>
+            /> --}}
+            {{-- <script src="{{ asset('backend/js/light.js') }}"></script> --}}
             <!-- for amcharts js -->
-            <script src="{{ asset('backend/js/index1.js') }}"></script>
+            {{-- <script src="{{ asset('backend/js/index1.js') }}"></script> --}}
             <div class="clearfix"></div>
           </div>
         </div>
@@ -370,8 +411,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
       @yield('content_login')
     @endif
     <!-- new added graphs chart js-->
-    <script src="{{ asset('backend/js/Chart.bundle.js') }}"></script>
-    <script src="{{ asset('backend/js/utils.js') }}"></script>
+    {{-- <script src="{{ asset('backend/js/Chart.bundle.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/js/utils.js') }}"></script> --}}
     <script>
       var MONTHS = [
         'January',
@@ -547,8 +588,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <!-- //Classie -->
     <!-- //for toggle left push menu script -->
     <!--scrolling js-->
-    <script src="{{ asset('backend/js/jquery.nicescroll.js') }}"></script>
-    <script src="{{ asset('backend/js/scripts.js') }}"></script>
+    {{-- <script src="{{ asset('backend/js/jquery.nicescroll.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/js/scripts.js') }}"></script> --}}
     <!--//scrolling js-->
     <!-- side nav js -->
     <script src="{{ asset('backend/js/SidebarNav.min.js') }}" type="text/javascript"></script>
@@ -557,8 +598,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     </script>
     <!-- //side nav js -->
     <!-- for index page weekly sales java script -->
-    <script src="{{ asset('backend/js/SimpleChart.js') }}"></script>
-    <script>
+    {{-- <script src="{{ asset('backend/js/SimpleChart.js') }}"></script> --}}
+    {{-- <script>
       var graphdata1 = {
         linecolor: '#CCA300',
         title: 'Monday',
@@ -809,7 +850,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
           yaxislabel: 'Profit in $',
         });
       });
-    </script>
+    </script> --}}
     <script type="text/javascript">
         $(document).ready( function () {
             $('#MovieTable').DataTable();
