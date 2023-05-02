@@ -8,6 +8,8 @@ use App\Models\Genre;
 use App\Models\User;
 use App\Models\Movie;
 use App\Models\Movie_Genre;
+use App\Models\shetabit_visit;
+use Carbon\Carbon; // xử lý ngày
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
@@ -59,6 +61,30 @@ class AppServiceProvider extends ServiceProvider
             ->groupBy('movie_id')
             ->get();
 
+        $days30 = Carbon::today()->subDays(30);
+        $data = shetabit_visit::whereDate('created_at', '>=', $days30)
+                            ->selectRaw('COUNT(created_at) as count, DATE(created_at) as date')
+                            ->groupBy('date')
+                            ->get();
+
+        $data30days = shetabit_visit::whereDate('created_at', '>=', $days30)
+                            ->get()
+                            ->count();
+
+        $days7 = Carbon::today()->subDays(7);
+        $data7days = shetabit_visit::whereDate('created_at', '>=', $days7)
+                            ->get()
+                            ->count();
+
+        $today = Carbon::today();
+        $datatoday = shetabit_visit::whereDate('created_at', '=', $today)
+                            ->get()
+                            ->count();
+        $data_visit_chart = "";
+        foreach ($data as $val) {
+            $data_visit_chart.="['".$val->date."',".$val->count.",'#b87333'"."],";
+        };
+
         $categories = Category::all()->where('status',1);
         $countries = Country::all()->where('status',1);
         $genres = Genre::all()->where('status',1);
@@ -80,7 +106,11 @@ class AppServiceProvider extends ServiceProvider
                         'total_Genre' => $total_Genre,
                         'data_genre_chart' => $data_genre_chart,
                         'Movie_Genres' => $Movie_Genres,
-                        'data_genre_views_chart' => $data_genre_views_chart
+                        'data_genre_views_chart' => $data_genre_views_chart,
+                        'data30days' => $data30days,
+                        'data7days' => $data7days,
+                        'datatoday' =>$datatoday,
+                        'data_visit_chart' => $data_visit_chart
                     ]
                 );
     }

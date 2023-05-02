@@ -102,6 +102,34 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         chart.draw(data, google.charts.Bar.convertOptions(options));
       };
     </script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Ngày", "Số lượng truy cập", { role: "style" } ],
+        <?php echo $data_visit_chart; ?>
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Số lượng truy cập trong 30 ngày gần nhất",
+        width: 1120,
+        height: 950,
+        bar: {groupWidth: "75%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+      chart.draw(view, options);
+  }
+    </script>
   </head>
 
   <body class="cbp-spmenu-push">
@@ -332,6 +360,24 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         <!-- main content start-->
         <div id="page-wrapper">
           <div class="main-page">
+            <div class="raw" style="margin-bottom: 20px;">
+                <div class="r3_counter_box" style="box-shadow: 0px 0px 5px 0px grey;">
+                  <div class="stats">
+                    <div class="col-md-4" style="text-align: center">
+                      <span>Số lượng truy cập trong hôm nay</span>
+                      <h5><strong>{{$datatoday}}</strong></h5>
+                    </div>
+                    <div class="col-md-4" style="text-align: center">
+                      <span>Số lượng truy cập trong 7 ngày gần nhất</span>
+                      <h5><strong>{{$data7days}}</strong></h5>
+                    </div>
+                    <div class="col-md-4" style="text-align: center">
+                      <span>Số lượng truy cập trong 30 ngày gần nhất</span>
+                      <h5><strong>{{$data30days}}</strong></h5>
+                    </div>
+                  </div>
+                </div>
+            </div>
             <div class="col_3">
               <div class="col-md-3 widget widget1">
                 <div class="r3_counter_box">

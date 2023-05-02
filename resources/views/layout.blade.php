@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
    <head>
-      <!-- Google tag (gtag.js) -->
-      <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-2B8JV599F0');
-      </script>
       <meta charset="utf-8" />
       <meta content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
       <meta name="theme-color" content="#234556">

@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="row justify-content-center">
-
+        <div class="col-md-12" id="barchart_values" style="height: 950px ;width: 1000px"></div>
     </div>
 </div>
 @endsection
