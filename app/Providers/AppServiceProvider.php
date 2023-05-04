@@ -93,6 +93,7 @@ class AppServiceProvider extends ServiceProvider
         $total_Category = Category::all()->count();
         $total_Movie = Movie::all()->count();
         $total_Genre = Genre::all()->count();
+        $hot_movies_sidebar = Movie::orderBy('views', 'DESC')->take(2)->get();
         View::share(
                     [
                         'avg_rating' => $avg_rating, 
@@ -110,7 +111,8 @@ class AppServiceProvider extends ServiceProvider
                         'data30days' => $data30days,
                         'data7days' => $data7days,
                         'datatoday' =>$datatoday,
-                        'data_visit_chart' => $data_visit_chart
+                        'data_visit_chart' => $data_visit_chart,
+                        'hot_movies_sidebar' => $hot_movies_sidebar
                     ]
                 );
     }

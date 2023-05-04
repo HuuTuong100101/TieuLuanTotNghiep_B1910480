@@ -85,10 +85,6 @@
                                 {!! Form::select('country_id', $list_country, isset($movies) ? $movies->country_id : '1', ['class'=>'form-control']) !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::label('Phim Hot', 'Phim Hot', ['class'=>'mt-3']) !!}
-                                {!! Form::select('phim_hot', ['1'=>'hot', '0'=>'không hot'], isset($movies) ? $movies->hot : '1', ['class'=>'form-control']) !!}
-                            </div>
-                            <div class="form-group">
                                 {!! Form::label('genre', 'Thể loại', ['class'=>'mt-3']) !!} <br>
                                 @foreach ($list_genre as $key => $genre)
                                     @if (isset($movies))

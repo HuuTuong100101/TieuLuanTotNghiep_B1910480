@@ -61,19 +61,18 @@ class MovieController extends Controller
     {
         $data = $request->validate(
             [
-                'title' => 'required|unique:movies|max:255',
-                'slug' => 'required|unique:movies|max:255',
-                'description' => 'required|unique:movies|max:255',
-                'trailer' => 'required|unique:movies|max:255',
-                'tags' => 'required|unique:movies|max:255',
-                'year' => 'required|max:255',
+                'title' => 'required|unique:movies',
+                'slug' => 'required|unique:movies',
+                'description' => 'required|unique:movies',
+                'trailer' => 'required|unique:movies',
+                'tags' => 'required|unique:movies',
+                'year' => 'required',
                 'lenght' => 'required|numeric',
                 'episode' => 'required|numeric',
                 'quality' => 'required',
                 'subtitles' => 'required',
                 'category_id' => 'required',
                 'country_id' => 'required',
-                'phim_hot' => 'required',
                 'status' => 'required',
                 'genre' => 'required',
                 'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg'
@@ -111,6 +110,7 @@ class MovieController extends Controller
         $movie->description = $data['description'];
         $movie->trailer = $data['trailer'];
         $movie->tags = $data['tags'];
+        $movie->views = 0;
         $movie->lenght = $data['lenght'];
         $movie->episode = $data['episode'];
         if($data['year']) {
@@ -123,7 +123,6 @@ class MovieController extends Controller
         $movie->status = $data['status'];
         $movie->category_id = $data['category_id'];
         $movie->country_id = $data['country_id'];
-        $movie->hot = $data['phim_hot'];
         $movie->datecreated = Carbon::now('Asia/Ho_Chi_Minh');
         $movie->dateupdated = Carbon::now('Asia/Ho_Chi_Minh');
 
@@ -185,19 +184,18 @@ class MovieController extends Controller
     {
         $data = $request->validate(
             [
-                'title' => 'required|max:255',
-                'slug' => 'required|max:255',
-                'description' => 'required|max:255',
-                'trailer' => 'required|max:255',
-                'tags' => 'required|max:255',
-                'year' => 'required|max:255',
+                'title' => 'required',
+                'slug' => 'required',
+                'description' => 'required',
+                'trailer' => 'required',
+                'tags' => 'required',
+                'year' => 'required',
                 'lenght' => 'required|numeric',
                 'episode' => 'required|numeric',
                 'quality' => 'required',
                 'subtitles' => 'required',
                 'category_id' => 'required',
                 'country_id' => 'required',
-                'phim_hot' => 'required',
                 'status' => 'required',
                 'genre' => 'required',
                 'image' => ''
@@ -236,7 +234,6 @@ class MovieController extends Controller
         $movie->status = $data['status'];
         $movie->category_id = $data['category_id'];
         $movie->country_id = $data['country_id'];
-        $movie->hot = $data['phim_hot'];
         $movie->dateupdated = Carbon::now('Asia/Ho_Chi_Minh');
 
         // Xử lý file hình ảnh

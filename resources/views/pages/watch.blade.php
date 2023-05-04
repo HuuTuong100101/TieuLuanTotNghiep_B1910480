@@ -26,22 +26,8 @@
                <li class="fb-like" data-href="" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></li>
             </ul>
             <ul class="col-xs-12 col-md-8">
-               <div id="autonext" class="btn-cs autonext">
-                  <i class="icon-autonext-sm"></i>
-                  <span><i class="hl-next"></i> Autonext: <span id="autonext-status">On</span></span>
-               </div>
-               <div id="explayer" class="hidden-xs"><i class="hl-resize-full"></i>
-                  Expand 
-               </div>
-               <div id="toggle-light"><i class="hl-adjust"></i>
-                  Light Off 
-               </div>
-               <div id="report" class="halim-switch"><i class="hl-attention"></i> Report</div>
                <div class="luotxem"><i class="hl-eye"></i>
-                  <span>1K</span> lượt xem 
-               </div>
-               <div class="luotxem">
-                  <a class="visible-xs-inline" data-toggle="collapse" href="#moretool" aria-expanded="false" aria-controls="moretool"><i class="hl-forward"></i> Share</a>
+                  <span>{{$movie->views}}</span> lượt quan tâm
                </div>
             </ul>
          </div>

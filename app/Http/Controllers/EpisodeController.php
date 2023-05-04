@@ -62,7 +62,7 @@ class EpisodeController extends Controller
         );
 
         $episode = new Episode();
-        $episode->movie_id = $data['movie'];
+        $episode->movie_id = $data['movie_id'];
         $episode->episode = $data['episode'];
         $episode->link = $data['link'];
         $episode->status = $data['status'];

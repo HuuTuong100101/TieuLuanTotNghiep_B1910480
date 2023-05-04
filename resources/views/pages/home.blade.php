@@ -11,7 +11,7 @@
            <h3 class="section-title"><span>PHIM HOT</span></h3>
         </div>
         <div id="phim_hot" class="owl-carousel owl-theme related-film">
-            @foreach ($hot_movies as $hot_movie)
+            @foreach ($hot_movies_sidebar as $hot_movie)
                 <article class="thumb grid-item post-38498">
                 <div class="halim-item">
                     <a class="halim-thumb" href="{{route('movie', $hot_movie->slug)}}" title="{{$hot_movie->title}}">
