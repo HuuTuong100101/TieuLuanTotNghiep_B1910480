@@ -179,6 +179,7 @@
             </div>
          </div>
       </footer>
+      
       <div id='easy-top'></div>
       <script type='text/javascript' src='{{asset('js/bootstrap.min.js')}}' id='bootstrap-js'></script>
       <script type='text/javascript' src='{{asset('js/owl.carousel.min.js')}}' id='carousel-js'></script>

@@ -67,7 +67,7 @@
     Route::get('/update-category', [MovieController::class, 'update_category']);
     Route::get('/update-country', [MovieController::class, 'update_country']);
 
-    // Xác thực email
+    // Xác thực email (không có cũng đc, laravel có làm sẵn)
     Route::get('/email/verify', function () {
         return view('auth.verify');
     })->middleware('auth')->name('verification.notice');

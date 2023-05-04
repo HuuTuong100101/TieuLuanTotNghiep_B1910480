@@ -20,7 +20,7 @@
                 <div style="height: 500px" class="thumbnail">
                     <div class="row">
                         <p><span style="font-weight: bold" class="card-text">Mô tả: </span></p>
-                        <p style="height: 200px" class="card-text of-hidden">{{$movie->description}}</p>
+                        <p style="height: 100px" class="card-text of-hidden">{{$movie->description}}</p>
                     </div>
                     <div class="row">
                         <div class="col-md-6">

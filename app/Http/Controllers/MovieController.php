@@ -64,7 +64,6 @@ class MovieController extends Controller
                 'title' => 'required|unique:movies',
                 'slug' => 'required|unique:movies',
                 'description' => 'required|unique:movies',
-                'trailer' => 'required|unique:movies',
                 'tags' => 'required|unique:movies',
                 'year' => 'required',
                 'lenght' => 'required|numeric',
@@ -75,7 +74,7 @@ class MovieController extends Controller
                 'country_id' => 'required',
                 'status' => 'required',
                 'genre' => 'required',
-                'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg'
+                'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg,webp'
             ],
 
             [
@@ -85,8 +84,6 @@ class MovieController extends Controller
                 'slug.unique' => 'Slug phim đã tồn tại',
                 'description.required' => 'Mô tả phim không được bỏ trống',
                 'description.unique' => 'Mô tả phim đã tồn tại',
-                'trailer.required' => 'Trailer phim không được bỏ trống',
-                'trailer.unique' => 'Trailer phim đã tồn tại',
                 'tags.required' => 'tags phim không được bỏ trống',
                 'tags.unique' => 'tags phim đã tồn tại',
                 'lenght.required' => 'Thời lượng phim không được bỏ trống',
@@ -108,7 +105,9 @@ class MovieController extends Controller
         $movie->title = $data['title'];
         $movie->slug = $data['slug'];
         $movie->description = $data['description'];
-        $movie->trailer = $data['trailer'];
+        if(isset($data['trailer'])) {
+            $movie->trailer = $data['trailer'];
+        }
         $movie->tags = $data['tags'];
         $movie->views = 0;
         $movie->lenght = $data['lenght'];
@@ -187,7 +186,6 @@ class MovieController extends Controller
                 'title' => 'required',
                 'slug' => 'required',
                 'description' => 'required',
-                'trailer' => 'required',
                 'tags' => 'required',
                 'year' => 'required',
                 'lenght' => 'required|numeric',
@@ -205,7 +203,6 @@ class MovieController extends Controller
                 'title.required' => 'Tên phim không được bỏ trống',
                 'slug.required' => 'Slug phim không được bỏ trống',
                 'description.required' => 'Mô tả phim không được bỏ trống',
-                'trailer.required' => 'Trailer phim không được bỏ trống',
                 'tags.required' => 'tags phim không được bỏ trống',
                 'lenght.required' => 'Thời lượng phim không được bỏ trống',
                 'quality.required' => 'Chất lượng phim lượng phim không được bỏ trống',
@@ -224,7 +221,9 @@ class MovieController extends Controller
         $movie->title = $data['title'];
         $movie->slug = $data['slug'];
         $movie->description = $data['description'];
-        $movie->trailer = $data['trailer'];
+        if(isset($data['trailer'])) {
+            $movie->trailer = $data['trailer'];
+        }
         $movie->tags = $data['tags'];
         $movie->year = $data['year'];
         $movie->lenght = $data['lenght'];
