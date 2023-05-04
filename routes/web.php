@@ -66,7 +66,6 @@
     Route::get('/update-status', [MovieController::class, 'update_status']);
     Route::get('/update-category', [MovieController::class, 'update_category']);
     Route::get('/update-country', [MovieController::class, 'update_country']);
-    Route::post('/update-image-movie', [MovieController::class, 'update_image_movie'])->name('update-image-movie');
 
     // Xác thực email
     Route::get('/email/verify', function () {

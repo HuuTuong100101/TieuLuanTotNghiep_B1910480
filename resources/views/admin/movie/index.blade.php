@@ -31,8 +31,6 @@
                         <td><div style="width: 80px">{{$movie->title}}</div></td>
                         <td class="text-center">
                             <img width="100" src="{{asset('uploads/movie/'.$movie->image)}}" alt="#">
-                            {!! Form::label($movie->id, 'Đổi ảnh', ['class'=>'mt-3 btn btn-success w-100 change-img ']) !!}
-                            {!! Form::file('image',['class'=>'form-control-file invisible', 'data-movie_id'=>$movie->id, 'id'=>$movie->id ,'accept'=>'image/*']) !!}
                         </td>
                         <td>
                             {!! Form::select('category', $list_category, isset($movie) ? $movie->category->id : '1', ['class'=>'form-select select-category w-auto', 'id' => $movie->id]) !!}

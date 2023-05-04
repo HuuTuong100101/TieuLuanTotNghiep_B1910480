@@ -258,7 +258,7 @@
          #hide_float_right a { background: #01AEF0; padding: 5px 5px 1px 5px; color: #FFF;float: left;}
       </style>
       <script>
-         $(document).ready(function($) {
+         $(document).ready(function($){
             var owl = $('#phim_hot');
             owl.owlCarousel({
                loop: true,

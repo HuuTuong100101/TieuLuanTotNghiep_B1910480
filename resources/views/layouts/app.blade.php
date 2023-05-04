@@ -7,14 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta
-      name="keywords"
-      content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"
-    />
+    <meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
     <script type="application/x-javascript">
       addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
       function hideURLbar() { window.scrollTo(0, 1); }
     </script>
+
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('backend/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
     <!-- Custom CSS -->
@@ -22,13 +20,10 @@
     <!-- font-awesome icons CSS -->
     <link href="{{ asset('backend/css/font-awesome.css') }}" rel="stylesheet" />
     <!-- //font-awesome icons CSS-->
+
     <!-- side nav css file -->
-    <link
-      href="{{ asset('backend/css/SidebarNav.min.css') }}"
-      media="all"
-      rel="stylesheet"
-      type="text/css"
-    />
+    <link href="{{ asset('backend/css/SidebarNav.min.css') }}" media="all" rel="stylesheet" type="text/css"/>
+
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <!-- //side nav css file -->
@@ -49,9 +44,7 @@
 
     <script src="//cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
     <script type="text/javascript">
-
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
@@ -59,20 +52,16 @@
           ['Task', 'Hours per Day'],
           <?php echo $data_genre_chart; ?>
         ]);
-
         var options = {
-          // backgroundColor: '#f1f1f1',
           title: 'Thể loại phim',
           is3D: true,
         };
-
         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
         chart.draw(data, options);
       }
 
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawStuff);
-
       function drawStuff() {
         var data = new google.visualization.arrayToDataTable([
           ['Genre', 'Views'],
@@ -80,7 +69,6 @@
         ]);
 
         var options = {
-          // backgroundColor: '#f1f1f1',
           width: 550,
           legend: { position: 'none' },
           chart: {
@@ -101,32 +89,32 @@
       };
     </script>
     <script type="text/javascript">
-    google.charts.load("current", {packages:['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-        ["Ngày", "Số lượng truy cập", { role: "style" } ],
-        <?php echo $data_visit_chart; ?>
-      ]);
+      google.charts.load("current", {packages:['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ["Ngày", "Số lượng truy cập", { role: "style" } ],
+          <?php echo $data_visit_chart; ?>
+        ]);
 
-      var view = new google.visualization.DataView(data);
-      view.setColumns([0, 1,
-                       { calc: "stringify",
-                         sourceColumn: 1,
-                         type: "string",
-                         role: "annotation" },
-                       2]);
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+                        { calc: "stringify",
+                          sourceColumn: 1,
+                          type: "string",
+                          role: "annotation" },
+                        2]);
 
-      var options = {
-        title: "Số lượng truy cập trong 30 ngày gần nhất",
-        width: 1120,
-        height: 950,
-        bar: {groupWidth: "75%"},
-        legend: { position: "none" },
-      };
-      var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
-      chart.draw(view, options);
-  }
+        var options = {
+          title: "Số lượng truy cập trong 30 ngày gần nhất",
+          width: 1120,
+          height: 950,
+          bar: {groupWidth: "75%"},
+          legend: { position: "none" },
+        };
+        var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+        chart.draw(view, options);
+      }
     </script>
   </head>
 
@@ -429,19 +417,6 @@
                 @yield('content')
               </div>
             </div>
-            <!-- for amcharts js -->
-            {{-- <script src="{{ asset('backend/js/amcharts.js') }}"></script> --}}
-            {{-- <script src="{{ asset('backend/js/serial.js') }}"></script> --}}
-            {{-- <script src="{{ asset('backend/js/export.min.js') }}"></script> --}}
-            {{-- <link
-              rel="stylesheet"
-              href="css/export.css"
-              type="text/css"
-              media="all"
-            /> --}}
-            {{-- <script src="{{ asset('backend/js/light.js') }}"></script> --}}
-            <!-- for amcharts js -->
-            {{-- <script src="{{ asset('backend/js/index1.js') }}"></script> --}}
             <div class="clearfix"></div>
           </div>
         </div>
@@ -572,38 +547,6 @@
                         return window.location.assign("/movie")
                     }
                 })
-            })
-
-            $(document).on('change','.change-img', function(){
-                var id_phim = $(this).data('movie_id');
-                var files = $("#"+id_phim)[0].files;
-                // console.log(files)
-
-                var image = document.getElementById(id_phim).files[0];
-                // console.log(image)
-                var form_data = new FormData();
-
-                form_data.append("file", document.getElementById(id_phim).files[0]);
-                form_data.append("id_phim",id_phim);
-
-                $.ajax({
-                        url:"{{route('update-image-movie')}}",
-                        method:"POST",
-                        headers:{
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        data:form_data,
-
-                        contentType:false,
-                        cache:false,
-                        processData:false,
-
-                        success:function(){
-                            return window.location.assign("/movie")
-                            // location.reload();
-                            // alert('Cập nhật hình ảnh thành công !');
-                        }
-                });
             })
     </script>
     <!-- //for index page weekly sales java script -->
