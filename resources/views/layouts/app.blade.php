@@ -21,11 +21,10 @@
       <!-- //font-awesome icons CSS-->
       <!-- side nav css file -->
       <link href="{{ asset('backend/css/SidebarNav.min.css') }}" media="all" rel="stylesheet" type="text/css"/>
-      <link rel="stylesheet" href="//cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
       <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+      <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
       <!-- //side nav css file -->
       <!-- js-->
-      <script src="{{ asset('backend/js/jquery-1.11.1.min.js') }}"></script>
       <!--webfonts-->
       <link
          href="//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext"
@@ -33,8 +32,11 @@
          />
       <!--//webfonts-->
       <script src="{{ asset('backend/js/custom.js') }}"></script>
+      <script src="{{ asset('backend/js/jquery-1.11.1.min.js') }}"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="{{ asset('backend/js/bootstrap.js') }}"></script>
       <link href="{{ asset('backend/css/custom.css') }}" rel="stylesheet" />
-      <script src="//cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+      <script type="text/javascript" src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
       <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
       <script type="text/javascript">
          google.charts.load("current", {packages:["corechart"]});
@@ -427,6 +429,7 @@
          $('.sidebar-menu').SidebarNav();
       </script>
       <script type="text/javascript">
+
          $(document).ready( function () {
              $('#MovieTable').DataTable();
              $('#CategoryTable').DataTable();

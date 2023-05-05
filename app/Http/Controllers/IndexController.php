@@ -238,7 +238,7 @@ class IndexController extends Controller
     // Trang phim mới
     public function new(Request $request) {
         $request->visitor()->visit();
-        $new_movies = Movie::orderBy('dateupdated', 'DESC')->where('hot', 1)->paginate(40);
+        $new_movies = Movie::orderBy('dateupdated', 'DESC')->paginate(40);
         return view('pages.new', compact('new_movies'));
     }
 
