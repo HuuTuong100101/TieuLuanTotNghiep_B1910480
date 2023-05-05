@@ -74,7 +74,8 @@ class MovieController extends Controller
                 'country_id' => 'required',
                 'status' => 'required',
                 'genre' => 'required',
-                'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg,webp'
+                'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg,webp',
+                'trailer' => ''
             ],
 
             [
@@ -141,6 +142,7 @@ class MovieController extends Controller
             // Thêm vào bảng movie_genre:
             $movie->movie_genre()->attach($data['genre']);
             return redirect()->back()->with('success', 'Thêm phim thành công');
+            // return response()->json($data['trailer']);
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Thêm phim không thành công');
         }
@@ -196,7 +198,8 @@ class MovieController extends Controller
                 'country_id' => 'required',
                 'status' => 'required',
                 'genre' => 'required',
-                'image' => ''
+                'image' => '',
+                'trailer' => ''
             ],
 
             [

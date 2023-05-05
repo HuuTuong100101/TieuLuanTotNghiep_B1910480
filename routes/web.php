@@ -82,7 +82,7 @@
         return back()->with('resent', true);
     })->middleware(['auth', 'throttle:6,1'])->name('verification.resent');
 
-    // Quên mật khẩu (không có cũng đc, laravel có làm sẵn)
+    // Quên mật khẩu (không có cũng đc, laravel có sẵn)
     Route::get('/forgot-password', function () {
         return view('auth.passwords.email');
     })->middleware('guest')->name('password.request');

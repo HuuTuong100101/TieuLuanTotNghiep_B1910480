@@ -21,7 +21,7 @@ class EpisodeController extends Controller
      */
     public function index()
     {
-        $episodes = Episode::with('movie')->get();
+        $episodes = Episode::with('movie')->orderBy('dateupdated', 'DESC')->get();
         return view('admin.episode.index', compact('episodes'));
 
     }
