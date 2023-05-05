@@ -11,7 +11,8 @@
       <meta name="language" content="Việt Nam">
       <title>PagodaFilms</title>
       <link rel="shortcut icon" href="/images/filmmaking.png" type="image/x-icon" />
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/fontawesome.min.css" integrity="sha512-cHxvm20nkjOUySu7jdwiUxgGy11vuVPE9YeK89geLMLMMEOcKFyS2i+8wo0FOwyQO/bL8Bvq1KMsqK4bbOsPnA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/fontawesome.min.css" integrity="sha512-cHxvm20nkjOUySu7jdwiUxgGy11vuVPE9YeK89geLMLMMEOcKFyS2i+8wo0FOwyQO/bL8Bvq1KMsqK4bbOsPnA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
       <link rel='dns-prefetch' href='//s.w.org' />
       <link rel='stylesheet' id='bootstrap-css' href='{{asset('css/bootstrap.min.css')}}' media='all' />
       <link rel='stylesheet' id='style-css' href= '{{asset('css/style.css')}}' media='all' />
@@ -268,13 +269,13 @@
                autoplayTimeout: 4000,
                autoplayHoverPause: true,
                nav: true,
-               navText: ['<i class="hl-down-open rotate-left"></i>', '<i class="hl-down-open rotate-right"></i>'],
+               navText: ['<i class="hl-down-open fa-arrow-left-rotate"></i>', '<i class="hl-down-open rotate-right"></i>'],
                responsiveClass: true,
                responsive: {
                   0: {items:2},
                   480: {items:3}, 
                   600: {items:4},
-                  1000: {items: 5}
+                  1000: {items: 6}
                }
             })
          });
